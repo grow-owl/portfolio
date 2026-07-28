@@ -1,9 +1,11 @@
 import { createIcons, Gauge, TrendingDown, ImageOff, Phone, Bird, MessageCircle, ArrowRight, CheckCircle2, AlertCircle, X } from 'lucide';
 import { renderProjects } from './js/projects.js';
 import { inject } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
-// Initialize Vercel Analytics
+// Initialize Vercel Analytics and Speed Insights
 inject();
+injectSpeedInsights();
 
 // Render the projects dynamically first
 renderProjects();
