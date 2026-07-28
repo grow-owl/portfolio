@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+}
+
+@layer utilities {
+    .brutal-border {
+        border: 2px solid #18181b;
+    }
+
+    .brutal-shadow {
+        box-shadow: 4px 4px 0px 0px #18181b;
+    }
+
+    .brutal-shadow-hover:hover {
+        box-shadow: 6px 6px 0px 0px #18181b;
+        transform: translate(-2px, -2px);
+    }
+}

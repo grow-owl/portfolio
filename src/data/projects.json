@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Premium Auto Detailing",
+    "description": "Dark mode booking system that eliminated friction and increased premium service reservations by 45%.",
+    "link": "https://car-washing-website-psi.vercel.app/",
+    "image": "images/car-wash.png"
+  },
+  {
+    "title": "Classic Cheesy",
+    "description": "Established brand authority for a pet-friendly restaurant through an immersive, visually rich digital experience.",
+    "link": "https://classic-cheesy.vercel.app/",
+    "image": "images/classic-cheesy.png"
+  },
+  {
+    "title": "Arhan Fabricators",
+    "description": "Developed a high-performance B2B digital catalog designed specifically to capture high-ticket leads in the manufacturing sector.",
+    "link": "https://arhan-fabricators.vercel.app/",
+    "image": "images/arhan-fabricators.png"
+  },
+  {
+    "title": "D Dine Kitchen",
+    "description": "Engineered a zero-commission D2C delivery platform that empowered the brand to own their customer data and increase margins.",
+    "link": "https://ddinekitchen.shop/",
+    "image": "images/d-dine-kitchen.png"
+  },
+  {
+    "title": "Bold and Beautiful Salon",
+    "description": "A premium digital storefront designed to elevate the brand and drive local salon bookings.",
+    "link": "https://www.boldandbeautiful.co.in/",
+    "image": "images/bold-and-beautiful.png"
+  }
+]
