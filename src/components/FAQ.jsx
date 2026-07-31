@@ -5,28 +5,28 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const faqs = [
   {
-    q: "How long does a typical project take from start to finish?",
-    a: "Most projects are completed within 2-8 weeks, depending on scope and complexity. Simple landing pages take about 1-2 weeks, standard multi-page websites take 2-3 weeks, and complex custom web apps take 4-8 weeks. We'll provide a detailed timeline during our discovery call.",
+    q: "How long does a typical web development or design project take?",
+    a: "Most web development and web design projects are completed within 2 to 8 weeks depending on scope and complexity. Landing pages take 1-2 weeks, custom business websites take 2-3 weeks, and complex full-stack web applications take 4-8 weeks. We provide a clear timeline before starting.",
   },
   {
-    q: "What makes you different from other freelance website builders?",
-    a: "We combine agency-grade design excellence and technical expertise with the personalized attention, speed, and flexibility of a dedicated freelance website builder collective. You work directly with our senior builders, not junior account managers. Plus, every project we build is search-engine-optimized from scratch.",
+    q: "What makes GrowOwl different from other web design and digital marketing agencies?",
+    a: "We build 100% custom-engineered websites using React and Next.js rather than slow templates or bloated page builders. Every site comes with built-in technical SEO, sub-second load times, and direct access to senior developers and designers.",
   },
   {
-    q: "Do you offer ongoing support after the project launches?",
-    a: "Absolutely! All website packages include post-launch support. We also offer monthly retainer options for ongoing maintenance, updates, and conversion optimization. We're committed to your long-term ranking and business growth.",
+    q: "Do your web development services include SEO and Digital Marketing?",
+    a: "Yes! All our web development and web design projects include foundational technical SEO, clean HTML5 structure, schema JSON-LD data, fast page speeds, and sitemap indexing to ensure your business ranks high on Google, Bing, and AI search engines.",
   },
   {
-    q: "What if I only need one specific service, not the full package?",
-    a: "Of course! While our packages offer the best value, we're happy to customize scope based on your specific needs. Whether you need a design refresh, an SEO audit, or custom React coding - let's talk and we'll craft a tailored solution.",
+    q: "Can you build custom full-stack web applications and e-commerce stores?",
+    a: "Absolutely. We engineer custom React and Next.js frontends paired with Node.js, Express, and MongoDB backends, as well as bespoke e-commerce solutions, booking portals, and interactive web tools.",
   },
   {
-    q: "How does a freelance website builder optimize my site for search engines?",
-    a: "We integrate comprehensive on-page and technical SEO in every website we build. This includes clean HTML5 markup, fast page speeds, custom Schema JSON-LD structured data, XML sitemaps, and optimized copywriting targeting your core terms (like freelance website builder or custom web developer) to ensure you rank high on Google and Bing.",
+    q: "Do you offer SEO marketing and PPC ad campaign management?",
+    a: "Yes! As a full-service digital marketing agency, we handle search engine optimization (SEO), Google Ads (PPC), conversion rate optimization (CRO), and local SEO to generate high-quality leads for your business.",
   },
   {
-    q: "Can a freelance full stack developer build custom React and Node.js applications?",
-    a: "Yes! As freelance full stack website builders, we write custom React frontends coupled with robust Node.js, Express, and MongoDB backends. We build bespoke databases, interactive SaaS dashboards, and high-performance business applications from the ground up, guaranteeing optimal performance and scaling.",
+    q: "What ongoing maintenance and support do you provide post-launch?",
+    a: "All web projects come with post-launch technical support. We also provide monthly retainers for continuous performance optimization, security updates, content revisions, and SEO rank tracking.",
   },
 ];
 

@@ -34,18 +34,16 @@ export default function Hero() {
               ref={titleRef}
               className="font-sans text-[clamp(36px,4.5vw,52px)] font-bold leading-[1.15] tracking-[-0.04em] text-ink mb-6"
             >
-              Freelance{" "}
-              <em className="font-serif italic font-medium">website builder</em> &amp;
-              full stack developer crafting sites that actually{" "}
-              <span className="text-accent">move the needle</span> for growing
-              brands.
+              Full stack{" "}
+              <em className="font-serif italic font-medium">web development</em> &amp;
+              bespoke <span className="text-accent">web design agency</span> crafting sites that actually move the needle.
             </h1>
 
             <p
               ref={subRef}
               className="text-[17px] text-ink/60 leading-[1.7] mb-9 max-w-[460px]"
             >
-              From bespoke UI/UX design to custom full stack React development, we deliver high-performance, search-optimized web applications that rank at the top.
+              From custom React &amp; Next.js web development to technical SEO marketing and local search optimization, we engineer high-speed digital experiences that dominate rankings and drive revenue.
             </p>
 
             <div ref={actionsRef} className="flex gap-3.5 flex-wrap mb-10">

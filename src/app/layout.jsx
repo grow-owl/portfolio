@@ -18,32 +18,38 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   metadataBase: new URL("https://www.growowl.online"),
-  title: "GrowOwl | Web Design, Development & SEO Services Agency",
+  title: "GrowOwl | Top Web Development, Web Design & Digital Marketing Agency",
   description:
-    "GrowOwl is a trusted freelance website builder, full stack developer, and SEO services agency. We design and build high-performance React websites, custom database backends, MERN stack apps, and search-optimized digital experiences that drive growth and rank high on search engines.",
+    "GrowOwl is a premier web development, web design, and SEO digital marketing agency. We engineer custom React & Next.js web applications, e-commerce stores, bespoke UI/UX designs, and search-optimized campaigns that dominate rankings and drive revenue.",
   keywords: [
+    "web development agency",
+    "web design company",
+    "web design agency",
+    "digital marketing agency",
+    "seo marketing services",
+    "seo agency",
+    "search engine optimization agency",
+    "local seo services",
+    "full stack web development",
+    "react nextjs developer agency",
+    "ecommerce website builder",
+    "custom web application agency",
+    "lead generation agency",
+    "ui ux design studio",
+    "pay per click ppc management",
+    "conversion rate optimization cro",
+    "best web design studio India",
     "freelance website builder",
     "freelance full stack developer",
-    "SEO services",
-    "Search Engine Optimization",
-    "SEO agency",
-    "freelance SEO specialist",
-    "full stack web developer",
-    "hire freelance full stack developer",
-    "freelance web developer",
-    "freelance portfolio builder",
-    "MERN stack developer",
-    "Node.js developer",
-    "custom website developer",
-    "freelance web designer",
-    "react website developer",
-    "bespoke website builder India",
-    "hire website developer",
-    "database developer",
+    "freelance seo specialist",
+    "MERN stack web developer",
+    "custom website builder India",
+    "high speed website developer",
+    "growth marketing agency",
   ],
   authors: [{ name: "GrowOwl Studio", url: "https://www.growowl.online" }],
-  creator: "GrowOwl",
-  publisher: "GrowOwl",
+  creator: "GrowOwl Studio",
+  publisher: "GrowOwl Studio",
   formatDetection: {
     email: false,
     address: false,
@@ -55,16 +61,16 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://www.growowl.online/",
-    title: "GrowOwl | Web Design, Development & SEO Services Agency",
+    title: "GrowOwl | Top Web Development, Web Design & Digital Marketing Agency",
     description:
-      "Bespoke freelance website builder, full stack developer, and SEO services agency crafting top-tier digital experiences that rank high and deliver measurable business growth.",
-    siteName: "GrowOwl",
+      "Full-service digital agency crafting bespoke React & Next.js websites, custom web apps, UI/UX designs, and ROI-focused SEO & digital marketing strategies.",
+    siteName: "GrowOwl Studio",
     images: [
       {
         url: "https://www.growowl.online/images/hero.webp",
         width: 1200,
         height: 630,
-        alt: "GrowOwl | Web Design, Development & SEO Services Agency",
+        alt: "GrowOwl | Web Development, Web Design & Digital Marketing Agency",
       },
     ],
     locale: "en_US",
@@ -72,9 +78,9 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     url: "https://www.growowl.online/",
-    title: "GrowOwl | Web Design, Development & SEO Services Agency",
+    title: "GrowOwl | Top Web Development, Web Design & Digital Marketing Agency",
     description:
-      "Bespoke freelance website builder, full stack developer, and SEO services agency crafting top-tier digital experiences that rank high and deliver measurable business growth.",
+      "Bespoke web development, UI/UX design, and SEO marketing agency delivering top-tier digital experiences that rank high and scale businesses.",
     images: ["https://www.growowl.online/images/hero.webp"],
   },
   robots: {
@@ -101,111 +107,186 @@ export const viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
+const jsonLdGraph = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "GrowOwl",
-  image: "https://www.growowl.online/images/hero.webp",
-  "@id": "https://www.growowl.online/#service",
-  url: "https://www.growowl.online",
-  telephone: "+918609504186",
-  priceRange: "$$",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Kolkata",
-    addressRegion: "West Bengal",
-    addressCountry: "IN",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 22.5726,
-    longitude: 88.3639,
-  },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    opens: "00:00",
-    closes: "23:59",
-  },
-  sameAs: ["https://www.instagram.com/growowl_"],
-  description:
-    "Custom freelance website builder, full stack developer, and SEO services agency designing bold web apps, backend databases, search-optimized campaigns, and digital strategies.",
-  knowsAbout: [
-    "SEO Services",
-    "Search Engine Optimization",
-    "Freelance Website Builder",
-    "Full Stack Development",
-    "MERN Stack Developer",
-    "Node.js & MongoDB",
-    "Web Development",
-    "UI/UX Design",
-    "React Development",
-    "SEO Optimization",
-    "E-commerce Website Building",
-    "Custom Portfolios",
+  "@graph": [
+    {
+      "@type": ["ProfessionalService", "Organization"],
+      "@id": "https://www.growowl.online/#organization",
+      name: "GrowOwl Studio",
+      alternateName: ["GrowOwl Digital Agency", "GrowOwl"],
+      url: "https://www.growowl.online",
+      logo: "https://www.growowl.online/images/growowl-logo.webp",
+      image: "https://www.growowl.online/images/hero.webp",
+      telephone: "+918609504186",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kolkata",
+        addressRegion: "West Bengal",
+        addressCountry: "IN",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 22.5726,
+        longitude: 88.3639,
+      },
+      areaServed: [
+        "Worldwide",
+        "India",
+        "Kolkata",
+        "Siliguri",
+        "Lucknow",
+        "Delhi NCR",
+        "Mumbai",
+        "Bengaluru",
+      ],
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "00:00",
+        closes: "23:59",
+      },
+      sameAs: ["https://www.instagram.com/growowl_"],
+      description:
+        "GrowOwl is a premier web development, web design, and SEO digital marketing agency. We build custom full-stack React & Next.js web applications, e-commerce stores, custom databases, and search-optimized lead generation funnels.",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "15",
+        bestRating: "5",
+        worstRating: "1",
+      },
+      knowsAbout: [
+        "Web Development Agency",
+        "Web Design & UI/UX Studio",
+        "SEO Services & Search Engine Optimization",
+        "Digital Marketing Agency",
+        "Local SEO & Lead Generation",
+        "Full Stack Development (React, Next.js, Node.js)",
+        "E-Commerce Website Development",
+        "Conversion Rate Optimization (CRO)",
+        "Pay Per Click (PPC) Management",
+        "Brand Identity & Strategy",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "GrowOwl Core Digital & Web Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Custom Web Development & Web Apps",
+              description:
+                "Custom React, Next.js, and Node.js full-stack web development and database engineering.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Bespoke Web Design & UI/UX Studio",
+              description:
+                "Editorial and modern user interface and user experience design for web and mobile.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Search Engine Optimization (SEO) & GEO",
+              description:
+                "Technical, on-page, and local SEO services to dominate Google rankings and AI search engines.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Digital Marketing & Performance Ads",
+              description:
+                "Data-driven lead generation campaigns, PPC paid ads, and brand growth strategies.",
+            },
+          },
+        ],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.growowl.online/#website",
+      url: "https://www.growowl.online",
+      name: "GrowOwl",
+      publisher: {
+        "@id": "https://www.growowl.online/#organization",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.growowl.online/#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "How long does a typical web development or design project take?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Most web development and web design projects are completed within 2 to 8 weeks depending on complexity. Landing pages take 1-2 weeks, custom business websites take 2-3 weeks, and complex full-stack web applications take 4-8 weeks.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What makes GrowOwl different from other web design and digital marketing agencies?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "We build 100% custom-engineered websites using React and Next.js rather than slow templates or bloated page builders. Every site comes with built-in technical SEO, sub-second load times, and direct access to senior developers and designers.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do your web development services include SEO and Digital Marketing?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes! All our web development and web design projects include foundational technical SEO, clean HTML5 structure, schema JSON-LD data, fast page speeds, and sitemap indexing to ensure your business ranks high on Google, Bing, and AI search engines.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can you build custom full-stack web applications and e-commerce stores?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Absolutely. We engineer custom React and Next.js frontends paired with Node.js, Express, and MongoDB backends, as well as bespoke e-commerce solutions, booking portals, and interactive web tools.",
+          },
+        },
+      ],
+    },
   ],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "GrowOwl Core Digital Services",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Website Design & UI/UX Design",
-          description:
-            "Bespoke user interface and user experience design for modern web applications.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Full Stack Web Development",
-          description:
-            "Custom React, Next.js, and Node.js full stack web application development.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "SEO Services & Search Engine Optimization",
-          description:
-            "On-page, technical, and structural SEO services to boost search engine rankings.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Digital Strategy & Branding",
-          description:
-            "Comprehensive digital growth strategies and brand identity development.",
-        },
-      },
-    ],
-  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
         />
       </head>
-      <body className="font-sans antialiased bg-cream text-ink" suppressHydrationWarning>
+      <body
+        className="font-sans antialiased bg-cream text-ink"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
