@@ -127,3 +127,5 @@ export function useMultiReveal(count, options = {}) {
     refs.current[index] = el;
   };
 }
+
+export const useNoReveal = () => useRef(null);

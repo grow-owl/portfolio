@@ -1,6 +1,6 @@
 "use client";
 
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useNoReveal } from "../hooks/useScrollReveal";
 
 const stats = [
   { number: "15+", label: "Completed Projects" },
@@ -8,10 +8,10 @@ const stats = [
 ];
 
 export default function About({ sectionNumber = "/002/" }) {
-  const labelRef = useScrollReveal();
-  const titleRef = useScrollReveal();
-  const textRef = useScrollReveal();
-  const statsRef = useScrollReveal();
+  const labelRef = useNoReveal();
+  const titleRef = useNoReveal();
+  const textRef = useNoReveal();
+  const statsRef = useNoReveal();
 
   return (
     <section id="about" aria-labelledby="about-heading" className="py-14 lg:py-20">
