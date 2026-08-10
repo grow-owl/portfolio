@@ -29,7 +29,9 @@ export default function Navbar() {
         document.documentElement.scrollHeight - 4;
       const sections = navLinks
         .map(({ href }) => {
-          const section = document.querySelector(href);
+          const targetId = href.includes("#") ? `#${href.split("#")[1]}` : null;
+          if (!targetId) return null;
+          const section = document.querySelector(targetId);
           if (!section) return null;
 
           const top = section.getBoundingClientRect().top + window.scrollY;
