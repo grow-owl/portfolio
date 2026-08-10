@@ -15,7 +15,8 @@ export function useScrollReveal(options = {}) {
     }
 
     const rect = el.getBoundingClientRect();
-    const isInViewport = rect.top < (typeof window !== "undefined" ? window.innerHeight : 900) && rect.bottom > 0;
+    const vh = typeof window !== "undefined" ? window.innerHeight : 900;
+    const isInViewport = rect.top < vh + 100 && rect.bottom > 0;
 
     if (isInViewport) {
       el.classList.add("visible");
@@ -31,7 +32,7 @@ export function useScrollReveal(options = {}) {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.05, rootMargin: "50px 0px 0px 0px", ...options }
+      { threshold: 0.05, rootMargin: "100px 0px 0px 0px", ...options }
     );
 
     observer.observe(el);
@@ -53,6 +54,8 @@ export function useMultiReveal(count, options = {}) {
       return;
     }
 
+    const vh = typeof window !== "undefined" ? window.innerHeight : 900;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -62,13 +65,13 @@ export function useMultiReveal(count, options = {}) {
           }
         });
       },
-      { threshold: 0.05, rootMargin: "50px 0px 0px 0px", ...options }
+      { threshold: 0.05, rootMargin: "100px 0px 0px 0px", ...options }
     );
 
     refs.current.forEach((el) => {
       if (el) {
         const rect = el.getBoundingClientRect();
-        const isInViewport = rect.top < (typeof window !== "undefined" ? window.innerHeight : 900) && rect.bottom > 0;
+        const isInViewport = rect.top < vh + 100 && rect.bottom > 0;
         if (isInViewport) {
           el.classList.add("visible");
         } else {

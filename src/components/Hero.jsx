@@ -73,6 +73,7 @@ export default function Hero() {
                 width={800}
                 height={1000}
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 600px"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />

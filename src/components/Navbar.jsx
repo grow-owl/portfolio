@@ -119,7 +119,7 @@ export default function Navbar() {
         className={`fixed inset-x-0 top-[68px] z-40 bg-white border-b border-border-strong shadow-xl px-5 pb-6 pt-4 md:hidden transition-all duration-300 ease-in-out ${
           mobileOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-2 pointer-events-none"
+            : "opacity-0 -translate-y-2 pointer-events-none hidden"
         }`}
       >
         <div className="flex flex-col gap-1">
