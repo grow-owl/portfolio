@@ -184,7 +184,7 @@ export default function Pricing({ sectionNumber = "/007/" }) {
           <span className="font-serif italic text-lg text-accent font-medium">
             {sectionNumber}
           </span>
-          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
+          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/80">
             Pricing
           </span>
         </div>
@@ -197,7 +197,7 @@ export default function Pricing({ sectionNumber = "/007/" }) {
           Transparent <em className="font-serif italic font-medium">pricing</em>{" "}
           for every stage
         </h2>
-        <p className="text-[17px] text-ink/60 max-w-[650px] mt-4 leading-[1.7] text-center mx-auto">
+        <p className="text-[17px] text-ink/80 max-w-[650px] mt-4 leading-[1.7] text-center mx-auto">
           One-time pricing for website builds, flexible monthly plans for
           ongoing SEO — no hidden fees, no long-term lock-in.
         </p>
@@ -255,12 +255,12 @@ export default function Pricing({ sectionNumber = "/007/" }) {
                 <h3 className="text-xl font-semibold tracking-[-0.02em] block mb-2">
                   {p.label}
                 </h3>
-                <p className="text-sm text-ink/60 leading-[1.5]">{p.tagline}</p>
+                <p className="text-sm text-ink/80 leading-[1.5]">{p.tagline}</p>
               </div>
 
               <div className="mb-5">
                 {p.original && (
-                  <span className="text-xs sm:text-sm font-medium text-ink/40 line-through block mb-1">
+                  <span className="text-xs sm:text-sm font-medium text-ink/75 line-through block mb-1">
                     {p.original}
                   </span>
                 )}
@@ -268,13 +268,13 @@ export default function Pricing({ sectionNumber = "/007/" }) {
                   <span className="text-3xl sm:text-4xl lg:text-[28px] xl:text-[36px] font-bold tracking-[-0.04em] text-ink leading-none">
                     {p.current}
                   </span>
-                  <span className="text-xs sm:text-[13px] text-ink/40 font-medium whitespace-nowrap">
+                  <span className="text-xs sm:text-[13px] text-ink/75 font-medium whitespace-nowrap">
                     {p.period}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-[13px] text-ink/60 font-medium mb-7 pb-7 border-b border-ink/10">
+              <div className="flex items-center gap-2 text-[13px] text-ink/80 font-medium mb-7 pb-7 border-b border-ink/10">
                 <Clock />
                 <span>{p.timeline}</span>
               </div>

@@ -14,20 +14,28 @@ export function useScrollReveal(options = {}) {
       return;
     }
 
-    el.classList.add("reveal-init");
+    let observer;
+    const rafId = requestAnimationFrame(() => {
+      if (!el) return;
+      el.classList.add("reveal-init");
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.05, rootMargin: "50px 0px 0px 0px", ...options }
-    );
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.05, rootMargin: "50px 0px 0px 0px", ...options }
+      );
 
-    observer.observe(el);
-    return () => observer.disconnect();
+      observer.observe(el);
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (observer) observer.disconnect();
+    };
   }, []);
 
   return ref;
@@ -42,26 +50,32 @@ export function useMultiReveal(count, options = {}) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.05, rootMargin: "50px 0px 0px 0px", ...options }
-    );
+    let observer;
+    const rafId = requestAnimationFrame(() => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: "50px 0px 0px 0px", ...options }
+      );
 
-    refs.current.forEach((el) => {
-      if (el) {
-        el.classList.add("reveal-init");
-        observer.observe(el);
-      }
+      refs.current.forEach((el) => {
+        if (el) {
+          el.classList.add("reveal-init");
+          observer.observe(el);
+        }
+      });
     });
 
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (observer) observer.disconnect();
+    };
   }, [count]);
 
   return (index) => (el) => {

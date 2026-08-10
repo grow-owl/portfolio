@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -98,55 +96,59 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 -mr-1 text-ink rounded-lg"
+            className="md:hidden p-2 -mr-1 text-ink rounded-lg cursor-pointer"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileOpen ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="4" x2="20" y1="12" y2="12" />
+                <line x1="4" x2="20" y1="6" y2="6" />
+                <line x1="4" x2="20" y1="18" y2="18" />
+              </svg>
+            )}
           </button>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-x-0 top-[68px] z-40 bg-white border-b border-border-strong shadow-xl px-5 pb-6 pt-4 md:hidden"
-          >
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link, i) => {
-                const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
-                return (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className={`font-heading text-lg font-semibold tracking-tight py-3 border-b border-border last:border-0 ${
-                      isActive ? "text-red" : "text-ink"
-                    }`}
-                  >
-                    {link.label}
-                  </motion.a>
-                );
-              })}
-              <div className="pt-4">
-                <a
-                  href="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="btn-primary w-full justify-center text-[15px] !py-3.5"
-                >
-                  Let's Talk
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div
+        className={`fixed inset-x-0 top-[68px] z-40 bg-white border-b border-border-strong shadow-xl px-5 pb-6 pt-4 md:hidden transition-all duration-300 ease-in-out ${
+          mobileOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col gap-1">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className={`font-heading text-lg font-semibold tracking-tight py-3 border-b border-border last:border-0 transition-colors ${
+                  isActive ? "text-red" : "text-ink"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+          <div className="pt-4">
+            <a
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
+              className="btn-primary w-full justify-center text-[15px] !py-3.5"
+            >
+              Let's Talk
+            </a>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

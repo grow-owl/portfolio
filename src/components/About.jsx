@@ -20,7 +20,7 @@ export default function About({ sectionNumber = "/002/" }) {
           <span className="font-serif italic text-lg text-accent font-medium">
             {sectionNumber}
           </span>
-          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
+          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/80">
             About Us
           </span>
         </div>
@@ -38,10 +38,10 @@ export default function About({ sectionNumber = "/002/" }) {
 
           <div>
             <div ref={textRef}>
-              <p className="text-base text-ink/60 leading-[1.75] mb-5">
+              <p className="text-base text-ink/80 leading-[1.75] mb-5">
                 We're not just another agency. We're a collective of strategic freelance designers and full stack developers who believe great digital work should be felt, not just seen. Every line of backend and frontend code is optimized to help your brand rank at the top.
               </p>
-              <p className="text-base text-ink/60 leading-[1.75] mb-5">
+              <p className="text-base text-ink/80 leading-[1.75] mb-5">
                 In just over 2 years, we've grown from a small team of passionate freelancers into a trusted website builder collective, delivering fast, conversion-focused sites for clients across India.
               </p>
             </div>
@@ -55,7 +55,7 @@ export default function About({ sectionNumber = "/002/" }) {
                   <span className="block text-[28px] lg:text-4xl font-bold tracking-[-0.04em] text-ink leading-none mb-2">
                     {s.number}
                   </span>
-                  <span className="text-[13px] text-ink/60 font-medium">
+                  <span className="text-[13px] text-ink/80 font-medium">
                     {s.label}
                   </span>
                 </div>

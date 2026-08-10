@@ -12,7 +12,7 @@ export default function Hero() {
           <div className="max-w-[560px]">
             <div className="inline-flex items-center gap-2.5 px-5 py-2 pl-3.5 bg-ink/5 rounded-full mb-8 border border-ink/10">
               <span className="w-2 h-2 rounded-full bg-green animate-pulse-dot" />
-              <span className="text-[13px] font-medium text-ink/60">
+              <span className="text-[13px] font-medium text-ink/80">
                 Available for new project
               </span>
             </div>
@@ -23,7 +23,7 @@ export default function Hero() {
               bespoke <span className="text-accent">web design agency</span> crafting sites that actually move the needle.
             </h1>
 
-            <p className="text-[17px] text-ink/60 leading-[1.7] mb-9 max-w-[460px]">
+            <p className="text-[17px] text-ink/80 leading-[1.7] mb-9 max-w-[460px]">
               From custom React &amp; Next.js web development to technical SEO marketing and local search optimization, we engineer high-speed digital experiences that dominate rankings and drive revenue.
             </p>
 
@@ -59,7 +59,7 @@ export default function Hero() {
                 5.0/5 rating
               </span>
               <span className="text-sm text-ink/40">•</span>
-              <span className="text-sm text-ink/60">
+              <span className="text-sm text-ink/80">
                 100% client satisfaction
               </span>
             </div>

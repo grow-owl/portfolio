@@ -28,9 +28,10 @@
     "tailwindcss": "^4.0.0"
   },
   "browserslist": [
-    "chrome >= 90",
-    "edge >= 90",
-    "firefox >= 90",
-    "safari >= 15"
+    "chrome >= 109",
+    "firefox >= 109",
+    "safari >= 16.4",
+    "edge >= 109",
+    "not dead"
   ]
 }

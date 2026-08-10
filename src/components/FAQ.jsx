@@ -44,7 +44,7 @@ export default function FAQ({ sectionNumber = "/008/" }) {
           <span className="font-serif italic text-lg text-accent font-medium">
             {sectionNumber}
           </span>
-          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
+          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/80">
             FAQ
           </span>
         </div>
@@ -97,7 +97,7 @@ export default function FAQ({ sectionNumber = "/008/" }) {
                   </svg>
                 </button>
                 <div className={`accordion-body ${isOpen ? "open" : ""}`}>
-                  <p className="pb-7 text-[15px] text-ink/60 leading-[1.75] max-w-[700px]">
+                  <p className="pb-7 text-[15px] text-ink/80 leading-[1.75] max-w-[700px]">
                     {f.a}
                   </p>
                 </div>

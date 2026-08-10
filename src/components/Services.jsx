@@ -68,7 +68,7 @@ export default function Services({ sectionNumber = "/004/" }) {
           <span className="font-serif italic text-lg text-accent font-medium">
             {sectionNumber}
           </span>
-          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
+          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/80">
             Services
           </span>
         </div>
@@ -121,7 +121,7 @@ export default function Services({ sectionNumber = "/004/" }) {
 
                 <div className={`accordion-body ${isOpen ? "open" : ""}`}>
                   <div className="pb-8 pl-0 md:pl-[60px]">
-                    <p className="text-base text-ink/60 leading-[1.75] mb-6 max-w-[600px]">
+                    <p className="text-base text-ink/80 leading-[1.75] mb-6 max-w-[600px]">
                       {s.desc}
                     </p>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2.5 gap-x-10 mb-7">

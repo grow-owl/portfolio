@@ -92,7 +92,7 @@ function ProjectCard({ p }) {
           <span className="font-serif italic text-base text-accent">
             {p.number}
           </span>
-          <span className="text-xs text-ink/40 font-medium">{p.year}</span>
+          <span className="text-xs text-ink/80 font-medium">{p.year}</span>
           {p.tag && (
             <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-accent bg-accent/8 px-3 py-1 rounded-full">
               {p.tag}
@@ -102,7 +102,7 @@ function ProjectCard({ p }) {
         <h3 className="text-[22px] font-semibold tracking-[-0.02em] mb-2">
           {p.name}
         </h3>
-        <p className="text-sm text-ink/60 leading-[1.6]">{p.desc}</p>
+        <p className="text-sm text-ink/80 leading-[1.6]">{p.desc}</p>
       </div>
     </a>
   );
@@ -129,7 +129,7 @@ export default function Work({ sectionNumber = "/003/" }) {
           <span className="font-serif italic text-lg text-accent font-medium">
             {sectionNumber}
           </span>
-          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
+          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/80">
             Featured Work
           </span>
         </div>
@@ -142,7 +142,7 @@ export default function Work({ sectionNumber = "/003/" }) {
           Projects that <em className="font-serif italic font-medium">speak</em>{" "}
           for themselves
         </h2>
-        <p className="text-[17px] text-ink/60 max-w-[600px] mt-4 leading-[1.7] text-center mx-auto">
+        <p className="text-[17px] text-ink/80 max-w-[600px] mt-4 leading-[1.7] text-center mx-auto">
           A selection of our most impactful work across web design, branding,
           and digital strategy.
         </p>

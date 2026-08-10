@@ -32,7 +32,7 @@ export default function Process({ sectionNumber = "/006/" }) {
           <span className="font-serif italic text-lg text-accent font-medium">
             {sectionNumber}
           </span>
-          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
+          <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/80">
             The Process
           </span>
         </div>
@@ -45,7 +45,7 @@ export default function Process({ sectionNumber = "/006/" }) {
           How we guide every project to the{" "}
           <em className="font-serif italic font-medium">finish line</em>
         </h2>
-        <p className="text-[17px] text-ink/60 max-w-[600px] mt-4 leading-[1.7] text-center mx-auto">
+        <p className="text-[17px] text-ink/80 max-w-[600px] mt-4 leading-[1.7] text-center mx-auto">
           Each phase is handled by specialists who obsess over the details so
           you don't have to.
         </p>
@@ -64,7 +64,7 @@ export default function Process({ sectionNumber = "/006/" }) {
                 <h3 className="text-2xl font-semibold tracking-[-0.02em] mb-3">
                   {s.title}
                 </h3>
-                <p className="text-[15px] text-ink/60 leading-[1.7] max-w-[600px]">
+                <p className="text-[15px] text-ink/80 leading-[1.7] max-w-[600px]">
                   {s.desc}
                 </p>
               </div>
