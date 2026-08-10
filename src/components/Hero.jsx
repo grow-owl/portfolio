@@ -1,16 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useScrollReveal } from "../hooks/useScrollReveal";
 
 export default function Hero() {
-  const tagRef = useScrollReveal();
-  const titleRef = useScrollReveal();
-  const subRef = useScrollReveal();
-  const actionsRef = useScrollReveal();
-  const proofRef = useScrollReveal();
-  const imgRef = useScrollReveal();
-
   return (
     <section
       id="home"
@@ -20,35 +12,26 @@ export default function Hero() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           <div className="max-w-[560px]">
-            <div
-              ref={tagRef}
-              className="inline-flex items-center gap-2.5 px-5 py-2 pl-3.5 bg-ink/5 rounded-full mb-8 border border-ink/10"
-            >
+            <div className="inline-flex items-center gap-2.5 px-5 py-2 pl-3.5 bg-ink/5 rounded-full mb-8 border border-ink/10">
               <span className="w-2 h-2 rounded-full bg-green animate-pulse-dot" />
               <span className="text-[13px] font-medium text-ink/60">
                 Available for new project
               </span>
             </div>
 
-            <h1
-              ref={titleRef}
-              className="font-sans text-[clamp(36px,4.5vw,52px)] font-bold leading-[1.15] tracking-[-0.04em] text-ink mb-6"
-            >
+            <h1 className="font-sans text-[clamp(36px,4.5vw,52px)] font-bold leading-[1.15] tracking-[-0.04em] text-ink mb-6">
               Full stack{" "}
               <em className="font-serif italic font-medium">web development</em> &amp;
               bespoke <span className="text-accent">web design agency</span> crafting sites that actually move the needle.
             </h1>
 
-            <p
-              ref={subRef}
-              className="text-[17px] text-ink/60 leading-[1.7] mb-9 max-w-[460px]"
-            >
+            <p className="text-[17px] text-ink/60 leading-[1.7] mb-9 max-w-[460px]">
               From custom React &amp; Next.js web development to technical SEO marketing and local search optimization, we engineer high-speed digital experiences that dominate rankings and drive revenue.
             </p>
 
-            <div ref={actionsRef} className="flex gap-3.5 flex-wrap mb-10">
+            <div className="flex gap-3.5 flex-wrap mb-10">
               <a
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center gap-2 text-sm font-semibold px-7 py-3.5 bg-ink text-white rounded-full hover:bg-accent hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(252,54,55,0.25)] transition-all"
               >
                 Start a Project
@@ -63,30 +46,28 @@ export default function Hero() {
                 </svg>
               </a>
               <a
-                href="#work"
+                href="/work"
                 className="inline-flex items-center gap-2 text-sm font-semibold px-7 py-3.5 bg-transparent text-ink border-[1.5px] border-ink/20 rounded-full hover:border-ink hover:bg-ink hover:text-white hover:-translate-y-0.5 transition-all"
               >
                 See Our Work
               </a>
             </div>
 
-            <div
-              ref={proofRef}
-              className="flex items-start gap-4 pt-8 border-t border-ink/10"
-            >
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="text-amber text-sm tracking-[2px]">★★★★★</span>
-                <span className="text-sm font-semibold text-ink">4.9 / 5</span>
+            <div className="flex items-center gap-3">
+              <div className="flex text-accent text-sm tracking-tight">
+                ★★★★★
               </div>
-              {/* NEEDS OWNER INPUT: confirm real client/project counts */}
-              <p className="text-sm text-ink/60 leading-[1.5]">
-                We've helped <strong className="text-ink">15+</strong>{" "}
-                businesses transform their digital presence
-              </p>
+              <span className="text-sm font-medium text-ink">
+                5.0/5 rating
+              </span>
+              <span className="text-sm text-ink/40">•</span>
+              <span className="text-sm text-ink/60">
+                100% client satisfaction
+              </span>
             </div>
           </div>
 
-          <div ref={imgRef} className="relative">
+          <div className="relative">
             <div className="rounded-3xl overflow-hidden relative aspect-[4/5] shadow-[0_24px_60px_rgba(0,0,0,0.12)] group">
               <Image
                 src="/images/hero.webp"
