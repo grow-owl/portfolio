@@ -51,29 +51,41 @@ export default function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
             <div>
               <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-white mb-5">
-                Navigation
+                Pages
               </h3>
-              {["home", "about", "work", "services", "pricing"].map((s) => (
-                <button
-                  key={s}
-                  onClick={() => scrollTo(s)}
+              {[
+                { label: "Home", href: "/" },
+                { label: "About Us", href: "/about" },
+                { label: "Work Portfolio", href: "/work" },
+                { label: "Pricing Plans", href: "/pricing" },
+                { label: "FAQ", href: "/faq" },
+                { label: "Contact Us", href: "/contact" },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
                   className="block text-sm text-white/60 mb-3 hover:text-white hover:translate-x-1 transition-all"
                 >
-                  {s.charAt(0).toUpperCase() + s.slice(1)}
-                </button>
+                  {link.label}
+                </a>
               ))}
             </div>
             <div>
               <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-white mb-5">
-                Socials
+                Services
               </h3>
-              {["Instagram"].map((s) => (
+              {[
+                { label: "Web Development", href: "/services/web-development" },
+                { label: "Web Design (UI/UX)", href: "/services/web-design" },
+                { label: "SEO Services", href: "/services/seo-services" },
+                { label: "Digital Marketing", href: "/services/digital-marketing" },
+              ].map((link) => (
                 <a
-                  key={s}
-                  href="https://www.instagram.com/growowl_"
+                  key={link.href}
+                  href={link.href}
                   className="block text-sm text-white/60 mb-3 hover:text-white hover:translate-x-1 transition-all"
                 >
-                  {s}
+                  {link.label}
                 </a>
               ))}
             </div>

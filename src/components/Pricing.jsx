@@ -258,18 +258,20 @@ export default function Pricing() {
                 <p className="text-sm text-ink/60 leading-[1.5]">{p.tagline}</p>
               </div>
 
-              <div className="flex items-baseline gap-2 sm:gap-2.5 flex-nowrap mb-4 overflow-hidden">
+              <div className="mb-5">
                 {p.original && (
-                  <span className="text-sm sm:text-base text-ink/40 line-through shrink-0">
+                  <span className="text-xs sm:text-sm font-medium text-ink/40 line-through block mb-1">
                     {p.original}
                   </span>
                 )}
-                <span className="text-3xl sm:text-[38px] font-bold tracking-[-0.04em] text-ink leading-none shrink-0">
-                  {p.current}
-                </span>
-                <span className="text-xs sm:text-[13px] text-ink/40 font-medium whitespace-nowrap shrink-0">
-                  {p.period}
-                </span>
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <span className="text-3xl sm:text-4xl lg:text-[28px] xl:text-[36px] font-bold tracking-[-0.04em] text-ink leading-none">
+                    {p.current}
+                  </span>
+                  <span className="text-xs sm:text-[13px] text-ink/40 font-medium whitespace-nowrap">
+                    {p.period}
+                  </span>
+                </div>
               </div>
 
               <div className="flex items-center gap-2 text-[13px] text-ink/60 font-medium mb-7 pb-7 border-b border-ink/10">

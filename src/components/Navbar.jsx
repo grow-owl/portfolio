@@ -2,71 +2,32 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Work", href: "/#work" },
-  { label: "Services", href: "/#services" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/#contact" },
+  { label: "About", href: "/about" },
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/services/web-development" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("");
 
   useEffect(() => {
-    let ticking = false;
-
-    const updateNavState = () => {
-      const scrollMarker =
-        window.scrollY + Math.min(window.innerHeight * 0.38, 280);
-      const pageBottom =
-        window.scrollY + window.innerHeight >=
-        document.documentElement.scrollHeight - 4;
-      const sections = navLinks
-        .map(({ href }) => {
-          const targetId = href.includes("#") ? `#${href.split("#")[1]}` : null;
-          if (!targetId) return null;
-          const section = document.querySelector(targetId);
-          if (!section) return null;
-
-          const top = section.getBoundingClientRect().top + window.scrollY;
-          return { href, top };
-        })
-        .filter(Boolean);
-
-      const currentLink = pageBottom
-        ? sections.at(-1)
-        : sections.reduce(
-            (active, section) =>
-              section.top <= scrollMarker ? section : active,
-            null,
-          );
-
-      setScrolled(window.scrollY > 20);
-      setActiveLink(currentLink?.href || "");
-      ticking = false;
-    };
-
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateNavState);
-        ticking = true;
-      }
+      setScrolled(window.scrollY > 20);
     };
 
-    updateNavState();
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", updateNavState);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", updateNavState);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -87,13 +48,13 @@ export default function Navbar() {
         className="fixed top-3 sm:top-4 lg:top-6 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none"
       >
         <div
-          className={`pointer-events-auto flex items-center justify-between w-full max-w-[900px] transition-all duration-500 ${
-            scrolled || mobileOpen
+          className={`pointer-events-auto flex items-center justify-between w-full max-w-[920px] transition-all duration-500 ${
+            scrolled || mobileOpen || pathname !== "/"
               ? "bg-white/95 backdrop-blur-md shadow-xl border-border-strong rounded-full px-4 sm:px-6 py-3 border"
               : "bg-transparent border-transparent px-4 sm:px-6 py-4"
           }`}
         >
-          <a href="#home" className="flex items-center group shrink-0" aria-label="GrowOwl Home">
+          <a href="/" className="flex items-center group shrink-0" aria-label="GrowOwl Home">
             <Image
               src="/images/growowl-logo.webp"
               alt="GrowOwl logo"
@@ -103,28 +64,30 @@ export default function Navbar() {
             />
           </a>
 
-          <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setActiveLink(link.href)}
-                className={`relative pb-1 font-heading text-[13px] lg:text-[14px] font-medium transition-colors duration-300 tracking-[-0.01em] ${
-                  activeLink === link.href
-                    ? "text-ink"
-                    : "text-ink-light hover:text-ink"
-                }`}
-              >
-                {link.label}
-                <span
-                  className={`absolute left-0 -bottom-0.5 h-[2px] rounded-full bg-red transition-all duration-300 ${
-                    activeLink === link.href
-                      ? "w-full opacity-100"
-                      : "w-0 opacity-0"
+          <div className="hidden md:flex items-center gap-5 lg:gap-7 absolute left-1/2 -translate-x-1/2">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`relative pb-1 font-heading text-[13px] lg:text-[14px] font-medium transition-colors duration-300 tracking-[-0.01em] ${
+                    isActive
+                      ? "text-ink"
+                      : "text-ink-light hover:text-ink"
                   }`}
-                />
-              </a>
-            ))}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute left-0 -bottom-0.5 h-[2px] rounded-full bg-red transition-all duration-300 ${
+                      isActive
+                        ? "w-full opacity-100"
+                        : "w-0 opacity-0"
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </div>
 
           <div className="hidden md:flex items-center shrink-0">
@@ -157,31 +120,28 @@ export default function Navbar() {
             className="fixed inset-x-0 top-[68px] z-40 bg-white border-b border-border-strong shadow-xl px-5 pb-6 pt-4 md:hidden"
           >
             <div className="flex flex-col gap-1">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => {
-                    setActiveLink(link.href);
-                    setMobileOpen(false);
-                  }}
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className={`font-heading text-lg font-semibold tracking-tight py-3 border-b border-border last:border-0 ${
-                    activeLink === link.href ? "text-red" : "text-ink"
-                  }`}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {navLinks.map((link, i) => {
+                const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+                return (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    className={`font-heading text-lg font-semibold tracking-tight py-3 border-b border-border last:border-0 ${
+                      isActive ? "text-red" : "text-ink"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.a>
+                );
+              })}
               <div className="pt-4">
                 <a
-                  href="#contact"
-                  onClick={() => {
-                    setActiveLink("#contact");
-                    setMobileOpen(false);
-                  }}
+                  href="/contact"
+                  onClick={() => setMobileOpen(false)}
                   className="btn-primary w-full justify-center text-[15px] !py-3.5"
                 >
                   Let's Talk
