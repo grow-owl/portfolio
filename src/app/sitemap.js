@@ -1,10 +1,23 @@
+const baseUrl = "https://www.growowl.online";
+
 export default function sitemap() {
-  return [
-    {
-      url: "https://www.growowl.online/",
-      lastModified: new Date("2026-07-29"),
-      changeFrequency: "monthly",
-      priority: 1.0,
-    },
+  const routes = [
+    "",
+    "/services/web-development",
+    "/services/web-design",
+    "/services/seo-services",
+    "/services/digital-marketing",
+    "/pricing",
+    "/work",
+    "/about",
+    "/faq",
+    "/contact",
   ];
+
+  return routes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: route === "" ? "weekly" : "monthly",
+    priority: route === "" ? 1.0 : 0.8,
+  }));
 }

@@ -8,6 +8,8 @@ export default function Footer() {
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - 90;
       window.scrollTo({ top, behavior: "auto" });
+    } else {
+      window.location.href = `/#${id}`;
     }
   };
 
