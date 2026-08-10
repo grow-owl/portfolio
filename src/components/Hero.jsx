@@ -94,6 +94,8 @@ export default function Hero() {
                 width={1024}
                 height={1024}
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 560px"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/15 pointer-events-none" />

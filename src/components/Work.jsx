@@ -80,6 +80,7 @@ function ProjectCard({ p }) {
           width={1600}
           height={730}
           loading="lazy"
+          sizes="(max-width: 640px) 88vw, (max-width: 1024px) 50vw, 600px"
           className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.02]"
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
