@@ -117,11 +117,9 @@ body {
   box-shadow: 0 14px 28px rgba(252, 54, 55, 0.2);
 }
 
-.reveal,
 .reveal-init {
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .reveal-init:not(.visible) {
@@ -129,14 +127,12 @@ body {
   transform: translateY(12px) translateZ(0);
 }
 
-.reveal.visible,
 .reveal-init.visible {
   opacity: 1;
   transform: translateY(0) translateZ(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal,
   .reveal-init {
     opacity: 1 !important;
     transform: none !important;
