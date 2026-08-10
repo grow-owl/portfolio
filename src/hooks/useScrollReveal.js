@@ -14,6 +14,14 @@ export function useScrollReveal(options = {}) {
       return;
     }
 
+    const rect = el.getBoundingClientRect();
+    const isInViewport = rect.top < (typeof window !== "undefined" ? window.innerHeight : 900) && rect.bottom > 0;
+
+    if (isInViewport) {
+      el.classList.add("visible");
+      return;
+    }
+
     el.classList.add("reveal-init");
 
     const observer = new IntersectionObserver(
@@ -59,8 +67,14 @@ export function useMultiReveal(count, options = {}) {
 
     refs.current.forEach((el) => {
       if (el) {
-        el.classList.add("reveal-init");
-        observer.observe(el);
+        const rect = el.getBoundingClientRect();
+        const isInViewport = rect.top < (typeof window !== "undefined" ? window.innerHeight : 900) && rect.bottom > 0;
+        if (isInViewport) {
+          el.classList.add("visible");
+        } else {
+          el.classList.add("reveal-init");
+          observer.observe(el);
+        }
       }
     });
 
