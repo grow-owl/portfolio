@@ -20,7 +20,7 @@ const steps = [
   },
 ];
 
-export default function Process() {
+export default function Process({ sectionNumber = "/006/" }) {
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
   const setStepRef = useMultiReveal(steps.length);
@@ -30,7 +30,7 @@ export default function Process() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
           <span className="font-serif italic text-lg text-accent font-medium">
-            /006/
+            {sectionNumber}
           </span>
           <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
             The Process

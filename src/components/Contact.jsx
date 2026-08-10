@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
-export default function Contact() {
+export default function Contact({ sectionNumber = "/009/" }) {
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
   const leftRef = useScrollReveal();
@@ -40,7 +40,7 @@ export default function Contact() {
           <div ref={leftRef}>
             <div ref={labelRef} className="flex items-center gap-3 mb-10">
               <span className="font-serif italic text-lg text-accent font-medium">
-                /009/
+                {sectionNumber}
               </span>
               <span className="text-lg font-medium uppercase tracking-[0.08em] text-white/60">
                 Get in Touch

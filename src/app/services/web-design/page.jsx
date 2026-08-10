@@ -77,9 +77,9 @@ export default function WebDesignPage() {
       />
       <Navbar />
       <main className="pt-24">
-        <Services />
-        <Testimonials />
-        <Contact />
+        <Services sectionNumber="/001/" />
+        <Testimonials sectionNumber="/002/" />
+        <Contact sectionNumber="/003/" />
       </main>
       <Footer />
     </>

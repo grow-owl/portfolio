@@ -58,10 +58,10 @@ export default function AboutPage() {
       />
       <Navbar />
       <main className="pt-24">
-        <About />
-        <Process />
-        <Testimonials />
-        <Contact />
+        <About sectionNumber="/001/" />
+        <Process sectionNumber="/002/" />
+        <Testimonials sectionNumber="/003/" />
+        <Contact sectionNumber="/004/" />
       </main>
       <Footer />
     </>

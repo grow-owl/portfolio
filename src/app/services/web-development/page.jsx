@@ -78,9 +78,9 @@ export default function WebDevelopmentPage() {
       />
       <Navbar />
       <main className="pt-24">
-        <Services />
-        <FAQ />
-        <Contact />
+        <Services sectionNumber="/001/" />
+        <FAQ sectionNumber="/002/" />
+        <Contact sectionNumber="/003/" />
       </main>
       <Footer />
     </>

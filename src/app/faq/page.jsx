@@ -78,8 +78,8 @@ export default function FaqPage() {
       />
       <Navbar />
       <main className="pt-24">
-        <FAQ />
-        <Contact />
+        <FAQ sectionNumber="/001/" />
+        <Contact sectionNumber="/002/" />
       </main>
       <Footer />
     </>

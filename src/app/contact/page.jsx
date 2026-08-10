@@ -66,8 +66,8 @@ export default function ContactPage() {
       />
       <Navbar />
       <main className="pt-24">
-        <Contact />
-        <FAQ />
+        <Contact sectionNumber="/001/" />
+        <FAQ sectionNumber="/002/" />
       </main>
       <Footer />
     </>

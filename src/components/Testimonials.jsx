@@ -26,7 +26,7 @@ const cards = [
   },
 ];
 
-export default function Testimonials() {
+export default function Testimonials({ sectionNumber = "/005/" }) {
   const labelRef = useScrollReveal();
   const setCardRef = useMultiReveal(cards.length);
 
@@ -35,7 +35,7 @@ export default function Testimonials() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
           <span className="font-serif italic text-lg text-accent font-medium">
-            /005/
+            {sectionNumber}
           </span>
           <span className="text-lg font-medium uppercase tracking-[0.08em] text-white/60">
             Testimonials

@@ -57,9 +57,9 @@ export default function WorkPage() {
       />
       <Navbar />
       <main className="pt-24">
-        <Work />
-        <Testimonials />
-        <Contact />
+        <Work sectionNumber="/001/" />
+        <Testimonials sectionNumber="/002/" />
+        <Contact sectionNumber="/003/" />
       </main>
       <Footer />
     </>

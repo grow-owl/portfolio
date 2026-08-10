@@ -165,7 +165,7 @@ const seoPlans = [
   },
 ];
 
-export default function Pricing() {
+export default function Pricing({ sectionNumber = "/007/" }) {
   const [activeTab, setActiveTab] = useState("website");
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
@@ -182,7 +182,7 @@ export default function Pricing() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
           <span className="font-serif italic text-lg text-accent font-medium">
-            /007/
+            {sectionNumber}
           </span>
           <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
             Pricing

@@ -54,7 +54,7 @@ const services = [
   },
 ];
 
-export default function Services() {
+export default function Services({ sectionNumber = "/004/" }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
@@ -66,7 +66,7 @@ export default function Services() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
           <span className="font-serif italic text-lg text-accent font-medium">
-            /004/
+            {sectionNumber}
           </span>
           <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
             Services

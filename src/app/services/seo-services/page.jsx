@@ -77,9 +77,9 @@ export default function SeoServicesPage() {
       />
       <Navbar />
       <main className="pt-24">
-        <Pricing />
-        <FAQ />
-        <Contact />
+        <Pricing sectionNumber="/001/" />
+        <FAQ sectionNumber="/002/" />
+        <Contact sectionNumber="/003/" />
       </main>
       <Footer />
     </>

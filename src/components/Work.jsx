@@ -110,7 +110,7 @@ function ProjectCard({ p }) {
   );
 }
 
-export default function Work() {
+export default function Work({ sectionNumber = "/003/" }) {
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
   const setCardRef = useMultiReveal(3);
@@ -129,7 +129,7 @@ export default function Work() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
           <span className="font-serif italic text-lg text-accent font-medium">
-            /003/
+            {sectionNumber}
           </span>
           <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
             Featured Work

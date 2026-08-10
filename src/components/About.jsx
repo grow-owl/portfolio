@@ -7,7 +7,7 @@ const stats = [
   { number: "100%", label: "Client Satisfaction" },
 ];
 
-export default function About() {
+export default function About({ sectionNumber = "/002/" }) {
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
   const textRef = useScrollReveal();
@@ -18,7 +18,7 @@ export default function About() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
           <span className="font-serif italic text-lg text-accent font-medium">
-            /002/
+            {sectionNumber}
           </span>
           <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/60">
             About Us
