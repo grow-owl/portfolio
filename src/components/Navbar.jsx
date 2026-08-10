@@ -40,11 +40,8 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <nav
         id="main-nav"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         className="fixed top-3 sm:top-4 lg:top-6 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none"
       >
         <div
@@ -92,8 +89,7 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center shrink-0">
             <a
-              href="#contact"
-              onClick={() => setActiveLink("#contact")}
+              href="/contact"
               className="btn-primary text-[13px] !py-2.5 !px-5"
             >
               Let's Talk
@@ -108,7 +104,7 @@ export default function Navbar() {
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
       <AnimatePresence>
         {mobileOpen && (

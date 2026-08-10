@@ -9,7 +9,12 @@ export function useScrollReveal(options = {}) {
     const el = ref.current;
     if (!el) return;
 
-    el.classList.add("reveal");
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("visible");
+      return;
+    }
+
+    el.classList.add("reveal-init");
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -18,7 +23,7 @@ export function useScrollReveal(options = {}) {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px", ...options },
+      { threshold: 0.05, rootMargin: "50px 0px 0px 0px", ...options }
     );
 
     observer.observe(el);
@@ -32,6 +37,11 @@ export function useMultiReveal(count, options = {}) {
   const refs = useRef([]);
 
   useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") {
+      refs.current.forEach((el) => el?.classList.add("visible"));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -41,12 +51,12 @@ export function useMultiReveal(count, options = {}) {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px", ...options },
+      { threshold: 0.05, rootMargin: "50px 0px 0px 0px", ...options }
     );
 
     refs.current.forEach((el) => {
       if (el) {
-        el.classList.add("reveal");
+        el.classList.add("reveal-init");
         observer.observe(el);
       }
     });

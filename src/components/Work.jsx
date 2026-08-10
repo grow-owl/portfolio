@@ -71,22 +71,20 @@ function ProjectCard({ p }) {
       href={p.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-card rounded-2xl border border-ink/10 overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(0,0,0,0.1)] group h-full"
+      className="block bg-card rounded-2xl border border-ink/10 overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(0,0,0,0.1)] group h-full"
     >
-      <div className="relative overflow-hidden bg-ink/5">
+      <div className="relative bg-ink/5 overflow-hidden">
         <Image
           src={p.image}
           alt={`${p.name} — ${p.desc}`}
-          width={1600}
-          height={730}
+          width={1200}
+          height={675}
           loading="lazy"
-          sizes="(max-width: 640px) 88vw, (max-width: 1024px) 50vw, 600px"
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 600px"
           className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.02]"
         />
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="text-sm font-semibold text-white px-6 py-3 bg-white/15 backdrop-blur-lg rounded-full border border-white/20">
-            Visit Website →
-          </span>
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-sm font-semibold text-white">
+          Visit Website →
         </div>
       </div>
       <div className="p-5 md:p-7">

@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 export default function Hero() {
@@ -76,6 +74,7 @@ export default function Hero() {
                 height={1024}
                 priority
                 fetchPriority="high"
+                decoding="async"
                 sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 560px"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
