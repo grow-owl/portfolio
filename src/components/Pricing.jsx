@@ -126,6 +126,7 @@ const seoPlans = [
     label: "SEO Starter",
     tagline:
       "Ongoing on-page optimization to start ranking for the terms that matter.",
+    original: "₹7,999",
     current: "₹4,499",
     period: "/month",
     timeline: "Monthly retainer, cancel anytime",
@@ -145,6 +146,7 @@ const seoPlans = [
     label: "SEO Growth",
     tagline:
       "A more hands-on approach for businesses ready to compete for rankings.",
+    original: "₹15,999",
     current: "₹8,999",
     period: "/month",
     timeline: "Monthly retainer, cancel anytime",
@@ -238,7 +240,7 @@ export default function Pricing() {
             <div
               key={p.id}
               ref={setCardRef(i)}
-              className={`bg-card rounded-2xl p-7 lg:p-8 border relative flex flex-col hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-all ${
+              className={`bg-card rounded-2xl p-6 sm:p-7 lg:p-8 border relative flex flex-col hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-all ${
                 p.popular
                   ? "border-accent shadow-[0_8px_32px_rgba(252,54,55,0.1)]"
                   : "border-ink/10"
@@ -256,16 +258,16 @@ export default function Pricing() {
                 <p className="text-sm text-ink/60 leading-[1.5]">{p.tagline}</p>
               </div>
 
-              <div className="flex items-baseline gap-3 flex-wrap mb-4">
+              <div className="flex items-baseline gap-2 sm:gap-2.5 flex-nowrap mb-4 overflow-hidden">
                 {p.original && (
-                  <span className="text-base text-ink/40 line-through">
+                  <span className="text-sm sm:text-base text-ink/40 line-through shrink-0">
                     {p.original}
                   </span>
                 )}
-                <span className="text-[42px] font-bold tracking-[-0.04em] text-ink leading-none">
+                <span className="text-3xl sm:text-[38px] font-bold tracking-[-0.04em] text-ink leading-none shrink-0">
                   {p.current}
                 </span>
-                <span className="text-[13px] text-ink/40 font-medium">
+                <span className="text-xs sm:text-[13px] text-ink/40 font-medium whitespace-nowrap shrink-0">
                   {p.period}
                 </span>
               </div>

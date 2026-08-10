@@ -82,7 +82,7 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        className="fixed top-0 sm:top-4 lg:top-6 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none"
+        className="fixed top-3 sm:top-4 lg:top-6 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none"
       >
         <div
           className={`pointer-events-auto flex items-center justify-between w-full max-w-[900px] transition-all duration-500 ${
@@ -152,7 +152,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-x-0 top-[64px] z-40 bg-white border-b border-border-strong shadow-xl px-5 pb-6 pt-4 md:hidden"
+            className="fixed inset-x-0 top-[68px] z-40 bg-white border-b border-border-strong shadow-xl px-5 pb-6 pt-4 md:hidden"
           >
             <div className="flex flex-col gap-1">
               {navLinks.map((link, i) => (

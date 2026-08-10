@@ -18,9 +18,9 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   metadataBase: new URL("https://www.growowl.online"),
-  title: "GrowOwl | Top Web Development, Web Design & Digital Marketing Agency",
+  title: "GrowOwl | Web Development, Web Design & SEO Agency",
   description:
-    "GrowOwl is a premier web development, web design, and SEO digital marketing agency. We engineer custom React & Next.js web applications, e-commerce stores, bespoke UI/UX designs, and search-optimized campaigns that dominate rankings and drive revenue.",
+    "GrowOwl is a premier web development, web design & SEO agency. We engineer custom Next.js websites & digital marketing campaigns that drive revenue.",
   keywords: [
     "web development agency",
     "web design company",
@@ -61,16 +61,16 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://www.growowl.online/",
-    title: "GrowOwl | Top Web Development, Web Design & Digital Marketing Agency",
+    title: "GrowOwl | Web Development, Web Design & SEO Agency",
     description:
-      "Full-service digital agency crafting bespoke React & Next.js websites, custom web apps, UI/UX designs, and ROI-focused SEO & digital marketing strategies.",
+      "GrowOwl is a premier web development, web design & SEO agency. We engineer custom Next.js websites & digital marketing campaigns that drive revenue.",
     siteName: "GrowOwl Studio",
     images: [
       {
         url: "https://www.growowl.online/images/hero.webp",
         width: 1200,
         height: 630,
-        alt: "GrowOwl | Web Development, Web Design & Digital Marketing Agency",
+        alt: "GrowOwl | Web Development, Web Design & SEO Agency",
       },
     ],
     locale: "en_US",
@@ -78,9 +78,9 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     url: "https://www.growowl.online/",
-    title: "GrowOwl | Top Web Development, Web Design & Digital Marketing Agency",
+    title: "GrowOwl | Web Development, Web Design & SEO Agency",
     description:
-      "Bespoke web development, UI/UX design, and SEO marketing agency delivering top-tier digital experiences that rank high and scale businesses.",
+      "GrowOwl is a premier web development, web design & SEO agency. We engineer custom Next.js websites & digital marketing campaigns that drive revenue.",
     images: ["https://www.growowl.online/images/hero.webp"],
   },
   robots: {
@@ -95,10 +95,18 @@ export const metadata = {
     },
   },
   icons: {
-    icon: "/favicon.webp",
-    shortcut: "/favicon.webp",
-    apple: "/favicon.webp",
+    icon: [
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" }
+    ],
+    shortcut: "/favicon-48x48.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ],
   },
+  manifest: "/site.webmanifest",
 };
 
 export const viewport = {
@@ -111,19 +119,21 @@ const jsonLdGraph = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["ProfessionalService", "Organization"],
+      "@type": ["LocalBusiness", "Organization", "ProfessionalService"],
       "@id": "https://www.growowl.online/#organization",
       name: "GrowOwl Studio",
       alternateName: ["GrowOwl Digital Agency", "GrowOwl"],
       url: "https://www.growowl.online",
-      logo: "https://www.growowl.online/images/growowl-logo.webp",
+      logo: "https://www.growowl.online/favicon-48x48.png",
       image: "https://www.growowl.online/images/hero.webp",
       telephone: "+918609504186",
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "Remote / Online",
         addressLocality: "Kolkata",
         addressRegion: "West Bengal",
+        postalCode: "700001",
         addressCountry: "IN",
       },
       geo: {
@@ -278,6 +288,12 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}

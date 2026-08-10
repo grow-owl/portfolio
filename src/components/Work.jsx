@@ -71,7 +71,7 @@ function ProjectCard({ p }) {
       href={p.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-card rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(0,0,0,0.1)] group h-full"
+      className="block bg-card rounded-2xl border border-ink/10 overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(0,0,0,0.1)] group h-full"
     >
       <div className="relative overflow-hidden bg-ink/5">
         <Image
@@ -157,13 +157,13 @@ export default function Work() {
         <div ref={setCardRef(1)} className="mt-8">
           <div
             ref={scrollerRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 -mx-5 px-5 md:mx-0 md:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth py-3 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {carouselProjects.map((p) => (
               <div
                 key={p.id}
                 data-card
-                className="snap-start shrink-0 w-[86%] sm:w-[62%] md:w-[46%] lg:w-[38%]"
+                className="snap-start shrink-0 w-[85%] sm:w-[62%] md:w-[46%] lg:w-[38%]"
               >
                 <ProjectCard p={p} />
               </div>

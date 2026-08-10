@@ -57,7 +57,7 @@ export default function Footer() {
                   onClick={() => scrollTo(s)}
                   className="block text-sm text-white/60 mb-3 hover:text-white hover:translate-x-1 transition-all"
                 >
-                  /{s.charAt(0).toUpperCase() + s.slice(1)}
+                  {s.charAt(0).toUpperCase() + s.slice(1)}
                 </button>
               ))}
             </div>
@@ -75,24 +75,32 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <div>
+            <div itemScope itemType="https://schema.org/LocalBusiness">
+              <meta itemProp="name" content="GrowOwl Studio" />
               <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-white mb-5">
                 Contact
               </h3>
               <a
                 href="tel:+918609504186"
+                itemProp="telephone"
                 className="block text-sm text-white/60 mb-3 hover:text-white hover:translate-x-1 transition-all"
               >
                 +91 86095 04186
               </a>
               <a
                 href="tel:+918944800564"
+                itemProp="telephone"
                 className="block text-sm text-white/60 mb-3 hover:text-white hover:translate-x-1 transition-all"
               >
                 +91 89448 00564
               </a>
-              <span className="block text-sm text-white/60 mb-3">
-                India (Remote)
+              <span
+                itemProp="address"
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+                className="block text-sm text-white/60 mb-3"
+              >
+                <span itemProp="addressCountry">India</span> (Remote)
               </span>
             </div>
           </div>
