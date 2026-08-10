@@ -288,7 +288,6 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
-        <link rel="preload" href="/images/hero.webp" as="image" type="image/webp" fetchPriority="high" />
         <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
