@@ -136,7 +136,8 @@ export default function Services({ sectionNumber = "/004/" }) {
                     </ul>
                     <a
                       href="#contact"
-                      className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 bg-transparent text-ink border-[1.5px] border-ink/20 rounded-full hover:border-accent hover:text-accent transition-all"
+                      aria-label={`Get started with ${s.name} service`}
+                      className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 bg-transparent text-ink border-[1.5px] border-ink/20 rounded-full hover:border-accent hover:text-accent transition-all min-h-[44px]"
                     >
                       Get Started →
                     </a>

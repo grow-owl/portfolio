@@ -1,4 +1,6 @@
 import { Inter, Playfair_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,9 +19,9 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   metadataBase: new URL("https://www.growowl.online"),
-  title: "GrowOwl | Web Development, Web Design & SEO Agency",
+  title: "GrowOwl | Custom Web Development, Design & SEO Agency",
   description:
-    "GrowOwl is a premier web development, web design & SEO agency. We engineer custom Next.js websites & digital marketing campaigns that drive revenue.",
+    "GrowOwl is a premier web development, design & SEO agency. We build custom Next.js sites and campaigns that drive revenue.",
   keywords: [
     "web development agency",
     "web design company",
@@ -56,20 +58,24 @@ export const metadata = {
   },
   alternates: {
     canonical: "https://www.growowl.online/",
+    languages: {
+      "x-default": "https://www.growowl.online/",
+      en: "https://www.growowl.online/",
+    },
   },
   openGraph: {
     type: "website",
     url: "https://www.growowl.online/",
-    title: "GrowOwl | Web Development, Web Design & SEO Agency",
+    title: "GrowOwl | Custom Web Development, Design & SEO Agency",
     description:
-      "GrowOwl is a premier web development, web design & SEO agency. We engineer custom Next.js websites & digital marketing campaigns that drive revenue.",
+      "GrowOwl is a premier web development, design & SEO agency. We build custom Next.js sites and campaigns that drive revenue.",
     siteName: "GrowOwl Studio",
     images: [
       {
-        url: "https://www.growowl.online/images/hero.webp",
+        url: "https://www.growowl.online/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "GrowOwl | Web Development, Web Design & SEO Agency",
+        alt: "GrowOwl Studio | Custom Web Development & Web Design Agency",
       },
     ],
     locale: "en_US",
@@ -77,10 +83,10 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     url: "https://www.growowl.online/",
-    title: "GrowOwl | Web Development, Web Design & SEO Agency",
+    title: "GrowOwl | Custom Web Development, Design & SEO Agency",
     description:
-      "GrowOwl is a premier web development, web design & SEO agency. We engineer custom Next.js websites & digital marketing campaigns that drive revenue.",
-    images: ["https://www.growowl.online/images/hero.webp"],
+      "GrowOwl is a premier web development, design & SEO agency. We build custom Next.js sites and campaigns that drive revenue.",
+    images: ["https://www.growowl.online/images/og-image.png"],
   },
   robots: {
     index: true,
@@ -98,11 +104,11 @@ export const metadata = {
       { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
       { url: "/favicon.png", sizes: "512x512", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" }
+      { url: "/favicon.ico", sizes: "any" },
     ],
     shortcut: "/favicon-48x48.png",
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
   manifest: "/site.webmanifest",
@@ -118,18 +124,18 @@ const jsonLdGraph = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["LocalBusiness", "Organization", "ProfessionalService"],
-      "@id": "https://www.growowl.online/#organization",
+      "@type": "LocalBusiness",
+      "@id": "https://www.growowl.online/#localbusiness",
       name: "GrowOwl Studio",
-      alternateName: ["GrowOwl Digital Agency", "GrowOwl"],
+      alternateName: "GrowOwl Digital Agency",
       url: "https://www.growowl.online",
       logo: "https://www.growowl.online/favicon-48x48.png",
-      image: "https://www.growowl.online/images/hero.webp",
+      image: "https://www.growowl.online/images/og-image.png",
       telephone: "+918609504186",
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Remote / Online",
+        streetAddress: "Remote / Online Services",
         addressLocality: "Kolkata",
         addressRegion: "West Bengal",
         postalCode: "700001",
@@ -140,100 +146,51 @@ const jsonLdGraph = {
         latitude: 22.5726,
         longitude: 88.3639,
       },
-      areaServed: [
-        "Worldwide",
-        "India",
-        "Kolkata",
-        "Siliguri",
-        "Lucknow",
-        "Delhi NCR",
-        "Mumbai",
-        "Bengaluru",
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "00:00",
+          closes: "23:59",
+        },
       ],
-      openingHoursSpecification: {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-        opens: "00:00",
-        closes: "23:59",
-      },
-      sameAs: ["https://www.instagram.com/growowl_"],
+      sameAs: [
+        "https://www.instagram.com/growowl_",
+        "https://www.linkedin.com/company/growowl",
+        "https://x.com/growowl",
+        "https://www.youtube.com/@growowl",
+        "https://www.facebook.com/growowl",
+      ],
       description:
         "GrowOwl is a premier web development, web design, and SEO digital marketing agency. We build custom full-stack React & Next.js web applications, e-commerce stores, custom databases, and search-optimized lead generation funnels.",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "15",
-        bestRating: "5",
-        worstRating: "1",
-      },
-      knowsAbout: [
-        "Web Development Agency",
-        "Web Design & UI/UX Studio",
-        "SEO Services & Search Engine Optimization",
-        "Digital Marketing Agency",
-        "Local SEO & Lead Generation",
-        "Full Stack Development (React, Next.js, Node.js)",
-        "E-Commerce Website Development",
-        "Conversion Rate Optimization (CRO)",
-        "Pay Per Click (PPC) Management",
-        "Brand Identity & Strategy",
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.growowl.online/#organization",
+      name: "GrowOwl Studio",
+      url: "https://www.growowl.online",
+      logo: "https://www.growowl.online/favicon-48x48.png",
+      sameAs: [
+        "https://www.instagram.com/growowl_",
+        "https://www.linkedin.com/company/growowl",
+        "https://x.com/growowl",
+        "https://www.youtube.com/@growowl",
+        "https://www.facebook.com/growowl",
       ],
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "GrowOwl Core Digital & Web Services",
-        itemListElement: [
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Custom Web Development & Web Apps",
-              description:
-                "Custom React, Next.js, and Node.js full-stack web development and database engineering.",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Bespoke Web Design & UI/UX Studio",
-              description:
-                "Editorial and modern user interface and user experience design for web and mobile.",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Search Engine Optimization (SEO) & GEO",
-              description:
-                "Technical, on-page, and local SEO services to dominate Google rankings and AI search engines.",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Digital Marketing & Performance Ads",
-              description:
-                "Data-driven lead generation campaigns, PPC paid ads, and brand growth strategies.",
-            },
-          },
-        ],
-      },
     },
     {
       "@type": "WebSite",
       "@id": "https://www.growowl.online/#website",
       url: "https://www.growowl.online",
-      name: "GrowOwl",
+      name: "GrowOwl Studio",
       publisher: {
         "@id": "https://www.growowl.online/#organization",
       },
@@ -304,7 +261,10 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
 }
+

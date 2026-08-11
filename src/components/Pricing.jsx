@@ -293,7 +293,8 @@ export default function Pricing({ sectionNumber = "/007/" }) {
 
               <a
                 href="#contact"
-                className={`w-full text-center inline-flex items-center justify-center gap-2 text-sm font-semibold px-7 py-3.5 rounded-full transition-all mt-auto ${p.btnStyle}`}
+                aria-label={`Select ${p.label} pricing plan`}
+                className={`w-full text-center inline-flex items-center justify-center gap-2 text-sm font-semibold px-7 py-3.5 rounded-full transition-all mt-auto min-h-[44px] ${p.btnStyle}`}
               >
                 {p.cta}
               </a>

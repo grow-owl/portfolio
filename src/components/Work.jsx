@@ -71,6 +71,7 @@ function ProjectCard({ p }) {
       href={p.link}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`Visit ${p.name} website — ${p.desc}`}
       className="block bg-card rounded-2xl border border-ink/10 overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(0,0,0,0.1)] group h-full"
     >
       <div className="relative bg-ink/5 overflow-hidden">

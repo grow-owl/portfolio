@@ -12,6 +12,8 @@ export default function sitemap() {
     "/about",
     "/faq",
     "/contact",
+    "/privacy",
+    "/terms",
   ];
 
   return routes.map((route) => ({
