@@ -16,7 +16,7 @@ const steps = [
   {
     number: "/003/",
     title: "Growth",
-    desc: "We continuously optimize performance post-launch — tracking search metrics, refining conversion pathways, and scaling your digital presence.",
+    desc: "We continuously optimize performance post-launch by tracking search metrics, refining conversion pathways, and scaling your digital presence.",
   },
 ];
 

@@ -6,9 +6,9 @@
   --color-dark: #0a0a0a;
   --color-ink: #1e1e1e;
   --color-ink-light: rgba(30, 30, 30, 0.82);
-  --color-accent: #c81d1e;
-  --color-accent-dark: #b01819;
-  --color-red: #c81d1e;
+  --color-accent: #fc3637;
+  --color-accent-dark: #e02d2e;
+  --color-red: #fc3637;
   --color-card: #ffffff;
   --color-border: rgba(30, 30, 30, 0.1);
   --color-border-strong: rgba(30, 30, 30, 0.16);
@@ -174,3 +174,12 @@ body {
   background-position: right 16px center;
   padding-right: 44px;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

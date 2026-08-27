@@ -21,7 +21,7 @@ export const metadata = {
   openGraph: {
     title: "Transparent Website & SEO Pricing Plans | GrowOwl Studio",
     description:
-      "One-time pricing for website builds, flexible monthly plans for ongoing SEO — no hidden fees.",
+      "One-time pricing for website builds, flexible monthly plans for ongoing SEO with no hidden fees.",
     url: "https://www.growowl.online/pricing",
   },
 };

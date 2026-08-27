@@ -19,9 +19,9 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   metadataBase: new URL("https://www.growowl.online"),
-  title: "GrowOwl | Custom Web Development, Design & SEO Agency",
+  title: "GrowOwl | We Help Local Businesses Grow Online",
   description:
-    "GrowOwl is a premier web development, design & SEO agency. We build custom Next.js sites and campaigns that drive revenue.",
+    "GrowOwl helps local businesses grow online through Google, social media, and smarter software. Custom high-performance websites and digital tools designed to increase sales.",
   keywords: [
     "web development agency",
     "web design company",
@@ -66,16 +66,16 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://www.growowl.online/",
-    title: "GrowOwl | Custom Web Development, Design & SEO Agency",
+    title: "GrowOwl | We Help Local Businesses Grow Online",
     description:
-      "GrowOwl is a premier web development, design & SEO agency. We build custom Next.js sites and campaigns that drive revenue.",
+      "GrowOwl helps local businesses grow online through Google, social media, and smarter software. Custom high-performance websites and digital tools designed to increase sales.",
     siteName: "GrowOwl Studio",
     images: [
       {
         url: "https://www.growowl.online/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "GrowOwl Studio | Custom Web Development & Web Design Agency",
+        alt: "GrowOwl Studio | We Help Local Businesses Grow Online",
       },
     ],
     locale: "en_US",
@@ -83,9 +83,9 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     url: "https://www.growowl.online/",
-    title: "GrowOwl | Custom Web Development, Design & SEO Agency",
+    title: "GrowOwl | We Help Local Businesses Grow Online",
     description:
-      "GrowOwl is a premier web development, design & SEO agency. We build custom Next.js sites and campaigns that drive revenue.",
+      "GrowOwl helps local businesses grow online through Google, social media, and smarter software. Custom high-performance websites and digital tools designed to increase sales.",
     images: ["https://www.growowl.online/images/og-image.png"],
   },
   robots: {
@@ -249,7 +249,6 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="preload" href="/images/hero.webp" as="image" fetchpriority="high" />
         <link rel="manifest" href="/site.webmanifest" />
         <script
           type="application/ld+json"

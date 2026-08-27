@@ -199,7 +199,7 @@ export default function Pricing({ sectionNumber = "/007/" }) {
         </h2>
         <p className="text-[17px] text-ink/80 max-w-[650px] mt-4 leading-[1.7] text-center mx-auto">
           One-time pricing for website builds, flexible monthly plans for
-          ongoing SEO — no hidden fees, no long-term lock-in.
+          ongoing SEO with no hidden fees and no long-term lock-in.
         </p>
 
         {/* Tab Toggle */}

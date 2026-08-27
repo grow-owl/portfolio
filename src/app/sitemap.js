@@ -10,6 +10,7 @@ export default function sitemap() {
     "/pricing",
     "/work",
     "/about",
+    "/process",
     "/faq",
     "/contact",
     "/privacy",

@@ -8,7 +8,7 @@ import Contact from "../../components/Contact";
 export const metadata = {
   title: "About GrowOwl Studio | Freelance Web Developers & Designers",
   description:
-    "Learn about GrowOwl Studio — a dedicated freelance website builder and custom full-stack developer collective crafting high-converting sites.",
+    "Learn about GrowOwl Studio, a dedicated freelance website builder and custom full-stack developer collective crafting high-converting sites.",
   keywords: [
     "about GrowOwl studio",
     "freelance web development collective",
