@@ -1,7 +1,8 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Work from "../components/Work";
-import Testimonials from "../components/Testimonials";
+import Collaborations from "../components/Collaborations";
+import ClientMarquee from "../components/ClientMarquee";
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -11,9 +12,11 @@ export default function Home() {
       <main>
         <Hero />
         <Work sectionNumber="/002/" />
-        <Testimonials sectionNumber="/003/" />
+        <Collaborations />
+        <ClientMarquee />
       </main>
       <Footer />
     </>
   );
 }
+
