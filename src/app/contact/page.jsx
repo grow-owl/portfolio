@@ -6,12 +6,14 @@ import FAQ from "../../components/FAQ";
 export const metadata = {
   title: "Get in Touch | Contact GrowOwl Studio Web Agency",
   description:
-    "Have a web development, web design, or SEO project in mind? Contact GrowOwl Studio for a free project consultation and quote.",
+    "Have a website project in mind or need business profile listings on Google, Apple Maps, Bing, Swiggy or Zomato? Contact GrowOwl Studio for packages starting at ₹2,000.",
   keywords: [
     "contact GrowOwl studio",
-    "web development consultation",
+    "website design packages India",
+    "Google Business Profile setup ₹2000",
+    "Swiggy Zomato listing setup",
     "hire React Nextjs developer",
-    "web design project quote",
+    "affordable web agency India",
   ],
   alternates: {
     canonical: "https://www.growowl.online/contact",
@@ -19,7 +21,7 @@ export const metadata = {
   openGraph: {
     title: "Get in Touch | Contact GrowOwl Studio Web Agency",
     description:
-      "Have a project in mind? We'd love to hear about it. Drop us a line and we'll get back to you within half an hour.",
+      "Looking for high-converting websites (₹6,000 - ₹60,000) or business listings across Google, Apple, Swiggy & Zomato (@ ₹2,000 each)? Contact us today.",
     url: "https://www.growowl.online/contact",
   },
 };
@@ -65,7 +67,7 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="pt-24">
+      <main>
         <Contact sectionNumber="/001/" />
         <FAQ sectionNumber="/002/" />
       </main>

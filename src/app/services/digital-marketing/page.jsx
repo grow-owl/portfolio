@@ -76,7 +76,7 @@ export default function DigitalMarketingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="pt-24">
+      <main>
         <Services sectionNumber="/001/" />
         <Testimonials sectionNumber="/002/" />
         <Contact sectionNumber="/003/" />

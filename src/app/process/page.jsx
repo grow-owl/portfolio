@@ -82,7 +82,7 @@ export default function ProcessPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="pt-24">
+      <main>
         <Process sectionNumber="/001/" />
         <Testimonials sectionNumber="/002/" />
         <FAQ sectionNumber="/003/" />

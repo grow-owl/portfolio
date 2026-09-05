@@ -57,7 +57,7 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="pt-24">
+      <main>
         <About sectionNumber="/001/" />
         <Process sectionNumber="/002/" />
         <Testimonials sectionNumber="/003/" />

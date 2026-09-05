@@ -76,7 +76,7 @@ export default function SeoServicesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="pt-24">
+      <main>
         <Pricing sectionNumber="/001/" />
         <FAQ sectionNumber="/002/" />
         <Contact sectionNumber="/003/" />

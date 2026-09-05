@@ -77,7 +77,7 @@ export default function FaqPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="pt-24">
+      <main>
         <FAQ sectionNumber="/001/" />
         <Contact sectionNumber="/002/" />
       </main>

@@ -5,23 +5,24 @@ import Contact from "../../components/Contact";
 import FAQ from "../../components/FAQ";
 
 export const metadata = {
-  title: "Transparent Website & SEO Pricing Plans | GrowOwl Studio",
+  title: "Website, Listing & SEO Pricing Plans | GrowOwl Studio",
   description:
-    "Explore transparent website development pricing and flexible monthly SEO packages. No hidden fees, no long-term lock-in. Get a custom quote.",
+    "Transparent pricing for website builds (₹6k to ₹60k), Google, Apple, Bing, Swiggy, Zomato & Social listings (@ ₹2,000), and monthly SEO plans.",
   keywords: [
     "website development cost India",
     "web design package pricing",
+    "google business profile optimization cost",
+    "zomato swiggy listing service price",
     "monthly SEO retainer price",
     "affordable website builder plans",
-    "Nextjs web development cost",
   ],
   alternates: {
     canonical: "https://www.growowl.online/pricing",
   },
   openGraph: {
-    title: "Transparent Website & SEO Pricing Plans | GrowOwl Studio",
+    title: "Website, Listing & SEO Pricing Plans | GrowOwl Studio",
     description:
-      "One-time pricing for website builds, flexible monthly plans for ongoing SEO with no hidden fees.",
+      "Transparent pricing for website development, business profile listings (@ ₹2,000), and flexible monthly SEO plans.",
     url: "https://www.growowl.online/pricing",
   },
 };
@@ -67,7 +68,7 @@ export default function PricingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="pt-24">
+      <main>
         <Pricing sectionNumber="/001/" />
         <FAQ sectionNumber="/002/" />
         <Contact sectionNumber="/003/" />

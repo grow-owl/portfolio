@@ -41,21 +41,29 @@ export default function Collaborations() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5">
 
           {/* Card 1 — Pixel Karigars */}
-          <div className="w-full sm:w-[280px] lg:w-[300px] bg-card rounded-2xl sm:rounded-3xl border border-ink/10 px-5 sm:px-6 py-5 sm:py-6 flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.09)] transition-shadow duration-300">
+          <a
+            href="https://pixelkarigars.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Visit Pixel Karigars — Creative Design Studio"
+            className="group w-full sm:w-[280px] lg:w-[300px] bg-card rounded-2xl sm:rounded-3xl border border-ink/10 px-5 sm:px-6 py-5 sm:py-6 flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300"
+          >
             <div
-              className="w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] rounded-full overflow-hidden border border-ink/8 shrink-0"
+              className="w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] rounded-full overflow-hidden border border-ink/8 shrink-0 group-hover:scale-105 transition-transform duration-300"
               style={{ backgroundColor: "#0d0d0d" }}
             >
               <Image src="/images/logos/pixel-karigars.webp" alt="Pixel Karigars logo" width={64} height={64} className="w-full h-full object-cover" />
             </div>
-            <div className="min-w-0">
-              <span className="inline-block text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.14em] mb-1 px-1.5 py-0.5 rounded" style={{ color: "#e8481c", backgroundColor: "#e8481c14" }}>
-                Partner Agency
-              </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center justify-between gap-1">
+                <span className="inline-block text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.14em] mb-1 px-1.5 py-0.5 rounded" style={{ color: "#e8481c", backgroundColor: "#e8481c14" }}>
+                  Partner Agency
+                </span>
+              </div>
               <h3 className="text-[15px] sm:text-[16px] font-bold text-ink tracking-[-0.01em] leading-tight">Pixel Karigars</h3>
               <p className="text-[11px] sm:text-xs text-ink/50 font-medium mt-0.5 leading-tight">Creative Design Studio</p>
             </div>
-          </div>
+          </a>
 
           {/* ── × Divider — desktop only, sits between the two cards ── */}
           <div className="hidden sm:flex flex-col items-center gap-1.5 shrink-0 self-center">
@@ -72,21 +80,29 @@ export default function Collaborations() {
           </div>
 
           {/* Card 2 — Pritix Creative */}
-          <div className="w-full sm:w-[280px] lg:w-[300px] bg-card rounded-2xl sm:rounded-3xl border border-ink/10 px-5 sm:px-6 py-5 sm:py-6 flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.09)] transition-shadow duration-300">
+          <a
+            href="https://Pritixcreative.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Visit Pritix Creative — Content & Marketing Agency"
+            className="group w-full sm:w-[280px] lg:w-[300px] bg-card rounded-2xl sm:rounded-3xl border border-ink/10 px-5 sm:px-6 py-5 sm:py-6 flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300"
+          >
             <div
-              className="w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] rounded-xl overflow-hidden border border-ink/8 shrink-0"
+              className="w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] rounded-2xl overflow-hidden border border-ink/8 shrink-0 flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-300"
               style={{ backgroundColor: "#ede9ff" }}
             >
-              <Image src="/images/logos/pritix-creative.webp" alt="Pritix Creative logo" width={64} height={64} className="w-full h-full object-cover" />
+              <Image src="/images/logos/pritix-creative.webp" alt="Pritix Creative logo" width={64} height={64} className="w-full h-full object-contain" />
             </div>
-            <div className="min-w-0">
-              <span className="inline-block text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.14em] mb-1 px-1.5 py-0.5 rounded" style={{ color: "#7c3aed", backgroundColor: "#7c3aed14" }}>
-                Partner Agency
-              </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center justify-between gap-1">
+                <span className="inline-block text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.14em] mb-1 px-1.5 py-0.5 rounded" style={{ color: "#7c3aed", backgroundColor: "#7c3aed14" }}>
+                  Partner Agency
+                </span>
+              </div>
               <h3 className="text-[15px] sm:text-[16px] font-bold text-ink tracking-[-0.01em] leading-tight">Pritix Creative</h3>
               <p className="text-[11px] sm:text-xs text-ink/50 font-medium mt-0.5 leading-tight">Content & Marketing Agency</p>
             </div>
-          </div>
+          </a>
 
         </div>
       </div>

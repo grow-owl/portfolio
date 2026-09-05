@@ -38,8 +38,8 @@ const websitePlans = [
     id: "quick-launch",
     label: "Quick Launch",
     tagline: "A single, polished landing page to get you online fast.",
-    original: "₹5,999",
-    current: "₹2,999",
+    original: "₹9,999",
+    current: "₹6,000",
     period: "one-time",
     timeline: "2-3 days delivery",
     features: [
@@ -58,8 +58,8 @@ const websitePlans = [
     label: "Essentials",
     tagline:
       "Perfect for startups and small businesses getting started online.",
-    original: "₹13,499",
-    current: "₹7,499",
+    original: "₹18,999",
+    current: "₹12,000",
     period: "one-time",
     timeline: "5-7 days delivery",
     features: [
@@ -78,8 +78,8 @@ const websitePlans = [
     id: "standard",
     label: "Standard",
     tagline: "For growing businesses ready to make a serious impact online.",
-    original: "₹34,999",
-    current: "₹19,999",
+    original: "₹45,999",
+    current: "₹30,000",
     period: "one-time",
     timeline: "2-3 weeks delivery",
     popular: true,
@@ -100,8 +100,8 @@ const websitePlans = [
     id: "advanced",
     label: "Advanced",
     tagline: "Enterprise-grade solutions for brands that demand excellence.",
-    original: "₹67,999",
-    current: "₹37,999",
+    original: "₹89,999",
+    current: "₹60,000",
     period: "one-time",
     timeline: "4-6 weeks delivery",
     features: [
@@ -115,6 +115,73 @@ const websitePlans = [
       "Priority communication",
     ],
     cta: "Get Advanced →",
+    btnStyle:
+      "border-[1.5px] border-ink/20 text-ink hover:border-accent hover:text-accent",
+  },
+];
+
+const presencePlans = [
+  {
+    id: "search-profiles",
+    label: "Search & Maps Profiles",
+    tagline:
+      "Manage & optimize your business presence across Google, Apple & Bing search engines.",
+    original: "₹3,999",
+    current: "₹2,000",
+    period: "one-time",
+    timeline: "2-3 days delivery",
+    popular: true,
+    features: [
+      "Google Business Profile setup & verification",
+      "Apple Business Profile & Apple Maps setup",
+      "Bing Places for Business profile creation",
+      "Local SEO keywords, category & description",
+      "Photo uploads, business hours & contact details",
+      "Review collection & rating growth guidance",
+    ],
+    cta: "Optimize Profiles →",
+    btnStyle:
+      "bg-ink text-white hover:bg-accent hover:shadow-[0_8px_24px_rgba(252,54,55,0.25)]",
+  },
+  {
+    id: "food-delivery",
+    label: "Food Delivery Listing",
+    tagline:
+      "Complete onboarding, profile setup & menu listing for restaurants & cafes.",
+    original: "₹3,999",
+    current: "₹2,000",
+    period: "one-time",
+    timeline: "3-5 days delivery",
+    features: [
+      "Zomato merchant onboarding assistance",
+      "Swiggy partner registration & profile setup",
+      "Menu upload, category tagging & pricing setup",
+      "FSSAI & GST documentation assistance",
+      "Outlet location tagging & operational hours",
+      "Help with listing activation & commission guide",
+    ],
+    cta: "Get Listed on Apps →",
+    btnStyle:
+      "border-[1.5px] border-ink/20 text-ink hover:border-accent hover:text-accent",
+  },
+  {
+    id: "social-media",
+    label: "Social Media Setup & Mgmt",
+    tagline:
+      "Professional business presence and starter marketing for Instagram & Facebook.",
+    original: "₹3,999",
+    current: "₹2,000",
+    period: "one-time",
+    timeline: "3-4 days launch",
+    features: [
+      "Instagram & Facebook business profile setup",
+      "High-converting bio & WhatsApp button linking",
+      "Meta Business Suite integration",
+      "5 custom branded post / story design templates",
+      "Target audience & local hashtag research",
+      "Organic reach & engagement growth tips",
+    ],
+    cta: "Start Social Media →",
     btnStyle:
       "border-[1.5px] border-ink/20 text-ink hover:border-accent hover:text-accent",
   },
@@ -166,18 +233,28 @@ const seoPlans = [
 ];
 
 export default function Pricing({ sectionNumber = "/007/" }) {
+  const isFirst = sectionNumber === "/001/";
   const [activeTab, setActiveTab] = useState("website");
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
 
-  const activePlans = activeTab === "website" ? websitePlans : seoPlans;
+  const activePlans =
+    activeTab === "website"
+      ? websitePlans
+      : activeTab === "presence"
+      ? presencePlans
+      : seoPlans;
   const setCardRef = useMultiReveal(activePlans.length);
 
   return (
     <section
       id="pricing"
       aria-labelledby="pricing-heading"
-      className="py-14 lg:py-20 bg-cream-light"
+      className={`${
+        isFirst
+          ? "pt-28 sm:pt-32 lg:pt-36 pb-14 lg:pb-20 bg-cream-light"
+          : "py-14 lg:py-20 bg-cream-light"
+      }`}
     >
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
@@ -198,16 +275,16 @@ export default function Pricing({ sectionNumber = "/007/" }) {
           for every stage
         </h2>
         <p className="text-[17px] text-ink/80 max-w-[650px] mt-4 leading-[1.7] text-center mx-auto">
-          One-time pricing for website builds, flexible monthly plans for
-          ongoing SEO with no hidden fees and no long-term lock-in.
+          One-time pricing for website builds &amp; business profile listings,
+          flexible monthly plans for ongoing SEO with no hidden fees.
         </p>
 
         {/* Tab Toggle */}
-        <div className="flex items-center justify-center gap-3 mt-8">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mt-8 flex-wrap">
           <button
             type="button"
             onClick={() => setActiveTab("website")}
-            className={`text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ${
+            className={`text-xs sm:text-sm font-semibold px-5 sm:px-6 py-2.5 rounded-full transition-all duration-300 ${
               activeTab === "website"
                 ? "bg-ink text-white shadow-sm"
                 : "bg-transparent border-[1.5px] border-ink/20 text-ink hover:border-ink"
@@ -217,8 +294,19 @@ export default function Pricing({ sectionNumber = "/007/" }) {
           </button>
           <button
             type="button"
+            onClick={() => setActiveTab("presence")}
+            className={`text-xs sm:text-sm font-semibold px-5 sm:px-6 py-2.5 rounded-full transition-all duration-300 ${
+              activeTab === "presence"
+                ? "bg-ink text-white shadow-sm"
+                : "bg-transparent border-[1.5px] border-ink/20 text-ink hover:border-ink"
+            }`}
+          >
+            Online Presence &amp; Listings
+          </button>
+          <button
+            type="button"
             onClick={() => setActiveTab("seo")}
-            className={`text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ${
+            className={`text-xs sm:text-sm font-semibold px-5 sm:px-6 py-2.5 rounded-full transition-all duration-300 ${
               activeTab === "seo"
                 ? "bg-ink text-white shadow-sm"
                 : "bg-transparent border-[1.5px] border-ink/20 text-ink hover:border-ink"
@@ -233,6 +321,8 @@ export default function Pricing({ sectionNumber = "/007/" }) {
           className={
             activeTab === "website"
               ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
+              : activeTab === "presence"
+              ? "grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1100px] mx-auto mt-12"
               : "grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[800px] mx-auto mt-12"
           }
         >
@@ -292,7 +382,7 @@ export default function Pricing({ sectionNumber = "/007/" }) {
               </ul>
 
               <a
-                href="#contact"
+                href={`/contact?plan=${p.id}`}
                 aria-label={`Select ${p.label} pricing plan`}
                 className={`w-full text-center inline-flex items-center justify-center gap-2 text-sm font-semibold px-7 py-3.5 rounded-full transition-all mt-auto min-h-[44px] ${p.btnStyle}`}
               >

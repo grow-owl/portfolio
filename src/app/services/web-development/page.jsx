@@ -77,7 +77,7 @@ export default function WebDevelopmentPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="pt-24">
+      <main>
         <Services sectionNumber="/001/" />
         <FAQ sectionNumber="/002/" />
         <Contact sectionNumber="/003/" />

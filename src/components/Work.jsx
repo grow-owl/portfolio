@@ -67,6 +67,7 @@ const projects = [
 ];
 
 export default function Work({ sectionNumber = "/002/" }) {
+  const isFirst = sectionNumber === "/001/";
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
 
@@ -74,7 +75,11 @@ export default function Work({ sectionNumber = "/002/" }) {
     <section
       id="work"
       aria-labelledby="work-heading"
-      className="py-14 sm:py-16 lg:py-24 bg-cream-light border-y border-ink/5"
+      className={`${
+        isFirst
+          ? "pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 lg:pb-24 bg-cream border-b border-ink/5"
+          : "py-14 sm:py-16 lg:py-24 bg-cream border-b border-ink/5"
+      }`}
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-5 md:px-10">
         {/* Section Header */}
@@ -99,10 +104,6 @@ export default function Work({ sectionNumber = "/002/" }) {
             Projects that <em className="font-serif italic font-medium">speak</em>{" "}
             for themselves
           </h2>
-
-          <p className="text-[15px] sm:text-[17px] text-ink/80 leading-[1.65] sm:leading-[1.7] max-w-[620px] mx-auto">
-            From local restaurants and service clinics to manufacturing workshops, here is how we help businesses win more customers, automate bookings, and dominate online.
-          </p>
         </div>
 
         {/* Projects Grid */}

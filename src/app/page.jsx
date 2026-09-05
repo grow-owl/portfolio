@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import PlatformMarquee from "../components/PlatformMarquee";
 import Work from "../components/Work";
 import Collaborations from "../components/Collaborations";
 import ClientMarquee from "../components/ClientMarquee";
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <PlatformMarquee />
         <Work sectionNumber="/002/" />
         <Collaborations />
         <ClientMarquee />

@@ -21,12 +21,19 @@ const steps = [
 ];
 
 export default function Process({ sectionNumber = "/006/" }) {
+  const isFirst = sectionNumber === "/001/";
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
   const setStepRef = useMultiReveal(steps.length);
 
   return (
-    <section id="process" aria-labelledby="process-heading" className="py-14 lg:py-20">
+    <section
+      id="process"
+      aria-labelledby="process-heading"
+      className={`${
+        isFirst ? "pt-28 sm:pt-32 lg:pt-36 pb-14 lg:pb-20" : "py-14 lg:py-20"
+      }`}
+    >
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
           <span className="font-serif italic text-lg text-accent font-medium">

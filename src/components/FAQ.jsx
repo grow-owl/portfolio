@@ -31,14 +31,21 @@ const faqs = [
 ];
 
 export default function FAQ({ sectionNumber = "/008/" }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const isFirst = sectionNumber === "/001/";
+  const [activeIndex, setActiveIndex] = useState(null);
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
 
   const toggle = (i) => setActiveIndex((prev) => (prev === i ? -1 : i));
 
   return (
-    <section id="faq" aria-labelledby="faq-heading" className="py-14 lg:py-20">
+    <section
+      id="faq"
+      aria-labelledby="faq-heading"
+      className={`${
+        isFirst ? "pt-28 sm:pt-32 lg:pt-36 pb-14 lg:py-20" : "py-14 lg:py-20"
+      }`}
+    >
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
         <div ref={labelRef} className="flex items-center gap-3 mb-10">
           <span className="font-serif italic text-lg text-accent font-medium">
