@@ -163,7 +163,7 @@ const jsonLdGraph = {
         },
       ],
       sameAs: [
-        "https://www.instagram.com/growowl_",
+        "https://www.instagram.com/grow_owl_",
         "https://www.linkedin.com/company/growowl",
         "https://x.com/growowl",
         "https://www.youtube.com/@growowl",
@@ -179,7 +179,7 @@ const jsonLdGraph = {
       url: "https://www.growowl.online",
       logo: "https://www.growowl.online/favicon-48x48.png",
       sameAs: [
-        "https://www.instagram.com/growowl_",
+        "https://www.instagram.com/grow_owl_",
         "https://www.linkedin.com/company/growowl",
         "https://x.com/growowl",
         "https://www.youtube.com/@growowl",

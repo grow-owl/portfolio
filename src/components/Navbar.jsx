@@ -36,11 +36,31 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
     <>
+      {/* Backdrop for mobile menu */}
+      <div
+        className={`fixed inset-0 bg-dark/20 backdrop-blur-[2px] z-40 md:hidden transition-all duration-300 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+
       <nav
         id="main-nav"
-        className="fixed top-3 sm:top-4 lg:top-6 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none"
+        className="fixed top-3 sm:top-4 lg:top-6 left-0 right-0 z-50 flex flex-col items-center px-4 sm:px-6 pointer-events-none"
       >
         <div
           className={`pointer-events-auto flex items-center justify-between w-full max-w-[920px] transition-all duration-500 ${
@@ -96,7 +116,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 -mr-1 text-ink rounded-lg cursor-pointer"
+            className="md:hidden p-2 -mr-1 text-ink rounded-full hover:bg-black/5 active:bg-black/10 transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileOpen ? (
@@ -113,42 +133,48 @@ export default function Navbar() {
             )}
           </button>
         </div>
-      </nav>
 
-      <div
-        className={`fixed inset-x-0 top-[68px] z-40 bg-white border-b border-border-strong shadow-xl px-5 pb-6 pt-4 md:hidden transition-all duration-300 ease-in-out ${
-          mobileOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-2 pointer-events-none hidden"
-        }`}
-      >
-        <div className="flex flex-col gap-1">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className={`font-heading text-lg font-semibold tracking-tight py-3 border-b border-border last:border-0 transition-colors ${
-                  isActive ? "text-red" : "text-ink"
-                }`}
-              >
-                {link.label}
-              </a>
-            );
-          })}
-          <div className="pt-4">
-            <a
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="btn-primary w-full justify-center text-[15px] !py-3.5"
-            >
-              Let's Talk
-            </a>
+        {/* Mobile Dropdown Menu aligned with Navbar Pill */}
+        <div
+          className={`pointer-events-auto w-full max-w-[920px] mt-2 transition-all duration-300 ease-out origin-top md:hidden ${
+            mobileOpen
+              ? "opacity-100 translate-y-0 scale-100 visible"
+              : "opacity-0 -translate-y-2 scale-[0.98] invisible pointer-events-none"
+          }`}
+        >
+          <div className="bg-white/95 backdrop-blur-xl border border-border-strong rounded-[28px] shadow-2xl p-5 sm:p-6 flex flex-col gap-1 max-h-[calc(100vh-90px)] overflow-y-auto">
+            <div className="flex flex-col">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`font-heading text-[17px] font-semibold tracking-tight py-3 border-b border-border/60 last:border-b-0 transition-colors flex items-center justify-between ${
+                      isActive ? "text-red" : "text-ink hover:text-red"
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && (
+                      <span className="w-2 h-2 rounded-full bg-red" />
+                    )}
+                  </a>
+                );
+              })}
+              <div className="pt-4">
+                <a
+                  href="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="btn-primary w-full justify-center text-[15px] !py-3.5 shadow-md shadow-black/5"
+                >
+                  Let's Talk
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 }

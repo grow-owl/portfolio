@@ -79,7 +79,7 @@ export default function Contact({ sectionNumber = "/009/" }) {
         });
         setTimeout(() => {
           setStatus("idle");
-        }, 4000);
+        }, 8000);
       } else {
         throw new Error(
           result.message || "Failed to send message. Please try again."
@@ -324,8 +324,74 @@ export default function Contact({ sectionNumber = "/009/" }) {
               />
             </div>
 
+            {/* Success Message Banner */}
+            {status === "sent" && (
+              <div
+                id="contact-success-banner"
+                role="status"
+                aria-live="polite"
+                className="p-4 sm:p-5 rounded-2xl bg-[#22c55e]/10 border border-[#22c55e]/30 text-white flex items-start gap-3.5 animate-in fade-in slide-in-from-bottom-2 duration-300 shadow-[0_4px_20px_rgba(34,197,94,0.15)]"
+              >
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#22c55e]/20 border border-[#22c55e]/40 flex items-center justify-center shrink-0 text-[#22c55e] mt-0.5">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2">
+                    <h4 className="font-heading font-semibold text-white text-[15px] sm:text-[16px]">
+                      Message Sent Successfully!
+                    </h4>
+                    <button
+                      type="button"
+                      onClick={() => setStatus("idle")}
+                      className="text-white/40 hover:text-white transition-colors p-1 -mr-1 cursor-pointer"
+                      aria-label="Dismiss notification"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                      </svg>
+                    </button>
+                  </div>
+                  <p className="text-white/75 text-xs sm:text-sm mt-1 leading-relaxed">
+                    Thank you for reaching out! We've received your project details and will get back to you within <strong className="text-white font-medium">30 minutes</strong>.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3 pt-2.5 border-t border-white/10 text-xs">
+                    <span className="text-white/50">Need an immediate quote?</span>
+                    <a
+                      href="https://wa.me/918609504186?text=Hi%20GrowOwl%2C%20I%20just%20submitted%20the%20contact%20form%20on%20your%20website"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[#22c55e] hover:underline font-semibold"
+                    >
+                      <span>Chat on WhatsApp</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7" />
+                        <polyline points="7 7 17 7 17 17" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Error Message Banner */}
             {status === "error" && (
-              <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-sm flex items-start gap-3">
+              <div
+                role="alert"
+                aria-live="assertive"
+                className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-sm flex items-start gap-3"
+              >
                 <span className="text-base text-red-400">⚠️</span>
                 <div className="flex-1">
                   <p className="font-medium text-red-200">{errorMessage}</p>
@@ -344,13 +410,13 @@ export default function Contact({ sectionNumber = "/009/" }) {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-1">
               <button
                 type="submit"
-                disabled={status === "sending"}
+                disabled={status === "sending" || status === "sent"}
                 id="form-submit"
-                className={`inline-flex items-center justify-center gap-2 text-sm font-semibold px-8 py-4 rounded-full transition-all ${
+                className={`inline-flex items-center justify-center gap-2 text-sm font-semibold px-8 py-4 rounded-full transition-all cursor-pointer ${
                   status === "sent"
-                    ? "bg-green text-white"
+                    ? "bg-[#22c55e] text-white shadow-[0_8px_24px_rgba(34,197,94,0.3)] cursor-default"
                     : "bg-ink text-white hover:bg-accent hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(252,54,55,0.25)]"
-                } disabled:opacity-70`}
+                } disabled:opacity-80`}
               >
                 {status === "sending" && (
                   <>
@@ -377,16 +443,10 @@ export default function Contact({ sectionNumber = "/009/" }) {
                 )}
                 {status === "sent" && (
                   <>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path
-                        d="M3 8L6.5 11.5L13 4.5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
                     </svg>
-                    Message Sent Successfully!
+                    Sent Successfully!
                   </>
                 )}
                 {status === "error" && (

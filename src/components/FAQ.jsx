@@ -6,27 +6,43 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 const faqs = [
   {
     q: "How long does a typical web development or design project take?",
-    a: "Most web development and web design projects are completed within 2 to 8 weeks depending on scope and complexity. Landing pages take 1-2 weeks, custom business websites take 2-3 weeks, and complex full-stack web applications take 4-8 weeks. We provide a clear timeline before starting.",
+    a: "Most projects are completed within 2 to 6 weeks depending on scope and complexity. High-converting landing pages take 1–2 weeks, custom business websites take 2–4 weeks, and complex full-stack web applications or e-commerce stores take 4–8 weeks. We provide a clear milestone timeline before kickoff.",
   },
   {
     q: "What makes GrowOwl different from other web design and digital marketing agencies?",
-    a: "We build 100% custom-engineered websites using React and Next.js rather than slow templates or bloated page builders. Every site comes with built-in technical SEO, sub-second load times, and direct access to senior developers and designers.",
+    a: "We build 100% custom-engineered websites using React and Next.js instead of sluggish WordPress templates or bloated page builders. Every website is engineered for sub-second load times, mobile-first responsiveness, technical SEO excellence, and direct access to senior developers.",
   },
   {
     q: "Do your web development services include SEO and Digital Marketing?",
-    a: "Yes! All our web development and web design projects include foundational technical SEO, clean HTML5 structure, schema JSON-LD data, fast page speeds, and sitemap indexing to ensure your business ranks high on Google, Bing, and AI search engines.",
+    a: "Yes! Every website we develop includes foundational on-page SEO: structured HTML5 markup, schema JSON-LD, automated sitemaps, open-graph social previews, image compression, and Core Web Vitals optimization to rank on Google and AI search engines.",
   },
   {
     q: "Can you build custom full-stack web applications and e-commerce stores?",
-    a: "Absolutely. We engineer custom React and Next.js frontends paired with Node.js, Express, and MongoDB backends, as well as bespoke e-commerce solutions, booking portals, and interactive web tools.",
+    a: "Absolutely. We engineer full-stack React and Next.js applications paired with Node.js, Express, MongoDB, or PostgreSQL. Whether you need custom e-commerce checkouts, SaaS dashboards, booking portals, or internal business tools, we build scalable architectures.",
+  },
+  {
+    q: "What is your payment structure and project milestone process?",
+    a: "We operate with clear, transparent milestone pricing: typically a 50% upfront deposit to initiate discovery and design, and the remaining 50% upon final client sign-off, testing, and live deployment. Monthly SEO & marketing retainers are billed at the beginning of each cycle with no hidden lock-in contracts.",
+  },
+  {
+    q: "How do we collaborate and communicate throughout the project?",
+    a: "You get direct communication with your lead developer and designer via WhatsApp, Slack, email, and scheduled Google Meet calls. We provide live staging links at each sprint so you can test features and provide feedback in real time.",
+  },
+  {
+    q: "Will I be able to update and manage the website content myself?",
+    a: "Yes! We can integrate intuitive headless CMS platforms (like Sanity, Strapi, or tailored admin dashboards) so you or your team can effortlessly publish blogs, update copy, swap images, or manage products without writing a single line of code.",
   },
   {
     q: "Do you offer SEO marketing and PPC ad campaign management?",
-    a: "Yes! As a full-service digital marketing agency, we handle search engine optimization (SEO), Google Ads (PPC), conversion rate optimization (CRO), and local SEO to generate high-quality leads for your business.",
+    a: "Yes! Beyond web development, GrowOwl is a full-service digital growth partner. We run data-driven Google Ads (PPC), conversion rate optimization (CRO), search engine optimization (SEO), and social media lead funnels designed to deliver tangible ROI.",
   },
   {
     q: "What ongoing maintenance and support do you provide post-launch?",
-    a: "All web projects come with post-launch technical support. We also provide monthly retainers for continuous performance optimization, security updates, content revisions, and SEO rank tracking.",
+    a: "Every project includes post-launch warranty and technical support to ensure smooth operation. We also offer ongoing monthly care plans for continuous security updates, speed optimization, regular backups, and content updates.",
+  },
+  {
+    q: "How do I get started or request a customized proposal?",
+    a: "Getting started is easy! Click 'Let's Talk' to submit your project requirements, email us, or send us a direct message on Instagram (@grow_owl_). We will review your goals and provide a transparent, detailed scope and quote within 24 hours.",
   },
 ];
 

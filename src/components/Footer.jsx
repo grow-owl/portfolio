@@ -53,7 +53,7 @@ export default function Footer() {
             {/* Social Media Link (Instagram Only) */}
             <div className="pt-1">
               <a
-                href="https://www.instagram.com/growowl_"
+                href="https://www.instagram.com/grow_owl_"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow GrowOwl on Instagram"
