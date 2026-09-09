@@ -178,15 +178,6 @@ export default function PlatformMarquee() {
           We manage &amp; optimise your profiles across every major platform so
           customers always find you first.
         </p>
-        <div className="mt-4 flex items-center justify-center">
-          <a
-            href="/pricing"
-            className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-1.5 rounded-full bg-ink/5 hover:bg-accent hover:text-white border border-ink/10 transition-all text-ink/80 group"
-          >
-            <span>Platform Listing &amp; Optimization Plans @ ₹2,000</span>
-            <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-          </a>
-        </div>
       </div>
 
       {/* Marquee Track */}
@@ -199,7 +190,7 @@ export default function PlatformMarquee() {
             <a
               key={`${item.id}-${idx}`}
               href="/pricing"
-              title={`${item.name} — Setup & Optimization @ ₹2,000`}
+              title={`${item.name} - Setup & Optimization @ ₹2,000`}
               className="relative flex items-center h-[72px] sm:h-[80px] px-4 sm:px-5 lg:px-6 rounded-xl sm:rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.07),0_1px_4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_28px_rgba(0,0,0,0.13),0_3px_8px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1 shrink-0 select-none cursor-pointer"
               style={{
                 backgroundColor: item.bg,
@@ -210,6 +201,16 @@ export default function PlatformMarquee() {
             </a>
           ))}
         </div>
+      </div>
+
+      <div className="mt-4 flex items-center justify-center">
+        <a
+          href="/pricing"
+          className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-1.5 rounded-full bg-ink/5 hover:bg-accent hover:text-white border border-ink/10 transition-all text-ink/80 group"
+        >
+          <span>Platform Listing &amp; Optimization Plans @ ₹2,000</span>
+          <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+        </a>
       </div>
     </section>
   );

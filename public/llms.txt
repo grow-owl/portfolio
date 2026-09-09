@@ -37,10 +37,10 @@
 
 ## Key Client Projects & Case Studies
 - [D Dine Kitchen Case Study](https://ddinekitchen.shop) - Restaurant web application with online menu ordering and table reservations.
-- [LensAura Photography Case Study](https://photographer-hazel.vercel.app/) - High-conversion booking portal for wedding & event photography studio.
-- [Auto Detailing Car Wash Case Study](https://car-washing-website-psi.vercel.app/) - Local SEO slot booking portal for car detailing studio.
+- [GYMAI Platform Case Study](https://gymai-one.vercel.app/) - AI-powered all-in-one gym management SaaS platform with member analytics and billing.
+- [Auto Detailing Car Wash Case Study](https://car-wash-grow-owl.vercel.app/) - Real-time slot booking portal and detailing showcase for car spa studio.
+- [Aura Gastronomy Case Study](https://aura-gastronomy-restaurant-six.vercel.app/) - Luxury restaurant dining platform with digital table-side ordering and POS terminal.
 - [Arhan Fabricators Case Study](https://arhan-fabricators.vercel.app/) - Steel & iron fabrication business website driving direct WhatsApp leads.
-- [Bold & Beautiful Salon Case Study](https://www.boldandbeautiful.co.in/) - Premium beauty salon website for local client bookings.
 - [Cheesy Classics Case Study](https://classic-cheesy.vercel.app/) - Cafe & restaurant landing page showcasing signature menu.
 
 ## Contact & Consultation

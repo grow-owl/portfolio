@@ -8,57 +8,51 @@ const projects = [
     id: "ddine-kitchen",
     number: "/001/",
     category: "hospitality",
-    categoryLabel: "Restaurant & Dining",
     name: "D Dine Kitchen",
     location: "Salugara, Siliguri",
     image: "/images/work-ddine-kitchen.webp",
     link: "https://ddinekitchen.shop",
   },
   {
-    id: "lensaura-photography",
+    id: "gymai",
     number: "/002/",
-    category: "lifestyle",
-    categoryLabel: "Creative Studio",
-    name: "LensAura Photography",
-    location: "Kolkata & Siliguri",
-    image: "/images/work-photographer.webp",
-    link: "https://photographer-hazel.vercel.app/",
+    category: "saas",
+    name: "GYMAI",
+    location: "Pan-India / SaaS Platform",
+    image: "/images/work-gymai.webp",
+    link: "https://gymai-one.vercel.app/",
   },
   {
     id: "car-wash",
     number: "/003/",
     category: "automotive",
-    categoryLabel: "Automotive Care",
     name: "Auto Detailing Car Wash",
     location: "Siliguri",
-    image: "/images/work-car-wash.webp",
-    link: "https://car-washing-website-psi.vercel.app/",
+    image: "/images/work-car-wash-grow-owl.webp",
+    link: "https://car-wash-grow-owl.vercel.app/",
+  },
+  {
+    id: "aura-gastronomy",
+    number: "/004/",
+    category: "hospitality",
+    name: "Aura Gastronomy & Bar",
+    location: "Mayfair Flagship",
+    image: "/images/work-aura-gastronomy.webp",
+    link: "https://aura-gastronomy-restaurant-six.vercel.app/",
   },
   {
     id: "arhan-fabricators",
-    number: "/004/",
+    number: "/005/",
     category: "industrial",
-    categoryLabel: "B2B & Industrial",
     name: "Arhan Fabricators",
     location: "Lucknow",
     image: "/images/work-arhan-fabricators.webp",
     link: "https://arhan-fabricators.vercel.app/",
   },
   {
-    id: "bold-and-beautiful",
-    number: "/005/",
-    category: "lifestyle",
-    categoryLabel: "Salon & Wellness",
-    name: "Bold & Beautiful Salon",
-    location: "Salugara, Siliguri",
-    image: "/images/work-bold-beautiful.webp",
-    link: "https://www.boldandbeautiful.co.in/",
-  },
-  {
     id: "cheesy-classics",
     number: "/006/",
     category: "hospitality",
-    categoryLabel: "Cafe & Bistro",
     name: "Cheesy Classics",
     location: "Barasat",
     image: "/images/work-cheesy-classics.webp",
@@ -175,10 +169,6 @@ export default function Work({ sectionNumber = "/002/" }) {
                   <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1 flex-wrap">
                     <span className="font-serif italic text-[13px] sm:text-sm text-accent font-semibold shrink-0">
                       {p.number}
-                    </span>
-                    <span className="text-ink/20 text-xs hidden xs:inline">•</span>
-                    <span className="text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold text-ink/50 truncate">
-                      {p.categoryLabel}
                     </span>
                   </div>
                   <h3 className="text-[14px] sm:text-[15px] font-bold text-ink tracking-[-0.01em] leading-tight mb-0.5">

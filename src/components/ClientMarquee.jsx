@@ -61,37 +61,41 @@ const clientBrands = [
     ),
   },
   {
-    id: "lensaura",
-    name: "LensAura Photography",
-    link: "https://photographer-hazel.vercel.app/",
-    bg: "#0d0e13",
-    border: "rgba(255, 255, 255, 0.15)",
+    id: "gymai",
+    name: "GYMAI",
+    link: "https://gymai-one.vercel.app/",
+    bg: "#0c121e",
+    border: "rgba(245, 158, 11, 0.25)",
     render: () => (
       <div className="flex items-center gap-3">
-        {/* Camera Aperture Gradient Icon */}
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#d946ef] via-[#ec4899] to-[#f97316] p-0.5 shadow-sm shrink-0 flex items-center justify-center">
-          <div className="w-full h-full rounded-[10px] bg-[#0d0e13] flex items-center justify-center">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[#f97316]">
-              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
-              <path
-                d="m14.31 8 5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16 3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
+        {/* Modern Amber/Gold Gym Icon */}
+        <div className="w-9 h-9 rounded-xl bg-[#1e293b] border border-[#f59e0b]/30 flex items-center justify-center shadow-xs shrink-0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[#f59e0b]">
+            <path
+              d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </div>
-        <span className="font-serif italic font-bold text-[17px] sm:text-[18px] tracking-tight bg-gradient-to-r from-[#fce7f3] via-[#fed7aa] to-[#fef08a] bg-clip-text text-transparent">
-          LensAura
-        </span>
+        <div className="flex flex-col">
+          <div className="text-[14px] sm:text-[15px] font-black leading-none tracking-tight">
+            <span className="text-white">GYM</span>
+            <span className="text-[#f59e0b]">AI</span>
+          </div>
+          <span className="text-[9px] font-bold text-[#f59e0b]/80 tracking-[0.18em] uppercase mt-1">
+            AI FITNESS SAAS
+          </span>
+        </div>
       </div>
     ),
   },
   {
     id: "car-wash",
     name: "Auto Detailing Car Wash",
-    link: "https://car-washing-website-psi.vercel.app/",
+    link: "https://car-wash-grow-owl.vercel.app/",
     bg: "#1b2e34",
     border: "#29464e",
     render: () => (
@@ -145,32 +149,31 @@ const clientBrands = [
     ),
   },
   {
-    id: "bold-beautiful",
-    name: "Bold & Beautiful Salon",
-    link: "https://www.boldandbeautiful.co.in/",
-    bg: "#241316",
-    border: "#3e2227",
+    id: "aura-gastronomy",
+    name: "Aura Gastronomy",
+    link: "https://aura-gastronomy-restaurant-six.vercel.app/",
+    bg: "#0d0f14",
+    border: "rgba(56, 189, 248, 0.25)",
     render: () => (
       <div className="flex items-center gap-3">
-        {/* Luxury Sparkle Icon */}
-        <div className="w-9 h-9 rounded-xl bg-[#381c21] border border-[#fef08a]/20 flex items-center justify-center shadow-xs shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[#fef08a]">
+        {/* Luxury Dining & POS Glass Icon */}
+        <div className="w-9 h-9 rounded-xl bg-[#161a23] border border-[#38bdf8]/25 flex items-center justify-center shadow-xs shrink-0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[#38bdf8]">
             <path
-              d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"
-              fill="currentColor"
-              fillOpacity="0.2"
+              d="M8 22h8M12 11v11M5 3h14l-2 8H7L5 3z"
               stroke="currentColor"
               strokeWidth="1.8"
+              strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         </div>
         <div className="flex flex-col">
-          <span className="font-serif text-[13px] sm:text-[14px] font-bold text-white leading-none tracking-[0.05em]">
-            BOLD &amp; BEAUTIFUL
+          <span className="font-serif text-[13px] sm:text-[14px] font-bold text-white leading-none tracking-[0.08em]">
+            AURA
           </span>
-          <span className="text-[9px] font-bold text-[#fef08a]/80 tracking-[0.24em] uppercase mt-0.5">
-            SALON
+          <span className="text-[9px] font-bold text-[#38bdf8]/85 tracking-[0.2em] uppercase mt-1">
+            FINE DINING &amp; POS
           </span>
         </div>
       </div>
