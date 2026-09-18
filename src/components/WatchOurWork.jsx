@@ -64,7 +64,7 @@ export default function WatchOurWork({
     <section
       id="watch-our-work"
       aria-labelledby="watch-our-work-heading"
-      className="py-14 sm:py-16 lg:py-24 bg-cream border-b border-ink/5 relative overflow-hidden"
+      className="py-16 sm:py-20 lg:py-24 bg-cream border-b border-ink/5 relative overflow-hidden scroll-mt-24"
     >
       {/* Video SEO Structured Data (JSON-LD) */}
       <script
@@ -77,7 +77,7 @@ export default function WatchOurWork({
         <div className="text-center max-w-[840px] mx-auto mb-8 sm:mb-12">
           <div
             ref={labelRef}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-ink/5 rounded-full mb-5 sm:mb-6 border border-ink/10"
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-ink/5 rounded-full mb-4 sm:mb-6 border border-ink/10"
           >
             <span className="font-serif italic text-sm text-accent font-semibold">
               {sectionNumber}
@@ -90,53 +90,51 @@ export default function WatchOurWork({
           <h2
             id="watch-our-work-heading"
             ref={titleRef}
-            className="text-[clamp(28px,4.5vw,52px)] font-sans font-bold leading-[1.15] tracking-[-0.03em] text-ink mb-4 sm:mb-5"
+            className="text-[clamp(28px,4.5vw,52px)] font-sans font-bold leading-[1.15] tracking-[-0.03em] text-ink mb-3 sm:mb-5"
           >
             {title}{" "}
             <em className="font-serif italic font-medium">{highlightedTitle}</em>
           </h2>
 
           {subtitle && (
-            <p className="text-[15px] sm:text-[17px] text-ink/75 max-w-[620px] mx-auto leading-[1.6]">
+            <p className="text-[14px] sm:text-[17px] text-ink/75 max-w-[620px] mx-auto leading-[1.6]">
               {subtitle}
             </p>
           )}
         </div>
 
-        {/* Centered Video Player Card */}
+        {/* Centered Mobile-Optimized Video Reel Card */}
         <div
           ref={videoCardRef}
-          className="max-w-[460px] sm:max-w-[500px] mx-auto bg-card rounded-2xl sm:rounded-3xl border border-ink/10 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.08)] transition-all duration-500"
+          className="w-full max-w-[360px] sm:max-w-[400px] md:max-w-[440px] mx-auto bg-card rounded-2xl sm:rounded-3xl border border-ink/10 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.1)] transition-all duration-500"
         >
-          {/* Top Player Browser/Studio Bar */}
-          <div className="flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3 bg-ink/[0.03] border-b border-ink/8 gap-2">
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {/* Top Browser / Studio Header Bar */}
+          <div className="flex items-center justify-between px-3.5 sm:px-4 py-2.5 sm:py-3 bg-ink/[0.03] border-b border-ink/8 gap-2">
+            <div className="flex items-center gap-1.5 shrink-0">
               <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
             </div>
 
-            <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono text-ink/60 bg-white px-3 sm:px-4 py-1 rounded-full border border-ink/8 truncate max-w-[220px]">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
-              <span className="truncate">{clientName} Reel</span>
+            <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-ink/65 bg-white px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-ink/8 truncate max-w-[210px] text-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shrink-0" />
+              <span className="truncate">{clientName}</span>
             </div>
 
-            <div className="w-12 shrink-0" />
+            <div className="w-8 shrink-0" />
           </div>
 
-          {/* Responsive Media Frame */}
-          <div className="p-3 sm:p-4 bg-ink/[0.02] flex items-center justify-center">
-            <div className="relative w-full min-h-[480px] sm:min-h-[540px] rounded-xl sm:rounded-2xl overflow-hidden bg-white border border-ink/10 shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center">
-              <iframe
-                src={embedUrl}
-                title={`${clientName} Instagram Reel Showcase - GrowOwl`}
-                className="w-full h-full min-h-[480px] sm:min-h-[540px] border-0"
-                allowTransparency={true}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                scrolling="no"
-                loading="lazy"
-              />
-            </div>
+          {/* Seamless Reel Frame - Clean & Fit on Mobile */}
+          <div className="bg-white flex items-center justify-center overflow-hidden">
+            <iframe
+              src={embedUrl}
+              title={`${clientName} Instagram Reel Showcase - GrowOwl`}
+              className="w-full h-[480px] sm:h-[510px] border-0 block"
+              allowTransparency={true}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              scrolling="no"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
