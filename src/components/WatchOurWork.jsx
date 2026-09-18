@@ -135,13 +135,12 @@ export default function WatchOurWork({
             </a>
           </div>
 
-          {/* Clean Clipped Reel Frame - Hides redundant inner Instagram header & footer */}
-          <div className="relative w-full h-[430px] sm:h-[460px] overflow-hidden bg-black flex items-start justify-center">
+          {/* Fully Responsive Video Viewport - Zero white footer across all mobile screens */}
+          <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[480px] overflow-hidden bg-black flex items-start justify-center">
             <iframe
               src={embedUrl}
               title={`${clientName} Instagram Reel Showcase - GrowOwl`}
-              className="w-full h-[580px] sm:h-[610px] -mt-[52px] border-0 block"
-              allowTransparency={true}
+              className="absolute inset-x-0 w-full h-[calc(100%+190px)] -top-[54px] border-0 block bg-black"
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
               scrolling="no"
               loading="lazy"
