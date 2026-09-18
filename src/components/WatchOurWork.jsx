@@ -106,30 +106,41 @@ export default function WatchOurWork({
         {/* Centered Mobile-Optimized Video Reel Card */}
         <div
           ref={videoCardRef}
-          className="w-full max-w-[360px] sm:max-w-[400px] md:max-w-[440px] mx-auto bg-card rounded-2xl sm:rounded-3xl border border-ink/10 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.1)] transition-all duration-500"
+          className="w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] mx-auto bg-card rounded-2xl sm:rounded-3xl border border-ink/10 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.1)] transition-all duration-500"
         >
-          {/* Top Browser / Studio Header Bar */}
-          <div className="flex items-center justify-between px-3.5 sm:px-4 py-2.5 sm:py-3 bg-ink/[0.03] border-b border-ink/8 gap-2">
+          {/* Top Browser / Studio Header Bar with Compact View Profile Button */}
+          <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-ink/[0.03] border-b border-ink/8 gap-2">
             <div className="flex items-center gap-1.5 shrink-0">
               <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
             </div>
 
-            <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-ink/65 bg-white px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-ink/8 truncate max-w-[210px] text-center">
+            <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-ink/70 bg-white px-2.5 sm:px-3 py-0.5 rounded-full border border-ink/8 truncate max-w-[180px] text-center">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shrink-0" />
               <span className="truncate">{clientName}</span>
             </div>
 
-            <div className="w-8 shrink-0" />
+            <a
+              href={videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${clientName} on Instagram`}
+              className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-semibold text-accent hover:text-white bg-accent/10 hover:bg-accent px-2 sm:px-2.5 py-0.5 rounded-full transition-all shrink-0 border border-accent/20"
+            >
+              <span>View Profile</span>
+              <svg width="8" height="8" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13L13 3H5M13 3V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
 
-          {/* Seamless Reel Frame - Clean & Fit on Mobile */}
-          <div className="bg-white flex items-center justify-center overflow-hidden">
+          {/* Clean Clipped Reel Frame - Hides redundant inner Instagram header & footer */}
+          <div className="relative w-full h-[430px] sm:h-[460px] overflow-hidden bg-black flex items-start justify-center">
             <iframe
               src={embedUrl}
               title={`${clientName} Instagram Reel Showcase - GrowOwl`}
-              className="w-full h-[480px] sm:h-[510px] border-0 block"
+              className="w-full h-[580px] sm:h-[610px] -mt-[52px] border-0 block"
               allowTransparency={true}
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
               scrolling="no"
