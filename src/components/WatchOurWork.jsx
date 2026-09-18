@@ -27,13 +27,13 @@ export function getMediaEmbedUrl(url) {
 export default function WatchOurWork({
   sectionNumber = "/003/",
   videoUrl = "https://www.instagram.com/reel/DdGCfd2zeQk/?stkn=ajliemY5emIwb3Rt",
-  clientName = "D Dine Kitchen",
+  clientName = "The Mountain Soul Bistro",
   clientCategory = "Hospitality & Restaurant",
   clientLink = "https://ddinekitchen.shop",
   title = "Watch our work in",
   highlightedTitle = "action",
   subtitle = "A curated overview of our design, engineering, and digital solutions.",
-  videoDescription = "A detailed case study walkthrough of the restaurant website and digital experience built for D Dine Kitchen.",
+  videoDescription = "A detailed case study walkthrough of the restaurant website and digital experience built for The Mountain Soul Bistro.",
 }) {
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
