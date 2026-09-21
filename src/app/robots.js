@@ -4,6 +4,7 @@ export default function robots() {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/api/"],
       },
       {
         userAgent: [
@@ -15,11 +16,14 @@ export default function robots() {
           "Google-Extended",
           "Googlebot",
           "Bingbot",
+          "Applebot",
         ],
         allow: "/",
+        disallow: ["/api/"],
       },
     ],
     sitemap: "https://www.growowl.online/sitemap.xml",
+    host: "https://www.growowl.online",
   };
 }
 

@@ -108,7 +108,7 @@ const jsonLd = {
           name: "How do I get started or request a customized proposal?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Getting started is easy! Click 'Let's Talk' to submit your project requirements, email us, or send us a direct message on Instagram (@grow_owl_). We will review your goals and provide a transparent, detailed scope and quote within 24 hours.",
+            text: "Getting started is easy! Click 'Let's Talk' to submit your project requirements, email us, or send us a direct message on Instagram (@growowl.online). We will review your goals and provide a transparent, detailed scope and quote within 24 hours.",
           },
         },
       ],

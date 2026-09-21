@@ -2,25 +2,25 @@ const baseUrl = "https://www.growowl.online";
 
 export default function sitemap() {
   const routes = [
-    "",
-    "/services/web-development",
-    "/services/web-design",
-    "/services/seo-services",
-    "/services/digital-marketing",
-    "/pricing",
-    "/work",
-    "/about",
-    "/process",
-    "/faq",
-    "/contact",
-    "/privacy",
-    "/terms",
+    { path: "", priority: 1.0, changeFrequency: "weekly" },
+    { path: "/services/web-development", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/services/web-design", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/services/seo-services", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/services/digital-marketing", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/work", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/pricing", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/contact", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/about", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/process", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/faq", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
   ];
 
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
+  return routes.map((item) => ({
+    url: `${baseUrl}${item.path}`,
     lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1.0 : 0.8,
+    changeFrequency: item.changeFrequency,
+    priority: item.priority,
   }));
 }
