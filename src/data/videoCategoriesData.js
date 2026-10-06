@@ -18,8 +18,7 @@ export const videoCategories = [
         duration: "30-45s",
         tag: "Viral & Relatable",
         referenceReels: [
-          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DXCGqUbk7n1/?stkn=MXUyMmx1NjdlMXJ1MA==" },
-          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DcJJmf0hwTz/?stkn=MTJ1MWRsaW9uZ2VneA==" }
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DXCGqUbk7n1/?stkn=MXUyMmx1NjdlMXJ1MA==" }
         ]
       },
       {
@@ -649,8 +648,7 @@ export const videoCategories = [
         tag: "Arena Showcase",
         referenceReels: [
           { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DS-LdMRjEaj/?stkn=MWhjcGtqMnR2YjVqcw==" },
-          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DMfUH5tt8Ne/?stkn=bHd2amZnY3d4aDBx" },
-          { title: "Creative Inspiration 03", url: "https://www.instagram.com/reel/DZhqoPaMdqQ/?stkn=MTE5aXR5Z2U4Mjd3Nw==" }
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DMfUH5tt8Ne/?stkn=bHd2amZnY3d4aDBx" }
         ]
       },
       {
