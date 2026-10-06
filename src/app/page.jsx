@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import PlatformMarquee from "../components/PlatformMarquee";
+import VideoSolutions from "../components/VideoSolutions";
 import Work from "../components/Work";
 import WatchOurWork from "../components/WatchOurWork";
 import Collaborations from "../components/Collaborations";
@@ -14,8 +15,9 @@ export default function Home() {
       <main>
         <Hero />
         <PlatformMarquee />
-        <Work sectionNumber="/002/" />
-        <WatchOurWork sectionNumber="/003/" />
+        <VideoSolutions sectionNumber="/002/" />
+        <Work sectionNumber="/003/" />
+        <WatchOurWork sectionNumber="/004/" />
         <Collaborations />
         <ClientMarquee />
       </main>

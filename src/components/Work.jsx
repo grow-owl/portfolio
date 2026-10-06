@@ -71,8 +71,8 @@ export default function Work({ sectionNumber = "/002/" }) {
       aria-labelledby="work-heading"
       className={`${
         isFirst
-          ? "pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 lg:pb-24 bg-cream border-b border-ink/5"
-          : "py-14 sm:py-16 lg:py-24 bg-cream border-b border-ink/5"
+          ? "pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 lg:pb-24 bg-cream-light border-y border-dashed border-ink/12 relative"
+          : "py-16 sm:py-20 lg:py-24 bg-cream-light border-y border-dashed border-ink/12 relative"
       }`}
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-5 md:px-10">
@@ -143,7 +143,7 @@ export default function Work({ sectionNumber = "/002/" }) {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                     />
-                    {/* Tap overlay — visible on touch devices too */}
+                    {/* Tap overlay */}
                     <div className="absolute inset-0 bg-ink/25 opacity-0 group-hover:opacity-100 active:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold px-3 sm:px-4 py-1.5 sm:py-2 bg-white text-ink rounded-full shadow-xl">
                         Visit Live Website
