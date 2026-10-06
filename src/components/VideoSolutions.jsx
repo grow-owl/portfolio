@@ -36,14 +36,9 @@ export default function VideoSolutions({ sectionNumber = "/002/" }) {
             ref={titleRef}
             className="text-[clamp(24px,3.5vw,38px)] font-sans font-bold leading-[1.2] tracking-[-0.03em] text-ink"
           >
-            Video Content That Makes{" "}
-            <em className="font-serif italic font-medium">Your Business</em>{" "}
-            <span className="text-accent">Stand Out</span>
+            Select Your Business,{" "}
+            <span className="text-accent font-serif italic font-medium">Find Viral Reels</span>
           </h2>
-
-          <p className="text-[13px] sm:text-[14px] text-ink/65 mt-2 max-w-[500px] mx-auto leading-relaxed">
-            Select your industry to explore recommended 60-second reel blueprints &amp; script guides.
-          </p>
         </div>
 
         {/* Ultra-Simplified & Centered Category Pills */}

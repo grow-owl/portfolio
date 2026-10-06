@@ -121,121 +121,14 @@ export default async function CategoryVideosPage({ params }) {
             </ol>
           </nav>
 
-          {/* Hero Header Section */}
-          <div className="bg-card rounded-3xl sm:rounded-[36px] border border-ink/10 p-6 sm:p-10 lg:p-12 shadow-[0_8px_32px_rgba(0,0,0,0.04)] mb-8 sm:mb-12">
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-10">
-              <div className="max-w-[780px]">
-                {/* Industry Focus Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent/10 rounded-full mb-4 border border-accent/20">
-                  <CategoryIcon name={category.iconName} className="w-4 h-4 text-accent" />
-                  <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-accent">
-                    {category.name} Playbook
-                  </span>
-                </div>
-
-                <h1 className="text-[clamp(28px,4.5vw,52px)] font-sans font-bold leading-[1.15] tracking-[-0.03em] text-ink mb-4">
-                  High-Impact Video Strategies For{" "}
-                  <span className="text-accent font-serif italic font-medium">
-                    {category.fullName}
-                  </span>
-                </h1>
-
-                <p className="text-[15px] sm:text-[17px] text-ink/75 leading-[1.6] max-w-[680px]">
-                  {deepDive.heroTagline}
-                </p>
-              </div>
-
-              {/* Quick Action Button */}
-              <div className="shrink-0 w-full lg:w-auto">
-                <Link
-                  href="/contact"
-                  className="w-full lg:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-accent text-white font-bold text-sm rounded-full shadow-[0_8px_24px_rgba(252,54,55,0.3)] hover:bg-accent-dark hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
-                >
-                  <span>Book a Video Strategy Call</span>
-                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-                    <path
-                      d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-
-            {/* Key Industry Metric Bar */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-ink/8">
-              {deepDive.industryStats.map((stat, idx) => (
-                <div key={idx} className="bg-ink/[0.02] p-3.5 sm:p-4 rounded-2xl border border-ink/6">
-                  <span className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ink/50 mb-1">
-                    {stat.label}
-                  </span>
-                  <span className="text-sm sm:text-base font-bold text-ink leading-tight">
-                    {stat.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Why Video Works & Target Audience Split */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10 sm:mb-14">
-            <div className="lg:col-span-2 bg-cream-light rounded-3xl border border-dashed border-ink/12 p-6 sm:p-8">
-              <div className="flex items-center gap-2.5 mb-3">
-                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-ink/70">
-                  The Conversion Psychology
-                </h2>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-ink tracking-tight mb-3">
-                Why Short-Form Video Dominates This Market
-              </h3>
-              <p className="text-[14px] sm:text-[15px] text-ink/80 leading-[1.7]">
-                {deepDive.whyVideoWorks}
-              </p>
-            </div>
-
-            <div className="bg-card rounded-3xl border border-ink/10 p-6 sm:p-8 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-accent">
-                    Target Audience Focus
-                  </span>
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-ink tracking-tight mb-2">
-                  Who Are We Reaching?
-                </h3>
-                <p className="text-[13px] sm:text-[14px] text-ink/70 leading-[1.6]">
-                  {deepDive.targetAudience}
-                </p>
-              </div>
-
-              <div className="mt-4 pt-4 border-t border-ink/8 flex items-center gap-2 text-xs font-semibold text-accent">
-                <span>Tailored for High-Converting ROI</span>
-                <span className="text-base">✓</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Section Section Separator & Headline */}
-          <div className="text-center max-w-[800px] mx-auto mb-10 sm:mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-ink/5 rounded-full mb-3 border border-ink/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-ink/80">
-                Recommended Video Types &amp; 3 Real Examples
-              </span>
-            </div>
-            <h2 className="text-[clamp(26px,3.8vw,44px)] font-sans font-bold leading-[1.2] tracking-[-0.02em] text-ink">
-              Video Formats Engineered for{" "}
+          {/* Page Heading */}
+          <div className="text-center max-w-[900px] mx-auto mb-10 sm:mb-14">
+            <h1 className="text-[clamp(28px,4.2vw,48px)] font-sans font-bold leading-[1.2] tracking-[-0.03em] text-ink">
+              Video Formats For{" "}
               <span className="text-accent font-serif italic font-medium">
-                {category.name}
+                {category.fullName}
               </span>
-            </h2>
-            <p className="text-sm sm:text-base text-ink/65 mt-2">
-              Browse each format below along with 3 specific concept examples, hooks, and execution angles. Click any card to access the full 60-second script blueprint.
-            </p>
+            </h1>
           </div>
 
           {/* Format-by-Format Detailed Sections with 3 Examples Each */}
@@ -253,17 +146,6 @@ export default async function CategoryVideosPage({ params }) {
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 mb-6 sm:mb-8 border-b border-ink/8">
                     <div className="max-w-[760px]">
                       <div className="flex items-center gap-2 sm:gap-3 mb-2.5 flex-wrap">
-                        <span className="w-7 h-7 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center shrink-0">
-                          {String(vIdx + 1).padStart(2, "0")}
-                        </span>
-                        <span className="px-3 py-1 rounded-full bg-accent/10 text-accent font-bold text-[11px] sm:text-xs uppercase tracking-wider">
-                          {video.pdfCategory}
-                        </span>
-                        {video.tag && (
-                          <span className="px-2.5 py-0.5 rounded-full bg-ink/5 text-ink/70 font-semibold text-[11px]">
-                            {video.tag}
-                          </span>
-                        )}
                         <span className="px-2.5 py-0.5 rounded-full bg-black/5 text-ink/80 font-mono text-[11px] font-bold">
                           ⏱️ {video.duration}
                         </span>
@@ -288,12 +170,6 @@ export default async function CategoryVideosPage({ params }) {
 
                   {/* 3 Real Examples / Angles Grid */}
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ink/60">
-                        3 Execution Angles &amp; Hook Examples:
-                      </span>
-                    </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
                       {examples.map((ex, exIdx) => (
                         <Link
@@ -302,8 +178,8 @@ export default async function CategoryVideosPage({ params }) {
                           className="group relative bg-cream/35 rounded-2xl sm:rounded-3xl border border-ink/8 overflow-hidden hover:border-accent/40 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
                         >
                           <div>
-                            {/* Thumbnail with overlay */}
-                            <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink/5">
+                            {/* Thumbnail with overlay - 9:16 Reel Aspect Ratio */}
+                            <div className="relative aspect-[9/14] w-full overflow-hidden bg-ink/5">
                               <Image
                                 src={ex.image || video.image}
                                 alt={ex.title}
@@ -313,11 +189,6 @@ export default async function CategoryVideosPage({ params }) {
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                              {/* Example Tag badge */}
-                              <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-accent text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-sm">
-                                Example 0{exIdx + 1}
-                              </div>
-
                               {/* Duration badge */}
                               <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-sm text-white font-mono text-[9px] font-semibold">
                                 {ex.duration || video.duration}
@@ -325,8 +196,8 @@ export default async function CategoryVideosPage({ params }) {
 
                               {/* Play Icon */}
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-ink flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5">
+                                <div className="w-11 h-11 rounded-full bg-white/90 backdrop-blur-md text-ink flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5">
                                     <path d="M8 5v14l11-7z" />
                                   </svg>
                                 </div>

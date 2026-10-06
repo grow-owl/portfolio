@@ -142,9 +142,6 @@ export default async function VideoBlueprintDetailPage({ params }) {
                     <CategoryIcon name={category.iconName} className="w-3.5 h-3.5" />
                     {category.name}
                   </span>
-                  <span className="px-3 py-1 bg-ink/5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ink/75 border border-ink/10">
-                    {guide.pdfCategory}
-                  </span>
                   <span className="px-2.5 py-1 bg-black/5 rounded-full text-[11px] sm:text-xs font-mono font-bold text-ink/80">
                     ⏱️ {guide.idealDuration}
                   </span>
@@ -186,15 +183,12 @@ export default async function VideoBlueprintDetailPage({ params }) {
             <div className="flex items-center gap-2.5 mb-2">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-accent">
-                Viral Hook Library (First 3 Seconds)
+                Viral Opening Hooks
               </h2>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-ink tracking-tight mb-2">
-              3 Battle-Tested Hooks to Stop The Scroll
+            <h3 className="text-xl sm:text-2xl font-bold text-ink tracking-tight mb-5">
+              3 Scroll-Stopping Hooks
             </h3>
-            <p className="text-xs sm:text-sm text-ink/65 mb-6">
-              The first 3 seconds decide 80% of your video views. Use any of these tested verbal opening hooks:
-            </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {guide.hooks.map((hook, idx) => (
@@ -221,16 +215,13 @@ export default async function VideoBlueprintDetailPage({ params }) {
 
           {/* 60-Second Script Blueprint Timeline */}
           <div className="bg-card rounded-3xl sm:rounded-[36px] border border-ink/10 p-6 sm:p-10 lg:p-12 shadow-[0_8px_32px_rgba(0,0,0,0.04)] mb-8 sm:mb-12">
-            <div className="text-center max-w-[700px] mx-auto mb-8 sm:mb-12">
+            <div className="text-center max-w-[700px] mx-auto mb-8 sm:mb-10">
               <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-accent px-3 py-1 bg-accent/10 rounded-full mb-3">
-                Complete Timeline
+                Script Blueprint
               </span>
               <h2 className="text-[clamp(24px,3.5vw,36px)] font-sans font-bold leading-tight text-ink">
-                60-Second Step-by-Step Script Blueprint
+                60-Second Timeline &amp; Script
               </h2>
-              <p className="text-xs sm:text-sm text-ink/60 mt-2">
-                Follow this precise second-by-second structure for maximum viewer retention and direct conversions.
-              </p>
             </div>
 
             {/* Timeline Steps */}
