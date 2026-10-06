@@ -41,3 +41,7 @@ coverage/
 DESIGN.md
 
 .codegraph/
+
+# Reports & local docs
+report.docx
+*.docx

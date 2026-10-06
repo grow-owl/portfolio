@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 export default function Contact({ sectionNumber = "/009/" }) {
@@ -9,6 +10,7 @@ export default function Contact({ sectionNumber = "/009/" }) {
   const titleRef = useScrollReveal();
   const leftRef = useScrollReveal();
   const formRef = useScrollReveal();
+  const turnstileRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -16,9 +18,13 @@ export default function Contact({ sectionNumber = "/009/" }) {
     phone: "",
     service: "Website Development",
     message: "",
+    website_url_hp: "", // Honeypot field for bot trapping
   });
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
   const [errorMessage, setErrorMessage] = useState("");
+
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   // Auto-detect service from URL query params (e.g. from Pricing cards)
   useEffect(() => {
@@ -50,6 +56,13 @@ export default function Contact({ sectionNumber = "/009/" }) {
     setStatus("sending");
     setErrorMessage("");
 
+    // If turnstile site key is configured, enforce verification token
+    if (turnstileSiteKey && !turnstileSiteKey.includes("your_cloudflare") && !turnstileToken) {
+      setStatus("error");
+      setErrorMessage("Please complete the security anti-bot check below.");
+      return;
+    }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -63,6 +76,8 @@ export default function Contact({ sectionNumber = "/009/" }) {
           phone: formData.phone || "Not provided",
           service: formData.service || "Website Development",
           message: formData.message,
+          website_url_hp: formData.website_url_hp || "",
+          turnstileToken: turnstileToken || "",
         }),
       });
 
@@ -76,13 +91,21 @@ export default function Contact({ sectionNumber = "/009/" }) {
           phone: "",
           service: "Website Development",
           message: "",
+          website_url_hp: "",
         });
+        setTurnstileToken("");
+        if (turnstileRef.current) {
+          turnstileRef.current.reset();
+        }
         setTimeout(() => {
           setStatus("idle");
         }, 8000);
       } else {
+        if (turnstileRef.current) {
+          turnstileRef.current.reset();
+        }
         throw new Error(
-          result.message || "Failed to send message. Please try again."
+          result.message || "Failed to send message. Please try again or message on WhatsApp."
         );
       }
     } catch (err) {
@@ -215,6 +238,20 @@ export default function Contact({ sectionNumber = "/009/" }) {
             className="flex flex-col gap-5 p-6 sm:p-8 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm"
             id="contact-form"
           >
+            {/* Invisible Honeypot Field (Traps automated spam bots) */}
+            <div className="hidden" aria-hidden="true">
+              <label htmlFor="website_url_hp">Do not fill this field</label>
+              <input
+                type="text"
+                id="website_url_hp"
+                name="website_url_hp"
+                value={formData.website_url_hp}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label
@@ -230,6 +267,7 @@ export default function Contact({ sectionNumber = "/009/" }) {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="e.g. Rahul Sharma"
+                  autoComplete="name"
                   required
                   className="w-full px-[18px] py-3.5 bg-white/6 border border-white/10 rounded-xl text-white text-[15px] placeholder:text-white/25 outline-none focus:border-accent focus:bg-white/10 transition-all"
                 />
@@ -248,6 +286,7 @@ export default function Contact({ sectionNumber = "/009/" }) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="rahul@company.com"
+                  autoComplete="email"
                   required
                   className="w-full px-[18px] py-3.5 bg-white/6 border border-white/10 rounded-xl text-white text-[15px] placeholder:text-white/25 outline-none focus:border-accent focus:bg-white/10 transition-all"
                 />
@@ -268,6 +307,7 @@ export default function Contact({ sectionNumber = "/009/" }) {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+91 86095 04186"
+                autoComplete="tel"
                 className="w-full px-[18px] py-3.5 bg-white/6 border border-white/10 rounded-xl text-white text-[15px] placeholder:text-white/25 outline-none focus:border-accent focus:bg-white/10 transition-all"
               />
             </div>
@@ -323,6 +363,23 @@ export default function Contact({ sectionNumber = "/009/" }) {
                 className="w-full px-[18px] py-3.5 bg-white/6 border border-white/10 rounded-xl text-white text-[15px] placeholder:text-white/25 outline-none focus:border-accent focus:bg-white/10 transition-all resize-y min-h-30"
               />
             </div>
+
+            {/* Cloudflare Turnstile Anti-Bot Challenge */}
+            {turnstileSiteKey && !turnstileSiteKey.includes("your_cloudflare") && (
+              <div className="flex justify-center sm:justify-start my-1 overflow-hidden">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={turnstileSiteKey}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onError={() => setErrorMessage("Anti-bot verification error. Please refresh.")}
+                  onExpire={() => setTurnstileToken("")}
+                  options={{
+                    theme: "dark",
+                    size: "flexible",
+                  }}
+                />
+              </div>
+            )}
 
             {/* Success Message Banner */}
             {status === "sent" && (
