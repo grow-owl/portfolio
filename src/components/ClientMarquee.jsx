@@ -1,6 +1,39 @@
 "use client";
 
+import Image from "next/image";
+
 const clientBrands = [
+  {
+    id: "inox",
+    name: "INOX Cinemas",
+    link: "https://www.inoxmovies.com/",
+    bg: "#ffffff",
+    border: "#dbeafe",
+    render: () => (
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* INOX Logo */}
+        <div className="h-8 sm:h-9 px-2 rounded-xl bg-[#f0f7ff] border border-[#0284c7]/20 flex items-center justify-center shadow-xs shrink-0">
+          <Image
+            src="/images/logos/inox-logo.webp"
+            alt="INOX"
+            width={72}
+            height={26}
+            className="h-5 sm:h-6 w-auto object-contain"
+          />
+        </div>
+        <div className="flex flex-col">
+          <div className="text-[14px] sm:text-[15px] font-black leading-none tracking-tight">
+            <span className="text-[#004b93]">IN</span>
+            <span className="text-[#f59e0b]">O</span>
+            <span className="text-[#004b93]">X</span>
+          </div>
+          <span className="text-[9px] font-bold text-[#004b93]/80 tracking-[0.16em] uppercase mt-1">
+            CINEMAS &amp; MEGAPLEX
+          </span>
+        </div>
+      </div>
+    ),
+  },
   {
     id: "chai-addaa",
     name: "Siliguri's Chai Addaa",
@@ -28,38 +61,6 @@ const clientBrands = [
           </div>
           <span className="text-[9px] font-bold text-[#8c6239] tracking-[0.14em] uppercase mt-1">
             DIGITAL MENU
-          </span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "cheesy-classics",
-    name: "Cheesy Classics",
-    link: "https://classic-cheesy.vercel.app/",
-    bg: "#fbf5eb",
-    border: "#eadbc8",
-    render: () => (
-      <div className="flex items-center gap-3">
-        {/* Fork & Knife Icon Box */}
-        <div className="w-9 h-9 rounded-xl bg-white border border-[#e8d7c3] flex items-center justify-center shadow-xs shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[#ea580c]">
-            <path
-              d="M6 3v6c0 1.66 1.34 3 3 3v9M9 3v6M6 3H9M18 3v18M18 3c-1.5 0-3 1.5-3 4v3h3"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-        <div className="flex flex-col">
-          <div className="text-[14px] sm:text-[15px] font-bold leading-none tracking-tight">
-            <span className="text-[#1c1917]">Cheesy </span>
-            <span className="text-[#ea580c]">Classics</span>
-          </div>
-          <span className="text-[9px] sm:text-[10px] font-bold text-[#b45309] tracking-[0.14em] uppercase mt-1">
-            CAFE &amp; LOUNGE
           </span>
         </div>
       </div>
@@ -152,60 +153,6 @@ const clientBrands = [
           </span>
           <span className="text-[10px] font-mono text-[#5eead4] tracking-wider mt-0.5">
             Car Wash
-          </span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "arhan-fabricators",
-    name: "Arhan Fabricators",
-    link: "https://arhan-fabricators.vercel.app/",
-    bg: "#ffffff",
-    border: "#e2e8f0",
-    render: () => (
-      <div className="flex items-center gap-3">
-        {/* Monogram Circle */}
-        <div className="w-9 h-9 rounded-full bg-[#0f172a] text-white flex items-center justify-center font-sans font-black text-[13px] tracking-tighter shadow-xs shrink-0">
-          AR
-        </div>
-        <div className="flex flex-col">
-          <span className="text-[14px] sm:text-[15px] font-extrabold text-[#0f172a] leading-none tracking-tight">
-            Arhan Fabricators
-          </span>
-          <span className="text-[10px] text-[#64748b] font-medium tracking-wide mt-0.5">
-            Steel &amp; Iron Work, Lucknow
-          </span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "aura-gastronomy",
-    name: "Aura Gastronomy",
-    link: "https://aura-gastronomy-restaurant-six.vercel.app/",
-    bg: "#0d0f14",
-    border: "rgba(56, 189, 248, 0.25)",
-    render: () => (
-      <div className="flex items-center gap-3">
-        {/* Luxury Dining & POS Glass Icon */}
-        <div className="w-9 h-9 rounded-xl bg-[#161a23] border border-[#38bdf8]/25 flex items-center justify-center shadow-xs shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[#38bdf8]">
-            <path
-              d="M8 22h8M12 11v11M5 3h14l-2 8H7L5 3z"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-        <div className="flex flex-col">
-          <span className="font-serif text-[13px] sm:text-[14px] font-bold text-white leading-none tracking-[0.08em]">
-            AURA
-          </span>
-          <span className="text-[9px] font-bold text-[#38bdf8]/85 tracking-[0.2em] uppercase mt-1">
-            FINE DINING &amp; POS
           </span>
         </div>
       </div>
