@@ -571,62 +571,49 @@ export const videoCategories = [
     fullName: "Homestays, Villas & Nature Resorts",
     categorySlug: "homestays",
     iconName: "homestay",
-    description: "Scenic balcony views, local homecooked dining, nature ASMR, and host hospitality.",
+    description: "Meme-style mountain view reels, cinematic AI voice-over property tours, and budget-friendly stay breakdown hooks in the North Bengal hills.",
     videoTypes: [
       {
-        id: "location-walkthrough",
-        title: "Balcony & Mountain View Tour",
-        pdfCategory: "2. Location & Business Walkthrough Reel",
-        subtitle: "Wake Up to Cloud-Kissed Mountain Views & Forest Balcony",
+        id: "meme-style-homestay-reel",
+        title: "Meme-Style Homestay Reel",
+        subtitle: "Mountain Views, Interiors & Ambience with Relatable Context Overlays",
+        description: "A meme-style homestay reel showcasing a homestay in the North Bengal hills. The video uses scenic shots of the mountain view, homestay interiors, and peaceful ambience, with text overlays placed over the visuals to add a relatable or humorous context. Background music matches the mood, while the combination of beautiful views and meme-style text makes the reel engaging, shareable, and entertaining rather than a straightforward property promotion.",
+        creativeDirection: "Capture scenic shots of mist-covered mountain views, cozy wooden room interiors, and balcony morning chai. Overlay witty, relatable travel memes or POV captions (e.g. 'Boss thinking I'm working from home vs where I actually am'). Pair with trending aesthetic audio to trigger high saves and shares.",
         image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80",
-        duration: "60-75s",
-        tag: "Scenic Tour",
+        duration: "30-45s",
+        tag: "Viral & Relatable",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/Dc2qxybvOzC/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DXKIab3j41b/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" },
+          { title: "Creative Inspiration 03", url: "https://www.instagram.com/reel/DOtKcBHCEHq/?utm_source=ig_web_copy_link" }
+        ]
       },
       {
-        id: "product-showcase",
-        title: "Homecooked Local Dining & Bonfire",
-        pdfCategory: "6. Product Showcase Reel",
-        subtitle: "Organic Garden Produce, Local Thali & Evening Bonfire Under Stars",
-        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
-        tag: "Local Food",
-      },
-      {
-        id: "service-showcase",
-        title: "Peaceful Nature Morning ASMR",
-        pdfCategory: "7. Service Showcase Reel",
-        subtitle: "Birdsong, Pouring Fresh Local Tea & Mist Rolling In",
-        image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
-        tag: "Nature Vibe",
-      },
-      {
-        id: "founder-story",
-        title: "Meet The Host & Culture Story",
-        pdfCategory: "4. Founder Journey Story Reel",
-        subtitle: "Warm Mountain Hospitality & Authentic Village Traditions",
+        id: "cinematic-voiceover-tour",
+        title: "Cinematic Voice-Over Tour",
+        subtitle: "Visual Storytelling: Travel Route, Pine Forests, Room Amenities & Curated AI Voice-Over",
+        description: "This video style focuses entirely on visual storytelling without talking to the camera. First, we capture all the required footage: location, travel route, surroundings, views, property exterior, rooms, interiors, amenities, and overall ambiance. During editing, a voice-over narration is added to explain the place, experience, facilities, pricing, and other important details. The voice-over can be recorded using our own voice or generated using an AI voice tool such as ElevenLabs, creating a smooth and cinematic travel/property showcase.",
+        creativeDirection: "Capture smooth gimbal shots across the travel route, pine forest entrance, property exterior, warm cozy bedrooms, private balcony views, bonfire patio, and homecooked local meals. Layer with an evocative, calm voice-over narration (recorded or ElevenLabs AI) and ambient nature audio.",
         image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80",
-        duration: "60-75s",
-        tag: "Host Story",
-      },
-      {
-        id: "problem-solution",
-        title: "Hidden Waterfalls & Trek Guide",
-        pdfCategory: "5. Informative Problem-Solution Reel",
-        subtitle: "Tired of Tourist Crowds? Secret Trek Just 10 Mins from the Property",
-        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
         duration: "50-60s",
-        tag: "Travel Guide",
+        tag: "Cinematic Showcase",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DciYcA-SOjL/?utm_source=ig_web_copy_link" }
+        ]
       },
       {
-        id: "customer-testimonial",
-        title: "Guest Farewell Reviews & Smiles",
-        pdfCategory: "11. Customer Experience / Testimonial Reel",
-        subtitle: "Travelers Sharing Their Unforgettable Stay Experience",
-        image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
-        tag: "Social Proof",
-      },
+        id: "budget-friendly-homestay",
+        title: "Budget-Friendly Homestay",
+        subtitle: "Visual Price Hook: 'With This Amount of Money, Stay at This Mountain Homestay'",
+        description: "This video uses cash/money as the main visual hook and shows the exact budget needed to stay at the homestay. It communicates a simple message: “With this amount of money, you can stay at my homestay and enjoy your trip.” The video combines the price, homestay visuals, and travel/location shots to make the offer feel affordable and attractive.",
+        creativeDirection: "Start with a strong visual cash/price hook (e.g. ₹999/₹1,499 per head with all meals). Showcase everything included: cozy room, 3 organic homecooked meals, mountain-facing balcony, evening bonfire, and tea. Clear, transparent breakdown that makes booking irresistible.",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+        duration: "40-50s",
+        tag: "Budget & Value",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DdEXbXhBF9O/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" }
+        ]
+      }
     ],
   },
   {

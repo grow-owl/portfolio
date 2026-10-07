@@ -38,29 +38,27 @@ const clientBrands = [
     id: "chai-addaa",
     name: "Siliguri's Chai Addaa",
     link: "https://digital-menu-beta-one.vercel.app/",
-    bg: "#fbf6f0",
-    border: "#dfd2c4",
+    bg: "#fdfbf7",
+    border: "#ebdccf",
     render: () => (
-      <div className="flex items-center gap-3">
-        {/* Tea / Coffee Icon */}
-        <div className="w-9 h-9 rounded-xl bg-[#8c6239] border border-[#a2774c]/30 flex items-center justify-center shadow-xs shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-white">
-            <path
-              d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* Chai Addaa Logo */}
+        <div className="h-8 sm:h-9 px-2 rounded-xl bg-white border border-[#8c6239]/20 flex items-center justify-center shadow-xs shrink-0">
+          <Image
+            src="/images/logos/chai-addaa-logo.webp"
+            alt="Siliguri's Chai Addaa"
+            width={85}
+            height={32}
+            className="h-5 sm:h-6 w-auto object-contain"
+          />
         </div>
         <div className="flex flex-col">
           <div className="text-[14px] sm:text-[15px] font-bold leading-none tracking-tight">
-            <span className="text-[#2b1810]">Chai </span>
+            <span className="text-[#3d2714]">Chai </span>
             <span className="text-[#8c6239]">Addaa</span>
           </div>
           <span className="text-[9px] font-bold text-[#8c6239] tracking-[0.14em] uppercase mt-1">
-            DIGITAL MENU
+            ROOFTOP CAFETERIA
           </span>
         </div>
       </div>

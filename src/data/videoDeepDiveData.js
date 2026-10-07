@@ -634,6 +634,86 @@ export const videoFormatExamples = {
       },
     ],
   },
+  homestays: {
+    "meme-style-homestay-reel": [
+      {
+        id: "ex-1",
+        title: "Work From Mountain Homestay vs City Reality",
+        angle: "Relatable Workation Humor",
+        hook: "Boss thinking I'm working from my boring city apartment vs where my morning laptop setup actually is...",
+        image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80",
+        duration: "30-45s",
+      },
+      {
+        id: "ex-2",
+        title: "Weekend Trip 'Just To Relax' vs Endless Balcony Views",
+        angle: "Travel Anticipation Meme",
+        hook: "Me claiming I will wake up at 5 AM to trek vs me wrapped in blankets drinking Darjeeling chai for 4 hours.",
+        image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80",
+        duration: "30-45s",
+      },
+      {
+        id: "ex-3",
+        title: "City Traffic Chaos vs Mountain Homestay Serenity",
+        angle: "Peaceful Escape Contrast",
+        hook: "POV: You traded honking horns and pollution for chirping pine birds and cloud-kissed valley views.",
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+        duration: "30-45s",
+      },
+    ],
+    "cinematic-voiceover-tour": [
+      {
+        id: "ex-1",
+        title: "Scenic Travel Route & Pine Forest Approach",
+        angle: "Visual Route Journey",
+        hook: "Tucked away in the quiet hills of North Bengal, here is the secret road leading to our mountain retreat.",
+        image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80",
+        duration: "50-60s",
+      },
+      {
+        id: "ex-2",
+        title: "Wooden Cottage Rooms & Private Balcony Tour",
+        angle: "Cozy Room & Amenities Walkthrough",
+        hook: "Step inside our hand-crafted wooden cabins with 180-degree Himalayan sunrise views and organic mountain dining.",
+        image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80",
+        duration: "50-60s",
+      },
+      {
+        id: "ex-3",
+        title: "Evening Bonfire, Stargazing & Local Kitchen Feast",
+        angle: "Atmospheric Evening Experience",
+        hook: "When the mist rolls in and temperature drops: Warm bonfire, roasted local delicacies, and millions of stars.",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+        duration: "50-60s",
+      },
+    ],
+    "budget-friendly-homestay": [
+      {
+        id: "ex-1",
+        title: "Stay in North Bengal Hills Under ₹1,299 with Meals",
+        angle: "All-Inclusive Budget Hook",
+        hook: "With just ₹1,299 per person, here is everything included in your stay: Room, 3 homecooked meals, and bonfire!",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+        duration: "40-50s",
+      },
+      {
+        id: "ex-2",
+        title: "Weekend Couple Getaway Cost Breakdown",
+        angle: "Transparent Pricing Breakdown",
+        hook: "Planning a 2-day escape from Siliguri? Here is the exact budget for two people staying at [Homestay Name].",
+        image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80",
+        duration: "40-50s",
+      },
+      {
+        id: "ex-3",
+        title: "Group Workation / Family Villa Price Reveal",
+        angle: "Group Stay Value",
+        hook: "Booking an entire private mountain cottage for your family or friends? Look at the per-person rate.",
+        image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80",
+        duration: "40-50s",
+      },
+    ],
+  },
 };
 
 // Universal helper to retrieve 3 examples for any category & video type
