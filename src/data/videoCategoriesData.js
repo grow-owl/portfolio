@@ -1,4 +1,4 @@
-// Complete business categories mapped directly to the 21 Video Formats PDF Guide
+// Complete business categories with real formats & reference reels from client guides
 export const videoCategories = [
   {
     id: "hospitality",
@@ -6,63 +6,76 @@ export const videoCategories = [
     fullName: "Restaurants, Cafes & Food Businesses",
     categorySlug: "hospitality",
     iconName: "utensils",
-    description: "Location walkthroughs, raw-to-plate process sizzles, kitchen prep BTS, and customer first-bites.",
+    description: "Meme-style food teasers, cinematic ambience tours, budget menu reveals, 7-day dish series, and creative concept food hooks.",
     videoTypes: [
       {
-        id: "location-walkthrough",
-        title: "Location & Walkthrough Reel",
-        pdfCategory: "2. Location & Business Walkthrough Reel",
-        subtitle: "Siliguri Cafe Walkthrough: Landmark, Road, Entrance & Interior",
+        id: "meme-style-reel",
+        title: "Meme-Style Restaurant Reel",
+        subtitle: "Food, Interiors & Ambience with Relatable Context Overlays",
+        description: "A meme-style restaurant reel showcasing the restaurant's food, interiors, and ambience. The video uses close-up food shots, seating and decor visuals, with text overlays placed over the visuals to add a relatable or humorous context. The background music matches the mood, while the tasty visuals and meme-style text make the reel engaging, shareable, and entertaining rather than a straightforward restaurant promotion.",
+        creativeDirection: "Use mouth-watering close-up food shots, seating and decor visuals, with short text overlays placed over the visuals to add a relatable or humorous context. Keep the background music upbeat and matching the mood to maximize shares and saves.",
+        image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+        duration: "30-45s",
+        tag: "Viral & Relatable",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DXCGqUbk7n1/?stkn=MXUyMmx1NjdlMXJ1MA==" }
+        ]
+      },
+      {
+        id: "cinematic-ambience-dish-tour",
+        title: "Cinematic Ambience + Dish Tour",
+        subtitle: "Visual Storytelling: Exterior, Seating, Kitchen Action & Signature Dishes",
+        description: "This video style focuses entirely on visual storytelling. First, we capture all the required footage: restaurant exterior, entrance, interiors, seating, lighting, rooftop or outdoor views, kitchen action, food preparation, signature dishes, and the overall ambience. During editing, text overlays and/or a voice-over narration are added to explain the restaurant, food, atmosphere, pricing, signature dishes, and other important details. The voice-over can be recorded using our own voice or generated using an AI voice tool such as ElevenLabs, creating a smooth and cinematic restaurant showcase.",
+        creativeDirection: "Capture footage across 6 key areas: exterior entrance, interior seating & lighting, rooftop/outdoor views, high-flame kitchen prep, signature plated dishes, and guest ambience. Edit with smooth cinematic transitions, dynamic text overlays, and high-fidelity sound design or AI voice-over.",
         image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
         duration: "50-60s",
-        tag: "Showcase",
+        tag: "Cinematic Showcase",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/Dbf6t-MhvHW/?stkn=NGY0NjdpY3Ayc2lo" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DXrq-bND7g_/?stkn=MXY2OTRlZDVmNWMzZw==" }
+        ]
       },
       {
-        id: "process-transformation",
-        title: "Process & Transformation Reel",
-        pdfCategory: "3. Process & Transformation Reel",
-        subtitle: "Raw Ingredients → High Flame Cooking → Plating → Table Serving",
-        image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
-        duration: "50-60s",
-        tag: "Proof / Making",
-      },
-      {
-        id: "behind-the-scenes",
-        title: "Behind-The-Scenes Reel",
-        pdfCategory: "10. Behind-the-Scenes Reel",
-        subtitle: "Opening Se 1 Hour Pehle: Kitchen Prep, Team Briefing & Hygiene",
-        image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
-        tag: "Trust",
-      },
-      {
-        id: "day-in-the-life",
-        title: "Day-in-the-Life Reel",
-        pdfCategory: "18. Day-in-the-Life Reel",
-        subtitle: "Restaurant Owner: Morning Mandi → Kitchen Rush → Accounts Closing",
+        id: "menu-price-reveal",
+        title: "Menu & Price Reveal",
+        subtitle: "Budget Dining Hook: 'With ₹___, What Can You Eat at This Restaurant?'",
+        description: "This video uses the menu card and food prices as the main visual hook and shows what you can enjoy at the restaurant within a specific budget. It communicates a simple message: 'With ₹___, what can you eat at this restaurant?' The video combines price reveals, food visuals, menu shots, and restaurant ambience to make the dining experience feel affordable, attractive, and worth trying.",
+        creativeDirection: "Anchor the hook around an exact budget number (e.g. ₹499 / ₹999). Show the menu card page, followed by quick cuts of every dish that fits into that budget, showing generous portion sizes and pricing transparently.",
         image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
-        duration: "60-75s",
-        tag: "Trust",
+        duration: "45-60s",
+        tag: "Budget & Value",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DW_a70iD3lx/?stkn=MXY0b3BxaHNjZnptNA==" }
+        ]
       },
       {
-        id: "event-launch",
-        title: "Event & Launch Coverage Reel",
-        pdfCategory: "19. Event / Launch Coverage Reel",
-        subtitle: "New Opening Ribbon Cutting → Food Tasting → Guest Crowd Buzz",
-        image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80",
+        id: "day-wise-series-dishes",
+        title: "Day-wise Series (7 Days, 7 Dishes)",
+        subtitle: "7 Days, 7 Dishes: Daily Specials, Drinks & Bestsellers (Mon to Sun)",
+        description: "This video uses the concept of featuring a different dish, drink, special, or offer for each day of the week, from Monday to Sunday. The reel can begin with a hook such as '7 days, 7 dishes. What are you eating today?' The day name appears as a text overlay on every food shot, making the reel simple, rhythmic, visually consistent, and easy to watch and remember.",
+        creativeDirection: "Begin with the rhythmic hook: '7 days, 7 dishes. What are you eating today?' Place a bold, uniform day badge (Monday, Tuesday, etc.) on each clip. Pair each dish with a fast sizzling shot and quick sound bite.",
+        image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
         duration: "50-60s",
-        tag: "Launch & Offers",
+        tag: "Series / Retention",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DadvcMczI89/?stkn=Znh4ZmFtOWN4MDVo" }
+        ]
       },
       {
-        id: "storytelling-reel",
-        title: "Storytelling & Real Incident Reel",
-        pdfCategory: "17. Storytelling Reel",
-        subtitle: "Ek Customer Hamare Restaurant Me Aaya Aur Aisi Request Ki...",
-        image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80",
-        duration: "60-75s",
-        tag: "Entertainment",
-      },
-    ],
+        id: "concept-food-reel",
+        title: "Concept Food Reel",
+        subtitle: "Unique Visual Idea, Creative Prop Transitions & Viral Food Trends",
+        description: "This video uses one unique visual idea, prop, transition, or trend as the main hook. Examples can include an ON/OFF switch transition, a creative plate transition, or a past-present-future food story. The concept grabs attention in the first few seconds, and the food is revealed through the idea itself, making the reel feel creative, entertaining, and visually interesting rather than like a direct restaurant advertisement.",
+        creativeDirection: "Pick one strong visual concept: light-switch toggle transition (dark room to hot sizzling dish), snap-of-fingers table fill, or past-present-future story. Grab attention within the first 1.5 seconds.",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+        duration: "30-45s",
+        tag: "Creative Viral Hook",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DcVWmYRsa0C/?stkn=c2k1NmRtM2RvYzFz" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/Da-j5aaNfSR/?stkn=MWM5eTkydHFjMDVicw==" }
+        ]
+      }
+    ]
   },
   {
     id: "automotive",
@@ -198,63 +211,167 @@ export const videoCategories = [
     fullName: "Dentists & Dental Clinics",
     categorySlug: "healthcare",
     iconName: "stethoscope",
-    description: "Doctor myth busters, smile alignment transformations, and oral health educational tips.",
+    description: "Comprehensive 12-format dental content system: relatable memes, clinic walkthroughs, vlog voiceovers, smile transformations, founder stories, and patient reviews.",
+    recommendedContentMix: [
+      { format: "Contextual Meme Reels", purpose: "Build relatability and shareability across social feeds." },
+      { format: "Voiceover / Q&A Reels", purpose: "Build clinical expertise and educate viewers on oral health." },
+      { format: "UGC / Trust & Reviews", purpose: "Build credibility and eliminate patient hesitation & fear." },
+      { format: "Transformation Reels", purpose: "Demonstrate visible, dramatic before-and-after smile results." },
+      { format: "Clinic Walkthroughs", purpose: "Build familiarity with the hygienic clinic environment." },
+      { format: "Service Showcases", purpose: "Deep dive into treatments and generate qualified inquiries." },
+      { format: "Founder Journey", purpose: "Build a deep human connection with the doctor and brand." },
+      { format: "Bulk Content System", purpose: "Create a repeatable setup for shooting 10+ reels per session." }
+    ],
     videoTypes: [
       {
-        id: "educational-reel",
-        title: "Educational Doctor Reel",
-        pdfCategory: "12. Educational Reel",
-        subtitle: "Dentist Advice: 'Brush Karte Waqt Ye 3 Common Mistakes Mat Karo'",
+        id: "contextual-meme-reel",
+        title: "Contextual Meme Reel",
+        subtitle: "Relatable Clip, Song or Reaction Re-contextualized for Dental Scenarios",
+        description: "A relatable meme-style reel using an existing video, song, reaction, or random clip. The original clip remains mostly unchanged, while a new caption gives the scene a dental or patient-related context. The goal is quick entertainment, relatability, and shareability.",
+        creativeDirection: "Keep the caption short, instantly understandable, and strongly connected to common dental situations, patient behavior, dentist experiences, fears, myths, or funny clinic moments.",
         image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
-        tag: "Education",
+        duration: "30-45s",
+        tag: "Entertainment & Viral",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DYypFfSM9Du/?stkn=MWMyNTl4ZzlmZ3lhOA==" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DYm89mFTYSt/?stkn=MWd0OXpxbXZjYnV6cA==" },
+          { title: "Creative Inspiration 03", url: "https://www.instagram.com/reel/DZ2ZNH4pr42/?stkn=MTR6YzV4ajlqcDdiYQ==" }
+        ]
       },
       {
-        id: "before-after",
-        title: "Smile Alignment Before & After",
-        pdfCategory: "8. Before & After Reel",
-        subtitle: "Crooked Teeth to Confident Straight Smile Transformation",
+        id: "vlog-style-voiceover",
+        title: "Vlog-Style Dentist Voiceover Reel",
+        subtitle: "Day-in-the-Life Storytelling Around Relatable Oral Health Problems",
+        description: "A day-in-the-life style video following the dentist through a normal clinic day. It can show arriving at the clinic, interacting with staff, consulting patients, examining teeth, using dental tools, and performing treatments.",
+        creativeDirection: "Build the reel around one relatable dental problem, common mistake, treatment, myth, or useful oral-health tip. The voiceover should feel like storytelling or personal observation rather than a direct advertisement.",
+        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
+        duration: "60-75s",
+        tag: "Doctor Authority",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DXH1fT5CH5J/?stkn=MWthMW1rdm9xZTViNw==" }
+        ]
+      },
+      {
+        id: "dental-transformation",
+        title: "Dental Transformation Reel",
+        subtitle: "Before-and-After: Patient Concern, Gentle Treatment & Confident Smile Reveal",
+        description: "A before-and-after format showing a patient's dental problem, selected treatment moments, and the final result. The reel should clearly communicate the transformation without making the process feel overly clinical.",
+        creativeDirection: "Start with the problem, show short treatment/process clips, and finish with the improved tooth or smile. Use strong visual transitions and minimal but useful text.",
         image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80",
         duration: "45-60s",
-        tag: "Proof / Results",
+        tag: "Smile Transformation",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DXWQGZsiOMi/?stkn=eWdvYzRxeDR4YnE3" }
+        ]
       },
       {
-        id: "myth-vs-fact",
-        title: "Dental Myth vs Fact Reel",
-        pdfCategory: "16. Myth vs Fact Reel",
-        subtitle: "Myth: Scaling Teeth Makes Them Weak • Fact: Removing Tartar Protects Gums",
-        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
-        tag: "Information",
+        id: "founder-journey-story",
+        title: "Founder Journey Story Reel",
+        subtitle: "Origin Story, Clinic Milestones, Overcoming Struggles & Patient Bonds",
+        description: "A story-driven reel following the dentist or clinic founder's journey. It can cover how the clinic started, early struggles, important decisions, failures, milestones, team-building, patient relationships, and business growth.",
+        creativeDirection: "Film real moments from the founder's workday, including entering the clinic, meeting the team, consulting patients, making decisions, solving problems, and managing the clinic. Use a natural voiceover to tell the story. The focus should be authenticity and relatability, not direct promotion.",
+        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80",
+        duration: "60-75s",
+        tag: "Founder Journey",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DZFUpkAxsYz/?stkn=MWtpcmZvMmt1ZXowaA==" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DcqNd_7y5L9/?stkn=eHA0eWp5cXAwdnR5" },
+          { title: "Creative Inspiration 03", url: "https://www.instagram.com/reel/DbLRPMZp5a-/?stkn=MWVuZWVoaHk2eWlucA==" }
+        ]
       },
       {
-        id: "faq-reel",
-        title: "Dental Clinic FAQ Reel",
-        pdfCategory: "15. FAQ Reel",
-        subtitle: "Root Canal Me Pain Hota Hai? Appointment Kaise Book Karein?",
+        id: "bulk-content-system",
+        title: "Bulk Content / Content System Reference",
+        subtitle: "Batch-Shoot Setup: 10+ Educational Reels Captured in a Single Session",
+        description: "A reference for producing multiple short-form content pieces efficiently. The objective is to create a repeatable filming setup where several reels can be captured in one session.",
+        creativeDirection: "Batch-shoot different hooks, questions, services, myths, patient concerns, and educational answers using the same clinic setup. This helps maintain consistent posting without requiring a separate shoot for every reel.",
         image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80",
         duration: "45-60s",
-        tag: "FAQ",
+        tag: "Content System",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DL7itCzpyJg/?stkn=cWRxMHc2MnRveHdx" }
+        ]
       },
       {
-        id: "location-walkthrough",
-        title: "Sterilization & Clinic Tour",
-        pdfCategory: "2. Location & Business Walkthrough Reel",
-        subtitle: "Hospital-Grade Autoclave Sterilization & Painless Tech Walkthrough",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
-        duration: "50-60s",
-        tag: "Hygiene Tour",
+        id: "product-showcase",
+        title: "Dental Product & Technology Showcase Reel",
+        subtitle: "Cutting-Edge Tools, Ultrasonic Scalers, Scanners & Patient Benefits",
+        description: "A visually focused reel that showcases a dental product, tool, technology, oral-care product, or clinic equipment. The content should explain what the product is and why it matters to patients.",
+        creativeDirection: "Use close-up shots, clean product movements, demonstrations, and simple on-screen information. Avoid making it feel like a generic product advertisement.",
+        image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80",
+        duration: "45-60s",
+        tag: "Technology & Gear",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DbOMAc7KRr2/?stkn=MXZ2Z3NsY2FhNTJzNQ==" }
+        ]
       },
       {
-        id: "customer-testimonial",
-        title: "Patient Experience Testimonial",
-        pdfCategory: "11. Customer Experience / Testimonial Reel",
-        subtitle: "Patient Shares Painless Treatment Review & Recovery Experience",
+        id: "ugc-patient-experience",
+        title: "UGC Patient Experience Reel",
+        subtitle: "First-Person Patient POV: Entry, Consultation, Care & Real Reaction",
+        description: "A first-person, UGC-style video following a patient's experience from entering the clinic through consultation, examination, treatment, and the final reaction.",
+        creativeDirection: "Capture natural moments such as walking into the clinic, speaking with the dentist, examination, treatment footage, equipment, and the patient's reaction afterward. The voiceover should describe the patient's problem, how it was handled, and how the overall experience felt.",
+        image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80",
+        duration: "45-60s",
+        tag: "Patient POV",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DWZAZwpj3qk/?stkn=MWdjMHc3cGx3cXE1YQ==" }
+        ]
+      },
+      {
+        id: "aesthetic-clinic-walkthrough",
+        title: "Clinic Walkthrough / Aesthetic Reel",
+        subtitle: "Calm, Modern, Clean & Welcoming Clinic Ambience with Soft Music",
+        description: "A visual, feel-good reel designed to make the clinic look clean, modern, professional, friendly, and comfortable. The dentist can open the door with a smile and guide viewers through the clinic.",
+        creativeDirection: "Show the entrance, reception, treatment rooms, equipment, staff, interiors, and overall atmosphere. Use smooth cinematic shots with soft background music and little or no talking.",
+        image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
+        duration: "45-60s",
+        tag: "Aesthetic & Vibe",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DV1QjE1jvBI/?stkn=MTVzOW5yaWc5cmNtMA==" }
+        ]
+      },
+      {
+        id: "service-showcase",
+        title: "Service Showcase Reel",
+        subtitle: "Focused Procedure Breakdown: Root Canal, Aligners, Veneers or Implants",
+        description: "A service-focused reel highlighting one specific dental treatment. The video should show examination, explanation, treatment steps, equipment, and the final result.",
+        creativeDirection: "Explain what the service is, who may need it, the basic treatment process, and relevant benefits through clear on-screen text or voiceover. Keep it educational rather than sales-heavy.",
+        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
+        duration: "45-60s",
+        tag: "Procedure Guide",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/Ddc9al8EYva/?stkn=ZGFibG43dHNjNmQy" }
+        ]
+      },
+      {
+        id: "dentist-qa-reel",
+        title: "Dentist Q&A Reel",
+        subtitle: "Direct Answers to Patient Fears: Pain, Hygiene, Costs & Misconceptions",
+        description: "A direct question-and-answer format where the dentist answers common patient questions about treatments, pain, procedures, oral hygiene, myths, costs, and dental concerns.",
+        creativeDirection: "Present one question at a time through on-screen text or an off-camera interviewer. Keep answers short, clear, natural, and easy for a general audience to understand.",
+        image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80",
+        duration: "45-60s",
+        tag: "Expert Q&A",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DdQoaHRR8bH/?stkn=MWk5c2RpMWJlczF3aA==" }
+        ]
+      },
+      {
+        id: "trust-reviews-reel",
+        title: "Trust & Reviews Reel",
+        subtitle: "Genuine Patient Reviews, Real Smiles & Authentic Social Proof",
+        description: "A trust-building reel using real patient interactions, treatment moments, positive experiences, and genuine reviews. The objective is to provide social proof and reduce hesitation among potential patients.",
+        creativeDirection: "Show the patient and dentist together where appropriate, then introduce multiple genuine reviews as on-screen proof. Keep the presentation authentic and avoid making the reviews feel artificially staged.",
         image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80",
         duration: "45-60s",
-        tag: "Social Proof",
-      },
-    ],
+        tag: "Trust & Proof",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DJoccifBGI5/?stkn=MWJkYnpndHVqeHFldw==" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DY2KcEUua_5/?stkn=MW10bTRhZTJsaTB6cw==" }
+        ]
+      }
+    ]
   },
   {
     id: "interiors",
@@ -518,62 +635,90 @@ export const videoCategories = [
     fullName: "Gyms, CrossFit & Fitness Clubs",
     categorySlug: "fitness",
     iconName: "activity",
-    description: "90-day transformation proof, exercise form tutorials, high-intensity workouts, and diet hacks.",
+    description: "Cinematic gym arena tours, membership price reveals, why-choose-us trust builders, client transformation testimonials, right vs wrong exercise form, and 7-day workout series.",
     videoTypes: [
       {
-        id: "before-after",
-        title: "90-Day Transformation Reel",
-        pdfCategory: "8. Before & After Reel",
-        subtitle: "Fat Loss & Athletic Conditioning Client Journey",
-        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
-        duration: "60-90s",
-        tag: "Proven Results",
-      },
-      {
-        id: "how-to-tutorial",
-        title: "Biomechanical Form Fix Tutorial",
-        pdfCategory: "9. How-To / Tutorial Reel",
-        subtitle: "Stop Making This Deadlift Mistake to Protect Your Spine",
-        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80",
-        duration: "50-60s",
-        tag: "Tutorial",
-      },
-      {
-        id: "location-walkthrough",
-        title: "Club Equipment & Arena Tour",
-        pdfCategory: "2. Location & Business Walkthrough Reel",
-        subtitle: "Imported Equipment, Free Weights & Steam Arena Tour",
+        id: "cinematic-gym-tour",
+        title: "Cinematic Gym Tour",
+        subtitle: "Visual Storytelling: Floor, Equipment, Free Weights, Cardio & Arena Vibe",
+        description: "This video style focuses entirely on visual storytelling. First, we capture all the required footage: gym exterior, entrance, reception, workout floor, machines, free weights, dumbbell racks, cardio area, lighting, trainers, members, and the overall atmosphere. During editing, smooth cinematic shots are combined with music, while text overlays and/or a voice-over narration are added to explain the gym, equipment, facilities, timings, membership options, and contact details. The voice-over can be recorded using our own voice or generated using an AI voice tool such as ElevenLabs, creating a smooth and cinematic gym showcase.",
+        creativeDirection: "Shoot wide stabilized gimbal passes and low-angle equipment tracking shots. Show gym exterior, biometric entrance, heavy dumbbell racks, cable stacks, cardio section, aesthetic neon lighting, and real athletes training.",
         image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80",
         duration: "50-60s",
-        tag: "Tour",
+        tag: "Arena Showcase",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DS-LdMRjEaj/?stkn=MWhjcGtqMnR2YjVqcw==" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DMfUH5tt8Ne/?stkn=bHd2amZnY3d4aDBx" }
+        ]
       },
       {
-        id: "tips-and-tricks",
-        title: "Nutrition & Budget Diet Hacks",
-        pdfCategory: "13. Tips & Tricks Reel",
-        subtitle: "High-Protein Meals Under 20 Minutes on a Budget",
-        image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
+        id: "membership-price-offer-reveal",
+        title: "Membership Price & Offer Reveal",
+        subtitle: "Visual Fee Chart & Value Breakdown: 'With ₹___, Start Your Fitness Journey'",
+        description: "This video uses the membership price, fee chart, or current offer as the main visual hook and shows what members get at the gym for a specific amount. It communicates a simple message: 'With ₹___, you can join this gym and start your fitness journey.' The video combines price reveals, offer posters, gym visuals, equipment, and facilities to make the membership feel affordable, attractive, and worth joining.",
+        creativeDirection: "Anchor the hook around an exact price point (e.g., ₹999/mo or ₹1,499/quarterly). Show everything included: certified trainer floor assistance, locker room, cardio, strength floor, and steam bath without hidden charges.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
         duration: "45-60s",
-        tag: "Tips",
+        tag: "Pricing & Offers",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/Db98B1xx_Q9/?stkn=dWd1cTZueXpmcDIy" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DTc8iTxiCgr/?stkn=MXFwdmFrajk4eWtuNw==" }
+        ]
       },
       {
-        id: "day-in-the-life",
-        title: "Day-in-the-Life Trainer Routine",
-        pdfCategory: "18. Day-in-the-Life Reel",
-        subtitle: "5:30 AM Client Warmup to Post-Workout Nutrition",
+        id: "why-choose-us",
+        title: "Why Choose Us?",
+        subtitle: "Key Advantages: Modern Machines, Expert Trainers & Motivating Community",
+        description: "This video answers one simple question: 'Why should I join this gym?' Short text overlays highlighting key benefits such as modern equipment, expert trainers, a motivating community, personalized guidance, and proven results appear one by one over real gym footage featuring trainers, members, equipment, and workout sessions. The video builds trust and communicates the gym's strongest advantages clearly and quickly.",
+        creativeDirection: "Address the #1 friction why people hesitate to join. Cut rapidly between 4-5 core USPs with bold text overlays: 1) Imported biomechanical machines, 2) Certified personal trainers, 3) Friendly non-intimidating culture, 4) Clean hygienic steam & showers.",
         image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
-        duration: "60-75s",
-        tag: "Trainer Life",
+        duration: "45-60s",
+        tag: "Trust & Advantage",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DT_jTbiDP9f/?stkn=dWJmdWQzMnA2b3I3" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DblBLIeKWUp/?stkn=d3prbDNvYWFzYjVu" }
+        ]
       },
       {
-        id: "customer-testimonial",
-        title: "Member Fitness Journey Review",
-        pdfCategory: "11. Customer Experience / Testimonial Reel",
-        subtitle: "Member Explains How Consistent Training Transformed Their Health",
+        id: "client-testimonial-review",
+        title: "Client Testimonial / Review",
+        subtitle: "Authentic Member Journey: Natural Experience, Atmosphere & Results",
+        description: "This video features an existing gym member sharing their personal experience in a natural and authentic way. The client can talk about their overall experience, trainers, equipment, atmosphere, results, and why they would recommend the gym. Supporting videos of the member working out can be added throughout the testimonial to make the video more engaging and visually dynamic. This style builds social proof, trust, and credibility by allowing real members to speak about their experience.",
+        creativeDirection: "Candid interview sitting in the lounge or floor with lapel mic. Intercut B-roll of the member executing deadlifts, kettlebell swings, or running on treadmill while their voiceover speaks on their transformation and confidence gain.",
         image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
+        duration: "50-60s",
         tag: "Social Proof",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DT1qtYIkix4/?stkn=aDJ0NnhvYnFvend5" }
+        ]
       },
-    ],
-  },
+      {
+        id: "right-vs-wrong-form",
+        title: "Right vs. Wrong Exercise Form",
+        subtitle: "Biomechanical Form Fixes: Injury Prevention & Proper Muscle Activation",
+        description: "This video focuses on educating members on correct lifting posture and movement mechanics. It highlights common gym mistakes (e.g. arched spine during deadlifts, flared elbows on bench press, knee cave on squats) and compares them side-by-side with the right posture. It positions the gym as an authority in safe, science-based fitness and personal coaching.",
+        creativeDirection: "Split screen or sequential '❌ WRONG vs ✅ RIGHT' text badges. Show close-up angle of spine curvature, foot placement, and joint angles. Trainer demonstrates the correction with simple cues.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80",
+        duration: "45-60s",
+        tag: "Educational Tutorial",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DZaCbQpP4-9/?stkn=MTVnNDIwbzMxNXlhdQ==" }
+        ]
+      },
+      {
+        id: "day-wise-series-workouts",
+        title: "Day-wise Series (7 Days, 7 Workouts)",
+        subtitle: "Question-Based Hook: Monday to Sunday Training Split Routine",
+        description: "This video uses a question-based hook such as 'How many days a week are you open?' and answers it by showing a different workout, body part, exercise, or fitness activity for each day of the week, from Monday to Sunday. The day name appears as a text overlay on every clip, making the reel simple, rhythmic, visually consistent, and easy to follow and remember.",
+        creativeDirection: "Open with the hook: 'How many days a week are you open?' Rapid rhythmic cuts showing: Monday Chest & Triceps, Tuesday Back & Biceps, Wednesday Legs, Thursday Shoulders, Friday Functional Core, Saturday HIIT Cardio, Sunday Active Mobility & Steam.",
+        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80",
+        duration: "50-60s",
+        tag: "Series / Retention",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DcdmjTRTPI-/?stkn=NGZua2lscW5jZDA5" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DeENV1ssD7l/?stkn=dWJoZ2RjcmJreHIw" }
+        ]
+      }
+    ]
+  }
 ];

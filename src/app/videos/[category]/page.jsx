@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { videoCategories } from "../../../data/videoCategoriesData";
-import { getCategoryDeepDive, getVideoTypeExamples } from "../../../data/videoDeepDiveData";
+import { getCategoryDeepDive } from "../../../data/videoDeepDiveData";
 import { CategoryIcon } from "../../../components/VideoCategoryIcons";
+import CategoryVideoList from "../../../components/CategoryVideoList";
 
 export async function generateStaticParams() {
   return videoCategories.map((cat) => ({
@@ -131,106 +131,42 @@ export default async function CategoryVideosPage({ params }) {
             </h1>
           </div>
 
-          {/* Format-by-Format Detailed Sections with 3 Examples Each */}
-          <div className="space-y-10 sm:space-y-14 mb-14 sm:mb-20">
-            {category.videoTypes.map((video, vIdx) => {
-              const examples = getVideoTypeExamples(category.categorySlug, video.id, video);
+          {/* Interactive Format List with Real Playable Reference Reels & Read More */}
+          <CategoryVideoList category={category} />
 
-              return (
-                <section
-                  key={video.id}
-                  id={video.id}
-                  className="bg-card rounded-3xl sm:rounded-[36px] border border-ink/10 p-6 sm:p-8 lg:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.03)]"
-                >
-                  {/* Video Type Section Header */}
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 mb-6 sm:mb-8 border-b border-ink/8">
-                    <div className="max-w-[760px]">
-                      <div className="flex items-center gap-2 sm:gap-3 mb-2.5 flex-wrap">
-                        <span className="px-2.5 py-0.5 rounded-full bg-black/5 text-ink/80 font-mono text-[11px] font-bold">
-                          ⏱️ {video.duration}
-                        </span>
-                      </div>
+          {/* Recommended Content Mix Strategy Section (e.g. for Dental Clinics) */}
+          {category.recommendedContentMix && category.recommendedContentMix.length > 0 && (
+            <div className="bg-gradient-to-br from-white via-card to-cream rounded-3xl sm:rounded-[36px] border border-ink/10 p-6 sm:p-10 lg:p-12 mb-14 sm:mb-20 shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
+              <div className="max-w-[760px] mb-8">
+                <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-accent px-3 py-1 bg-accent/10 rounded-full mb-3">
+                  Strategic Content Architecture
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight mb-2">
+                  Recommended Content Mix Strategy
+                </h3>
+                <p className="text-xs sm:text-sm text-ink/70 leading-relaxed">
+                  To turn Instagram viewers into booked clinic appointments, we recommend balancing high-reach top-of-funnel entertainment with mid-funnel doctor authority and conversion-focused social proof.
+                </p>
+              </div>
 
-                      <h2 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">
-                        {vIdx + 1}. {video.title}
-                      </h2>
-                      <p className="text-xs sm:text-sm text-ink/65 mt-1.5 leading-relaxed">
-                        {video.subtitle}
-                      </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {category.recommendedContentMix.map((mix, mIdx) => (
+                  <div
+                    key={mIdx}
+                    className="p-4 sm:p-5 rounded-2xl bg-white/80 border border-ink/8 shadow-xs hover:border-accent/30 transition-colors"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="w-5 h-5 rounded-full bg-accent/10 text-accent font-bold text-xs flex items-center justify-center shrink-0">
+                        {mIdx + 1}
+                      </span>
+                      <h4 className="text-sm font-bold text-ink">{mix.format}</h4>
                     </div>
-
-                    <Link
-                      href={`/videos/${category.categorySlug}/${video.id}`}
-                      className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-full bg-ink text-white hover:bg-accent font-bold text-xs sm:text-sm transition-all shadow-xs shrink-0 self-start lg:self-center"
-                    >
-                      <span>View Full 60s Script &amp; Blueprint</span>
-                      <span>→</span>
-                    </Link>
+                    <p className="text-xs text-ink/65 leading-relaxed">{mix.purpose}</p>
                   </div>
-
-                  {/* 3 Real Examples / Angles Grid */}
-                  <div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-                      {examples.map((ex, exIdx) => (
-                        <Link
-                          key={ex.id || exIdx}
-                          href={`/videos/${category.categorySlug}/${video.id}`}
-                          className="group relative bg-cream/35 rounded-2xl sm:rounded-3xl border border-ink/8 overflow-hidden hover:border-accent/40 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-                        >
-                          <div>
-                            {/* Thumbnail with overlay - 9:16 Reel Aspect Ratio */}
-                            <div className="relative aspect-[9/14] w-full overflow-hidden bg-ink/5">
-                              <Image
-                                src={ex.image || video.image}
-                                alt={ex.title}
-                                fill
-                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                              {/* Duration badge */}
-                              <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-sm text-white font-mono text-[9px] font-semibold">
-                                {ex.duration || video.duration}
-                              </div>
-
-                              {/* Play Icon */}
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-11 h-11 rounded-full bg-white/90 backdrop-blur-md text-ink flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5">
-                                    <path d="M8 5v14l11-7z" />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Body */}
-                            <div className="p-4 sm:p-5">
-                              <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-1">
-                                {ex.angle || "Strategic Hook"}
-                              </span>
-                              <h3 className="text-sm sm:text-base font-bold text-ink group-hover:text-accent transition-colors leading-snug mb-2">
-                                {ex.title}
-                              </h3>
-                              <p className="text-[11px] sm:text-xs text-ink/70 italic leading-relaxed line-clamp-2">
-                                &ldquo;{ex.hook}&rdquo;
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Footer Action */}
-                          <div className="px-4 sm:px-5 py-3 border-t border-ink/6 flex items-center justify-between text-[11px] sm:text-xs font-bold text-ink group-hover:text-accent transition-colors bg-white/40">
-                            <span>View Script Blueprint</span>
-                            <span className="transition-transform group-hover:translate-x-1">→</span>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              );
-            })}
-          </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Bottom All Categories Navigation Bar */}
           <div className="bg-card rounded-3xl border border-ink/10 p-6 sm:p-8 text-center shadow-[0_4px_24px_rgba(0,0,0,0.03)]">
