@@ -4,31 +4,31 @@ import Image from "next/image";
 
 const clientBrands = [
   {
-    id: "inox",
-    name: "INOX Cinemas",
+    id: "pvr-inox",
+    name: "PVR INOX Siliguri",
     link: "https://www.inoxmovies.com/",
     bg: "#ffffff",
-    border: "#dbeafe",
+    border: "#e5e7eb",
     render: () => (
       <div className="flex items-center gap-2.5 sm:gap-3">
-        {/* INOX Logo */}
-        <div className="h-8 sm:h-9 px-2 rounded-xl bg-[#f0f7ff] border border-[#0284c7]/20 flex items-center justify-center shadow-xs shrink-0">
+        {/* PVR INOX Logo */}
+        <div className="h-8 sm:h-9 px-2 rounded-xl bg-[#fafafa] border border-ink/10 flex items-center justify-center shadow-xs shrink-0 overflow-hidden">
           <Image
-            src="/images/logos/inox-logo.webp"
-            alt="INOX"
-            width={72}
-            height={26}
-            className="h-5 sm:h-6 w-auto object-contain"
+            src="/images/logos/pvr-inox-logo.png"
+            alt="PVR INOX Vega Circle"
+            width={85}
+            height={32}
+            className="h-6 sm:h-7 w-auto object-contain"
           />
         </div>
         <div className="flex flex-col">
-          <div className="text-[14px] sm:text-[15px] font-black leading-none tracking-tight">
-            <span className="text-[#004b93]">IN</span>
-            <span className="text-[#f59e0b]">O</span>
-            <span className="text-[#004b93]">X</span>
+          <div className="text-[13px] sm:text-[14px] font-black leading-none tracking-tight text-ink">
+            <span>PVR </span>
+            <span className="text-[#eab308]">✦</span>
+            <span> INOX</span>
           </div>
-          <span className="text-[9px] font-bold text-[#004b93]/80 tracking-[0.16em] uppercase mt-1">
-            CINEMAS &amp; MEGAPLEX
+          <span className="text-[8px] sm:text-[9px] font-bold text-ink/70 tracking-[0.14em] uppercase mt-1">
+            VEGA CIRCLE, SILIGURI
           </span>
         </div>
       </div>
@@ -151,6 +151,66 @@ const clientBrands = [
           </span>
           <span className="text-[10px] font-mono text-[#5eead4] tracking-wider mt-0.5">
             Car Wash
+          </span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "burl-india",
+    name: "Burl India",
+    link: "#",
+    bg: "#181410",
+    border: "rgba(217, 119, 6, 0.28)",
+    render: () => (
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* Burl India Logo */}
+        <div className="h-8 sm:h-9 w-8 sm:w-9 rounded-xl bg-[#26201a] border border-[#d97706]/35 flex items-center justify-center shadow-xs shrink-0 overflow-hidden">
+          <Image
+            src="/images/logos/burl-india-logo.png"
+            alt="Burl India"
+            width={48}
+            height={48}
+            className="w-full h-full object-cover scale-110"
+          />
+        </div>
+        <div className="flex flex-col">
+          <div className="text-[14px] sm:text-[15px] font-black leading-none tracking-tight">
+            <span className="text-white">BURL </span>
+            <span className="text-[#eab308]">INDIA</span>
+          </div>
+          <span className="text-[8px] sm:text-[9px] font-bold text-[#d97706] tracking-[0.14em] uppercase mt-1">
+            WOOD CRAFT &amp; CNC
+          </span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "alyona-stay",
+    name: "Alyona Stay",
+    link: "https://www.instagram.com/reel/DeJr-D9vbTw/",
+    bg: "#fffbf5",
+    border: "#fed7aa",
+    render: () => (
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* Alyona Stay Sun Logo */}
+        <div className="h-8 sm:h-9 w-8 sm:w-9 rounded-xl bg-white border border-[#f97316]/25 flex items-center justify-center shadow-xs shrink-0 overflow-hidden p-0.5">
+          <Image
+            src="/images/logos/alyona-stay-logo.png"
+            alt="Alyona Stay"
+            width={48}
+            height={48}
+            className="w-full h-full object-contain"
+          />
+        </div>
+        <div className="flex flex-col">
+          <div className="text-[14px] sm:text-[15px] font-bold leading-none tracking-tight">
+            <span className="text-[#9a3412]">Alyona </span>
+            <span className="text-[#ea580c]">Stay</span>
+          </div>
+          <span className="text-[8px] sm:text-[9px] font-bold text-[#ea580c] tracking-[0.14em] uppercase mt-1">
+            HOMESTAY &amp; RETREAT
           </span>
         </div>
       </div>

@@ -91,18 +91,11 @@ export default function CategoryVideoList({ category }) {
                 };
               });
 
-        const isHomestays =
-          category.categorySlug === "homestays" || category.id === "homestays";
-
         return (
           <section
             key={video.id}
             id={video.id}
-            className={`bg-card rounded-3xl sm:rounded-[36px] border border-ink/10 shadow-[0_4px_24px_rgba(0,0,0,0.03)] ${
-              isHomestays
-                ? "p-5 sm:p-7 lg:p-8 max-w-[980px] mx-auto"
-                : "p-6 sm:p-8 lg:p-10"
-            }`}
+            className="bg-card rounded-3xl sm:rounded-[36px] border border-ink/10 shadow-[0_4px_24px_rgba(0,0,0,0.03)] p-5 sm:p-7 lg:p-8 max-w-[980px] mx-auto"
           >
             {/* Clean Section Header - Left Aligned with Right-Aligned Button */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-6 sm:mb-7 border-b border-ink/8">
@@ -140,120 +133,103 @@ export default function CategoryVideoList({ category }) {
               <div
                 className={`grid grid-cols-1 ${
                   cardsToRender.length === 1
-                    ? isHomestays
-                      ? "max-w-[285px]"
-                      : "max-w-[420px]"
+                    ? "max-w-[285px]"
                     : cardsToRender.length === 2
-                    ? isHomestays
-                      ? "sm:grid-cols-2 max-w-[590px]"
-                      : "sm:grid-cols-2 max-w-[840px]"
-                    : isHomestays
-                    ? "sm:grid-cols-2 lg:grid-cols-3 max-w-[900px]"
-                    : "sm:grid-cols-2 lg:grid-cols-3"
+                    ? "sm:grid-cols-2 max-w-[590px]"
+                    : "sm:grid-cols-2 lg:grid-cols-3 max-w-[900px]"
                 } gap-4 sm:gap-5`}
               >
                 {cardsToRender.map((card, cIdx) => (
                   <div
                     key={card.id || cIdx}
-                    className={`group relative bg-cream/35 rounded-2xl sm:rounded-3xl border border-ink/8 overflow-hidden hover:border-accent/40 hover:shadow-[0_16px_40px_rgba(0,0,0,0.07)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between ${
-                      isHomestays ? "w-full max-w-[285px]" : ""
-                    }`}
+                    className="group relative bg-cream/35 rounded-2xl sm:rounded-3xl border border-ink/8 overflow-hidden hover:border-accent/40 hover:shadow-[0_16px_40px_rgba(0,0,0,0.07)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between w-full max-w-[285px] mx-auto sm:mx-0"
                   >
-                        <div>
-                          {/* Top Browser / Studio Header Bar (Landing Page WatchOurWork Style) */}
-                          <div className="flex items-center justify-between px-3 sm:px-3.5 py-1.5 sm:py-2 bg-ink/[0.03] border-b border-ink/8 gap-2">
-                            <div className="flex items-center gap-1.5 shrink-0">
-                              <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                              <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                              <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                            </div>
-
-                            {card.url ? (
-                              <a
-                                href={card.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={`View ${card.title} on Instagram`}
-                                className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-semibold text-accent hover:text-white bg-accent/10 hover:bg-accent px-2 sm:px-2.5 py-0.5 rounded-full transition-all shrink-0 border border-accent/20"
-                              >
-                                <span>View Reel</span>
-                                <svg width="8" height="8" viewBox="0 0 16 16" fill="none">
-                                  <path d="M3 13L13 3H5M13 3V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                              </a>
-                            ) : (
-                              <span className="text-[9px] text-ink/40 font-mono">Sample</span>
-                            )}
-                          </div>
-
-                          {/* Video Player Viewport - Embedded Reel with direct inline preview and play */}
-                          <div
-                            className={`relative w-full overflow-hidden bg-black flex items-start justify-center ${
-                              isHomestays
-                                ? "h-[290px] sm:h-[310px]"
-                                : "aspect-[4/5] sm:aspect-[3/4] max-h-[480px]"
-                            }`}
-                          >
-                            {card.embedUrl ? (
-                              <iframe
-                                src={card.embedUrl}
-                                title={`${video.title} - ${card.title}`}
-                                className={`absolute block border-0 bg-black ${
-                                  isHomestays
-                                    ? "w-[136%] -left-[18%] h-[calc(100%+145px)] -top-[42px]"
-                                    : "inset-x-0 w-full h-[calc(100%+190px)] -top-[54px]"
-                                }`}
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                scrolling="no"
-                                loading="lazy"
-                              />
-                            ) : (
-                              <div className="relative w-full h-full">
-                                <Image
-                                  src={card.image || video.image}
-                                  alt={card.title}
-                                  fill
-                                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                  className="object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-center justify-center">
-                                  <span className="text-white text-xs bg-black/60 px-3 py-1.5 rounded-full">
-                                    Preview Available Soon
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Card Details: Clean Title and Expandable Format Description */}
-                          <div className={isHomestays ? "p-3 sm:p-3.5" : "p-4 sm:p-5"}>
-                            <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-0.5">
-                              Live Creative Example {cIdx + 1}
-                            </span>
-                            <h3 className={`font-bold text-ink leading-snug mb-1 ${isHomestays ? "text-[13px]" : "text-sm sm:text-base"}`}>
-                              {card.title}
-                            </h3>
-
-                            {/* Format Description with Read More / Read Less Toggle */}
-                            <ExpandableDescription text={video.description} />
-                          </div>
+                    <div>
+                      {/* Top Browser / Studio Header Bar */}
+                      <div className="flex items-center justify-between px-3 sm:px-3.5 py-1.5 sm:py-2 bg-ink/[0.03] border-b border-ink/8 gap-2">
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
                         </div>
 
-                        <Link
-                          href={`/videos/${category.categorySlug}/${video.id}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3.5 sm:px-4 py-2.5 border-t border-ink/8 flex items-center justify-between text-[11px] sm:text-xs font-bold text-ink hover:text-accent transition-colors bg-white/40 cursor-pointer"
-                        >
-                          <span>View Script Blueprint</span>
-                          <span className="transition-transform group-hover:translate-x-1">→</span>
-                        </Link>
+                        {card.url ? (
+                          <a
+                            href={card.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`View ${card.title} on Instagram`}
+                            className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-semibold text-accent hover:text-white bg-accent/10 hover:bg-accent px-2 sm:px-2.5 py-0.5 rounded-full transition-all shrink-0 border border-accent/20"
+                          >
+                            <span>View Reel</span>
+                            <svg width="8" height="8" viewBox="0 0 16 16" fill="none">
+                              <path d="M3 13L13 3H5M13 3V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </a>
+                        ) : (
+                          <span className="text-[9px] text-ink/40 font-mono">Sample</span>
+                        )}
                       </div>
-                    ))}
+
+                      {/* Video Player Viewport - Edge-to-Edge Reel (No side black bars) */}
+                      <div className="relative w-full h-[290px] sm:h-[310px] overflow-hidden bg-black flex items-start justify-center">
+                        {card.embedUrl ? (
+                          <iframe
+                            src={card.embedUrl}
+                            title={`${video.title} - ${card.title}`}
+                            className="absolute block border-0 bg-black w-[136%] -left-[18%] h-[calc(100%+145px)] -top-[42px]"
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            scrolling="no"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={card.image || video.image}
+                              alt={card.title}
+                              fill
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-center justify-center">
+                              <span className="text-white text-xs bg-black/60 px-3 py-1.5 rounded-full">
+                                Preview Available Soon
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Card Details: Clean Title and Expandable Format Description */}
+                      <div className="p-3 sm:p-3.5">
+                        <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-0.5">
+                          Live Creative Example {cIdx + 1}
+                        </span>
+                        <h3 className="font-bold text-ink leading-snug mb-1 text-[13px] sm:text-[14px]">
+                          {card.title}
+                        </h3>
+
+                        {/* Format Description with Read More / Read Less Toggle */}
+                        <ExpandableDescription text={video.description} />
+                      </div>
+                    </div>
+
+                    {/* Footer Action: View Script Blueprint in New Tab */}
+                    <Link
+                      href={`/videos/${category.categorySlug}/${video.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3.5 sm:px-4 py-2.5 border-t border-ink/8 flex items-center justify-between text-[11px] sm:text-xs font-bold text-ink hover:text-accent transition-colors bg-white/40 cursor-pointer"
+                    >
+                      <span>View Script Blueprint</span>
+                      <span className="transition-transform group-hover:translate-x-1">→</span>
+                    </Link>
                   </div>
-                </div>
-              </section>
-            );
+                ))}
+              </div>
+            </div>
+          </section>
+        );
           })}
     </div>
   );

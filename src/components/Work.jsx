@@ -77,7 +77,7 @@ export default function Work({ sectionNumber = "/002/" }) {
             ref={titleRef}
             className="text-[clamp(28px,4.5vw,52px)] font-sans font-bold leading-[1.15] tracking-[-0.03em] text-ink mb-4 sm:mb-5"
           >
-            Projects that <em className="font-serif italic font-medium">speak</em>{" "}
+            Projects that <em className="font-serif italic font-medium text-accent">speak</em>{" "}
             for themselves
           </h2>
         </div>
