@@ -19,6 +19,12 @@ export async function verifyTurnstileToken(token, clientIp = "") {
     return { success: true };
   }
 
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  // If site key is not configured on frontend, allow bypass so forms don't break
+  if (!siteKey || siteKey.includes("your_cloudflare")) {
+    return { success: true };
+  }
+
   if (!token) {
     return {
       success: false,

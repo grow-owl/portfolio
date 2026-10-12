@@ -13,6 +13,7 @@ export default function sitemap() {
     { path: "/about", priority: 0.8, changeFrequency: "monthly" },
     { path: "/process", priority: 0.8, changeFrequency: "monthly" },
     { path: "/faq", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/internship", priority: 0.8, changeFrequency: "weekly" },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
     { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
   ];

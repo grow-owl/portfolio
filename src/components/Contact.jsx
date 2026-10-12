@@ -535,10 +535,6 @@ export default function Contact({ sectionNumber = "/009/" }) {
                   </>
                 )}
               </button>
-
-              <span className="text-xs text-white/40 flex items-center gap-1.5">
-                100% confidential & spam-free
-              </span>
             </div>
           </form>
         </div>

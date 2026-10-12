@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services/web-development" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Careers", href: "/internship" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
@@ -63,7 +64,7 @@ export default function Navbar() {
         className="fixed top-3 sm:top-4 lg:top-6 left-0 right-0 z-50 flex flex-col items-center px-4 sm:px-6 pointer-events-none"
       >
         <div
-          className={`pointer-events-auto flex items-center justify-between w-full max-w-[920px] transition-all duration-500 ${
+          className={`pointer-events-auto flex items-center justify-between w-full max-w-[980px] transition-all duration-500 ${
             scrolled || mobileOpen || pathname !== "/"
               ? "bg-white/95 backdrop-blur-md shadow-xl border-border-strong rounded-full px-4 sm:px-6 py-3 border"
               : "bg-transparent border-transparent px-4 sm:px-6 py-4"
@@ -79,7 +80,7 @@ export default function Navbar() {
             />
           </a>
 
-          <div className="hidden md:flex items-center gap-5 lg:gap-7 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-4 lg:gap-6 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
               return (

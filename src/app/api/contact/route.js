@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { z } from "zod";
 import { checkRateLimit } from "../../../lib/ratelimit";
 import { verifyTurnstileToken } from "../../../lib/turnstile";
@@ -35,6 +36,12 @@ const contactSchema = z.object({
     .max(3000, "Message must not exceed 3000 characters"),
   turnstileToken: z.string().optional(),
   website_url_hp: z.string().optional(), // Honeypot trap field
+  resume: z
+    .object({
+      filename: z.string().max(255),
+      content: z.string(),
+    })
+    .optional(),
 });
 
 function getClientIp(request) {
@@ -104,7 +111,7 @@ export async function POST(request) {
       );
     }
 
-    const { name, email, phone, service, message, turnstileToken } =
+    const { name, email, phone, service, message, turnstileToken, resume } =
       validation.data;
 
     // 5. Cloudflare Turnstile Anti-Bot Verification
@@ -123,14 +130,17 @@ export async function POST(request) {
       );
     }
 
-    // 6. Resend Email Dispatch
+    // 6. Dual Email Dispatch (Primary: Resend, Fallback: Brevo SMTP)
     const resendApiKey = process.env.RESEND_API_KEY;
+    const brevoSmtpKey = process.env.BREVO_SMTP_KEY;
     const recipientEmail =
-      process.env.CONTACT_EMAIL_TO || "hello@growowl.online";
+      process.env.CONTACT_EMAIL_TO || "admin@growowl.online";
 
-    if (!resendApiKey || resendApiKey.includes("your_resend")) {
-      console.warn("RESEND_API_KEY is not configured on the server.");
-      // Fail closed in production: NEVER return fake success in production
+    const hasResend = resendApiKey && !resendApiKey.includes("your_resend");
+    const hasBrevo = brevoSmtpKey && !brevoSmtpKey.includes("your_brevo");
+
+    if (!hasResend && !hasBrevo) {
+      console.warn("Neither RESEND_API_KEY nor BREVO_SMTP_KEY is configured.");
       if (process.env.NODE_ENV === "production") {
         return NextResponse.json(
           {
@@ -142,24 +152,16 @@ export async function POST(request) {
         );
       }
 
-      // Development / Preview mode indicator
       return NextResponse.json({
         success: true,
         preview: true,
         message:
-          "Message received (Development Demo Mode - RESEND_API_KEY unset).",
+          "Message received (Development Demo Mode - Email API keys unset).",
       });
     }
 
-    const resend = new Resend(resendApiKey);
-
-    // Send email via Resend
-    const { data, error } = await resend.emails.send({
-      from: "GrowOwl Leads <onboarding@resend.dev>",
-      to: [recipientEmail],
-      replyTo: email,
-      subject: `New Lead: ${name} (${service}) - GrowOwl Website`,
-      html: `
+    const emailSubject = `New Lead: ${name} (${service}) - GrowOwl Website`;
+    const emailHtml = `
         <!DOCTYPE html>
         <html>
         <head>
@@ -200,9 +202,19 @@ export async function POST(request) {
                 <div class="value"><a href="mailto:${email}" style="color: #0284c7; text-decoration: none;">${email}</a></div>
               </div>
               <div class="field">
-                <div class="label">Phone / WhatsApp</div>
+                <div class="label">Phone / Contact</div>
                 <div class="value">${phone}</div>
               </div>
+              ${
+                resume?.filename
+                  ? `
+              <div class="field">
+                <div class="label">Attached Resume</div>
+                <div class="value">📄 ${resume.filename} (Attached to this email)</div>
+              </div>
+              `
+                  : ""
+              }
               <div class="field">
                 <div class="label">Project Details / Message</div>
                 <div class="message-box">${message}</div>
@@ -217,16 +229,97 @@ export async function POST(request) {
           </div>
         </body>
         </html>
-      `,
-    });
+    `;
 
-    if (error) {
-      console.error("Resend API error:", error);
+    let emailSent = false;
+    let dispatchId = null;
+    let lastError = null;
+
+    // Attempt 1: Resend
+    if (hasResend) {
+      try {
+        const resend = new Resend(resendApiKey);
+        const emailPayload = {
+          from: "GrowOwl Leads <onboarding@resend.dev>",
+          to: [recipientEmail],
+          replyTo: email,
+          subject: emailSubject,
+          html: emailHtml,
+        };
+
+        if (resume?.filename && resume?.content) {
+          emailPayload.attachments = [
+            {
+              filename: resume.filename,
+              content: resume.content,
+            },
+          ];
+        }
+
+        const { data, error } = await resend.emails.send(emailPayload);
+        if (!error && data?.id) {
+          emailSent = true;
+          dispatchId = data.id;
+        } else {
+          lastError = error;
+          console.warn("Resend delivery failed, checking Brevo fallback:", error);
+        }
+      } catch (err) {
+        lastError = err;
+        console.warn("Resend threw exception, trying Brevo fallback:", err);
+      }
+    }
+
+    // Attempt 2: Brevo SMTP Fallback
+    if (!emailSent && hasBrevo) {
+      try {
+        const brevoUser =
+          process.env.BREVO_SMTP_USER || "admin.growowl@gmail.com";
+        const transporter = nodemailer.createTransport({
+          host: "smtp-relay.brevo.com",
+          port: 587,
+          secure: false, // TLS
+          auth: {
+            user: brevoUser,
+            pass: brevoSmtpKey,
+          },
+        });
+
+        const mailOptions = {
+          from: `"GrowOwl Leads" <${brevoUser}>`,
+          to: recipientEmail,
+          replyTo: email,
+          subject: emailSubject,
+          html: emailHtml,
+          attachments:
+            resume?.filename && resume?.content
+              ? [
+                  {
+                    filename: resume.filename,
+                    content: Buffer.from(resume.content, "base64"),
+                  },
+                ]
+              : [],
+        };
+
+        const info = await transporter.sendMail(mailOptions);
+        if (info?.messageId) {
+          emailSent = true;
+          dispatchId = info.messageId;
+        }
+      } catch (brevoErr) {
+        console.error("Brevo SMTP delivery failed:", brevoErr);
+        lastError = brevoErr;
+      }
+    }
+
+    if (!emailSent) {
+      console.error("All email delivery providers failed:", lastError);
       return NextResponse.json(
         {
           success: false,
           message:
-            "Could not deliver email. Please reach out to us directly on WhatsApp.",
+            "Could not deliver email. Please reach out to us directly on WhatsApp or phone.",
         },
         { status: 500 }
       );
@@ -236,7 +329,7 @@ export async function POST(request) {
       success: true,
       message:
         "Message sent successfully! We will get back to you within 30 minutes.",
-      id: data?.id,
+      id: dispatchId,
     });
   } catch (err) {
     console.error("API contact submission error:", err);
