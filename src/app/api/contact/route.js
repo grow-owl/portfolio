@@ -256,7 +256,24 @@ export async function POST(request) {
           ];
         }
 
-        const { data, error } = await resend.emails.send(emailPayload);
+        let { data, error } = await resend.emails.send(emailPayload);
+
+        // Auto-recovery for Resend free tier if recipient email doesn't match account owner email
+        if (
+          error &&
+          error.message &&
+          error.message.includes("You can only send testing emails to your own email address") &&
+          recipientEmail !== "admin.growowl@gmail.com"
+        ) {
+          console.warn("Retrying Resend delivery with verified account owner email admin.growowl@gmail.com...");
+          const retryRes = await resend.emails.send({
+            ...emailPayload,
+            to: ["admin.growowl@gmail.com"],
+          });
+          data = retryRes.data;
+          error = retryRes.error;
+        }
+
         if (!error && data?.id) {
           emailSent = true;
           dispatchId = data.id;
