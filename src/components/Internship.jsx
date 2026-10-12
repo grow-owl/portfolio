@@ -67,7 +67,7 @@ const ROLES_DATA = {
   },
 };
 
-export default function Internship() {
+export default function Internship({ sectionNumber = "/001/" }) {
   const heroRef = useScrollReveal();
   const rolesRef = useScrollReveal();
   const benefitsRef = useScrollReveal();
@@ -277,11 +277,13 @@ export default function Internship() {
           <div ref={heroRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
             {/* Left Column: Heading, Info, and CTAs (Col 1-7) */}
             <div className="lg:col-span-7 max-w-[680px]">
-              {/* Category / Status badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-ink/10 shadow-xs mb-5 sm:mb-6">
-                <span className="w-2 h-2 rounded-full bg-green animate-pulse-dot" />
-                <span className="text-xs font-bold uppercase tracking-[0.08em] text-ink/75 font-heading">
-                  GrowOwl Careers · Active Cohort
+              {/* Section Header Index */}
+              <div className="flex items-center gap-3 mb-6 sm:mb-8">
+                <span className="font-serif italic text-lg text-accent font-medium">
+                  {sectionNumber}
+                </span>
+                <span className="text-lg font-medium uppercase tracking-[0.08em] text-ink/80">
+                  CAREERS
                 </span>
               </div>
 
@@ -388,7 +390,7 @@ export default function Internship() {
                 {/* Role 2 Card Item */}
                 <div
                   onClick={() => openApplyModal("fullstack-dev")}
-                  className="group p-4 rounded-2xl bg-cream-light/80 hover:bg-cream border border-ink/5 hover:border-ink/20 transition-all cursor-pointer mb-5"
+                  className="group p-4 rounded-2xl bg-cream-light/80 hover:bg-cream border border-ink/5 hover:border-ink/20 transition-all cursor-pointer"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -403,21 +405,6 @@ export default function Internship() {
                       Apply →
                     </span>
                   </div>
-                </div>
-
-                {/* Card Bottom Note */}
-                <div className="pt-4 border-t border-ink/10 flex items-center justify-between text-xs text-ink/75">
-                  <span className="flex items-center gap-1.5 font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green" />
-                    Remote & 1-on-1 Mentorship
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => openApplyModal("video-editor")}
-                    className="font-semibold text-ink hover:underline cursor-pointer"
-                  >
-                    Quick Apply →
-                  </button>
                 </div>
               </div>
             </div>

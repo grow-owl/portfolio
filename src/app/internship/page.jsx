@@ -86,7 +86,7 @@ export default function InternshipPage() {
       />
       <Navbar />
       <main>
-        <Internship />
+        <Internship sectionNumber="/001/" />
       </main>
       <Footer />
     </>
