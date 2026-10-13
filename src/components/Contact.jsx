@@ -56,12 +56,7 @@ export default function Contact({ sectionNumber = "/009/" }) {
     setStatus("sending");
     setErrorMessage("");
 
-    // If turnstile site key is configured, enforce verification token
-    if (turnstileSiteKey && !turnstileSiteKey.includes("your_cloudflare") && !turnstileToken) {
-      setStatus("error");
-      setErrorMessage("Please complete the security anti-bot check below.");
-      return;
-    }
+    // If turnstile token is present, it will be included; otherwise backend rate-limiting & honeypot protect the form
 
     try {
       const response = await fetch("/api/contact", {
@@ -371,7 +366,7 @@ export default function Contact({ sectionNumber = "/009/" }) {
                   ref={turnstileRef}
                   siteKey={turnstileSiteKey}
                   onSuccess={(token) => setTurnstileToken(token)}
-                  onError={() => setErrorMessage("Anti-bot verification error. Please refresh.")}
+                  onError={() => setTurnstileToken("")}
                   onExpire={() => setTurnstileToken("")}
                   options={{
                     theme: "dark",
@@ -458,7 +453,7 @@ export default function Contact({ sectionNumber = "/009/" }) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-accent hover:underline text-xs mt-1.5 font-medium"
                   >
-                    Direct WhatsApp par baat karein →
+                    Reach us directly on WhatsApp →
                   </a>
                 </div>
               </div>

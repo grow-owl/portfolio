@@ -6,30 +6,25 @@
  */
 export async function verifyTurnstileToken(token, clientIp = "") {
   const secretKey = process.env.TURNSTILE_SECRET_KEY;
-
-  // If secret key is not configured and in development, allow bypass for testing
-  if (!secretKey || secretKey.includes("your_cloudflare")) {
-    if (process.env.NODE_ENV === "production") {
-      return {
-        success: false,
-        message: "CAPTCHA configuration is missing in production.",
-      };
-    }
-    // Dev bypass when keys not set
-    return { success: true };
-  }
-
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-  // If site key is not configured on frontend, allow bypass so forms don't break
-  if (!siteKey || siteKey.includes("your_cloudflare")) {
+
+  // If secret key or site key is not configured, or using placeholder keys,
+  // gracefully allow submission to proceed so legitimate leads are NEVER lost.
+  if (
+    !secretKey ||
+    secretKey.includes("your_cloudflare") ||
+    !siteKey ||
+    siteKey.includes("your_cloudflare")
+  ) {
     return { success: true };
   }
 
+  // If no token was provided (e.g. adblocker, Brave Shields, or privacy extensions
+  // blocked the Turnstile widget from loading in the user's browser),
+  // allow the submission through. Honeypot and Upstash Redis rate limiting protect the form.
   if (!token) {
-    return {
-      success: false,
-      message: "Please complete the anti-bot verification challenge.",
-    };
+    console.warn("Turnstile token was missing; bypassing verification (fail-open).");
+    return { success: true };
   }
 
   try {
@@ -58,16 +53,28 @@ export async function verifyTurnstileToken(token, clientIp = "") {
       return { success: true };
     }
 
-    console.warn("Turnstile verification failed:", data["error-codes"]);
+    console.warn("Turnstile verification response:", data["error-codes"]);
+
+    // If Cloudflare returns an error indicating the server secret key itself is invalid
+    // or mismatched, do NOT block the human user from submitting their lead.
+    const errorCodes = data["error-codes"] || [];
+    if (
+      errorCodes.includes("invalid-input-secret") ||
+      errorCodes.includes("missing-input-secret")
+    ) {
+      console.error(
+        "TURNSTILE_SECRET_KEY configured in environment is invalid on Cloudflare. Allowing lead submission."
+      );
+      return { success: true };
+    }
+
     return {
       success: false,
-      message: "Security verification failed. Please refresh and try again.",
+      message: "Security verification failed. Please refresh the page and try again.",
     };
   } catch (err) {
-    console.error("Error verifying Turnstile token:", err);
-    return {
-      success: false,
-      message: "Could not verify anti-bot challenge. Please try again.",
-    };
+    console.error("Error verifying Turnstile token (fail-open):", err);
+    // On Cloudflare network timeout or outage, fail open so client inquiries are not dropped.
+    return { success: true };
   }
 }

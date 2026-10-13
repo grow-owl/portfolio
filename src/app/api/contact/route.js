@@ -134,7 +134,7 @@ export async function POST(request) {
     const resendApiKey = process.env.RESEND_API_KEY;
     const brevoSmtpKey = process.env.BREVO_SMTP_KEY;
     const recipientEmail =
-      process.env.CONTACT_EMAIL_TO || "admin@growowl.online";
+      process.env.CONTACT_EMAIL_TO || "admin.growowl@gmail.com";
 
     const hasResend = resendApiKey && !resendApiKey.includes("your_resend");
     const hasBrevo = brevoSmtpKey && !brevoSmtpKey.includes("your_brevo");
