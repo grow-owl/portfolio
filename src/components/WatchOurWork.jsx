@@ -210,11 +210,11 @@ export default function WatchOurWork({
                 </div>
 
                 {/* Fully Responsive Video Viewport with Edge-to-Edge Crop and Taller Height */}
-                <div className="relative w-full h-[460px] sm:h-[500px] lg:h-[520px] overflow-hidden bg-black flex items-start justify-center">
+                <div className="relative w-full h-[550px] sm:h-[605px] lg:h-[648px] overflow-hidden bg-black flex items-start justify-center">
                   <iframe
                     src={embedUrl}
                     title={`${item.clientName} Instagram Showcase - GrowOwl`}
-                    className="absolute w-[136%] -left-[18%] h-[calc(100%+160px)] -top-[46px] border-0 block bg-black"
+                    className="absolute w-[136%] -left-[18%] h-[calc(100%+180px)] -top-[46px] border-0 block bg-black"
                     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                     scrolling="no"
                     loading="lazy"

@@ -297,7 +297,7 @@ export const videoFormatExamples = {
       {
         id: "ex-1",
         title: "'Bas Kal Raat Se Pain Ho Raha Hai' (It's Been 6 Months)",
-        angle: "Relatable Patient Behavior Meme",
+        angle: "Relatable Patient Behavior Scenario",
         hook: "When the dentist asks 'Kab se dard ho raha hai?' and you say 'Bas kal raat se' (the cavity has been brewing since 2024)...",
         image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80",
         duration: "30-45s",
@@ -313,7 +313,7 @@ export const videoFormatExamples = {
       {
         id: "ex-3",
         title: "The 0.5s Silence Before the Dental Mirror Touches Your Tooth",
-        angle: "Dental Chair Anticipation Meme",
+        angle: "Dental Chair Anticipation Scenario",
         hook: "POV: You're in the dental chair trying not to swallow your own tongue while the dentist adjusts the overhead light.",
         image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
         duration: "30-45s",
@@ -626,7 +626,7 @@ export const videoFormatExamples = {
       },
       {
         id: "ex-3",
-        title: "Friend Getting in with Muddy Shoes Meme",
+        title: "Friend Getting in with Muddy Shoes Context",
         angle: "Interior Protection Relatability",
         hook: "Watching your friend step into your freshly detailed car with muddy boots in slow motion...",
         image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80",
@@ -751,7 +751,7 @@ export const videoFormatExamples = {
       {
         id: "ex-2",
         title: "Weekend Trip 'Just To Relax' vs Endless Balcony Views",
-        angle: "Travel Anticipation Meme",
+        angle: "Travel Anticipation Scenario",
         hook: "Me claiming I will wake up at 5 AM to trek vs me wrapped in blankets drinking Darjeeling chai for 4 hours.",
         image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80",
         duration: "30-45s",

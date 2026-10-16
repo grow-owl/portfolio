@@ -95,7 +95,7 @@ export default function CategoryVideoList({ category }) {
           <section
             key={video.id}
             id={video.id}
-            className="bg-card rounded-3xl sm:rounded-[36px] border border-ink/10 shadow-[0_4px_24px_rgba(0,0,0,0.03)] p-5 sm:p-7 lg:p-8 max-w-[980px] mx-auto"
+            className="bg-card rounded-3xl sm:rounded-[36px] border border-ink/10 shadow-[0_4px_24px_rgba(0,0,0,0.03)] p-5 sm:p-7 lg:p-8 max-w-[1060px] mx-auto"
           >
             {/* Clean Section Header - Left Aligned with Right-Aligned Button */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-6 sm:mb-7 border-b border-ink/8">
@@ -133,16 +133,16 @@ export default function CategoryVideoList({ category }) {
               <div
                 className={`grid grid-cols-1 ${
                   cardsToRender.length === 1
-                    ? "max-w-[285px]"
+                    ? "max-w-[340px]"
                     : cardsToRender.length === 2
-                    ? "sm:grid-cols-2 max-w-[590px]"
-                    : "sm:grid-cols-2 lg:grid-cols-3 max-w-[900px]"
-                } gap-4 sm:gap-5`}
+                    ? "sm:grid-cols-2 max-w-[720px]"
+                    : "sm:grid-cols-2 lg:grid-cols-3 max-w-[1020px]"
+                } gap-5 sm:gap-6`}
               >
                 {cardsToRender.map((card, cIdx) => (
                   <div
                     key={card.id || cIdx}
-                    className="group relative bg-cream/35 rounded-2xl sm:rounded-3xl border border-ink/8 overflow-hidden hover:border-accent/40 hover:shadow-[0_16px_40px_rgba(0,0,0,0.07)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between w-full max-w-[285px] mx-auto sm:mx-0"
+                    className="group relative bg-cream/35 rounded-2xl sm:rounded-3xl border border-ink/8 overflow-hidden hover:border-accent/40 hover:shadow-[0_16px_40px_rgba(0,0,0,0.07)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between w-full max-w-[340px] mx-auto sm:mx-0"
                   >
                     <div>
                       {/* Top Browser / Studio Header Bar */}
@@ -172,12 +172,12 @@ export default function CategoryVideoList({ category }) {
                       </div>
 
                       {/* Video Player Viewport - Edge-to-Edge Reel (No side black bars) */}
-                      <div className="relative w-full h-[290px] sm:h-[310px] overflow-hidden bg-black flex items-start justify-center">
+                      <div className="relative w-full h-[400px] sm:h-[450px] lg:h-[480px] overflow-hidden bg-black flex items-start justify-center">
                         {card.embedUrl ? (
                           <iframe
                             src={card.embedUrl}
                             title={`${video.title} - ${card.title}`}
-                            className="absolute block border-0 bg-black w-[136%] -left-[18%] h-[calc(100%+145px)] -top-[42px]"
+                            className="absolute block border-0 bg-black w-[136%] -left-[18%] h-[calc(100%+160px)] -top-[44px]"
                             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                             scrolling="no"
                             loading="lazy"
