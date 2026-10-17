@@ -72,7 +72,6 @@ export default function Internship({ sectionNumber = "/001/" }) {
   const rolesRef = useScrollReveal();
   const benefitsRef = useScrollReveal();
   const processRef = useScrollReveal();
-  const ctaRef = useScrollReveal();
 
   // Modals state
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
@@ -305,7 +304,7 @@ export default function Internship({ sectionNumber = "/001/" }) {
                 <button
                   type="button"
                   onClick={() => openApplyModal("video-editor")}
-                  className="btn-primary text-sm sm:text-[15px] !py-3.5 !px-8 cursor-pointer shadow-sm hover:shadow-md"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-ink text-white hover:bg-accent font-semibold text-sm sm:text-[15px] cursor-pointer shadow-sm hover:shadow-[0_8px_24px_rgba(252,54,55,0.3)] transition-all"
                 >
                   Apply Now →
                 </button>
@@ -488,7 +487,7 @@ export default function Internship({ sectionNumber = "/001/" }) {
                 <button
                   type="button"
                   onClick={() => openApplyModal("video-editor")}
-                  className="w-full py-2.5 px-4 rounded-full bg-ink hover:bg-black/85 text-white font-semibold text-xs sm:text-sm transition-all text-center shadow-xs cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded-full bg-ink text-white hover:bg-accent font-semibold text-xs sm:text-sm transition-all text-center shadow-xs cursor-pointer hover:shadow-[0_4px_16px_rgba(252,54,55,0.35)]"
                 >
                   Apply Now →
                 </button>
@@ -547,7 +546,7 @@ export default function Internship({ sectionNumber = "/001/" }) {
                 <button
                   type="button"
                   onClick={() => openApplyModal("fullstack-dev")}
-                  className="w-full py-2.5 px-4 rounded-full bg-ink hover:bg-black/85 text-white font-semibold text-xs sm:text-sm transition-all text-center shadow-xs cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded-full bg-ink text-white hover:bg-accent font-semibold text-xs sm:text-sm transition-all text-center shadow-xs cursor-pointer hover:shadow-[0_4px_16px_rgba(252,54,55,0.35)]"
                 >
                   Apply Now →
                 </button>
@@ -733,47 +732,6 @@ export default function Internship({ sectionNumber = "/001/" }) {
         </div>
       </section>
 
-      {/* -------------------------------------------------------------
-          5. FINAL CTA
-          Normal, clean, neutral CTA card (NO intense red glows or neon shadows)
-      -------------------------------------------------------------- */}
-      <section className="py-16 sm:py-24 bg-white border-b border-ink/10">
-        <div className="max-w-[1140px] mx-auto px-5 md:px-10">
-          <div
-            ref={ctaRef}
-            className="bg-cream-light/80 border border-ink/10 rounded-3xl p-8 sm:p-14 text-center max-w-[840px] mx-auto"
-          >
-            <span className="text-xs font-semibold tracking-wider uppercase text-ink/60 font-heading block mb-3">
-              Careers at GrowOwl
-            </span>
-
-            <h2 className="text-[clamp(26px,3.8vw,42px)] font-bold tracking-[-0.03em] text-ink mb-3">
-              Ready to start your journey with GrowOwl?
-            </h2>
-
-            <p className="text-sm sm:text-base text-ink/75 leading-relaxed mb-8 max-w-[540px] mx-auto">
-              Take the first step toward practical experience and professional growth.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
-              <button
-                type="button"
-                onClick={() => openApplyModal("video-editor")}
-                className="btn-primary text-sm sm:text-[15px] !py-3.5 !px-8 cursor-pointer shadow-sm hover:shadow-md w-full sm:w-auto"
-              >
-                Apply for Internship →
-              </button>
-
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-ink/20 text-ink hover:border-ink hover:bg-white font-semibold text-sm transition-all w-full sm:w-auto"
-              >
-                Have questions? Contact Team →
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* -------------------------------------------------------------
           6. ROLE DETAILS MODAL
@@ -879,7 +837,7 @@ export default function Internship({ sectionNumber = "/001/" }) {
               <button
                 type="button"
                 onClick={() => openApplyModal(detailsRoleKey)}
-                className="px-6 py-2.5 rounded-full bg-ink hover:bg-black/85 text-white font-semibold text-xs sm:text-sm transition-all text-center cursor-pointer shadow-xs"
+                className="px-6 py-2.5 rounded-full bg-ink text-white hover:bg-accent font-semibold text-xs sm:text-sm transition-all text-center cursor-pointer shadow-xs hover:shadow-[0_4px_16px_rgba(252,54,55,0.35)]"
               >
                 Apply for this Role →
               </button>
@@ -934,24 +892,17 @@ export default function Internship({ sectionNumber = "/001/" }) {
                   “Thank you for applying to GrowOwl. We’ll contact you if your profile is shortlisted.”
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <div className="flex items-center justify-center">
                   <button
                     type="button"
                     onClick={() => {
                       setFormStatus("idle");
                       setIsApplyModalOpen(false);
                     }}
-                    className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-ink text-white font-semibold text-xs sm:text-sm hover:bg-black/85 transition-colors cursor-pointer"
+                    className="w-full sm:w-auto px-8 py-2.5 rounded-full bg-accent hover:bg-accent-dark text-white font-semibold text-xs sm:text-sm transition-all cursor-pointer shadow-xs hover:shadow-[0_4px_16px_rgba(252,54,55,0.35)]"
                   >
                     Done
                   </button>
-
-                  <a
-                    href="/contact"
-                    className="w-full sm:w-auto px-5 py-2.5 rounded-full border border-ink/20 text-ink hover:border-ink font-semibold text-xs sm:text-sm transition-colors text-center"
-                  >
-                    Contact Team
-                  </a>
                 </div>
               </div>
             ) : (
@@ -1188,7 +1139,7 @@ export default function Internship({ sectionNumber = "/001/" }) {
                     <button
                       type="submit"
                       disabled={formStatus === "sending"}
-                      className="w-full py-3.5 rounded-xl bg-ink hover:bg-black/85 text-white font-bold text-sm transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-3.5 rounded-xl bg-ink text-white hover:bg-accent font-bold text-sm transition-all duration-300 shadow-sm hover:shadow-[0_8px_24px_rgba(252,54,55,0.3)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {formStatus === "sending" ? (
                         <>

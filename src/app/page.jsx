@@ -16,8 +16,8 @@ export default function Home() {
         <Hero />
         <PlatformMarquee />
         <VideoSolutions sectionNumber="/002/" />
-        <Work sectionNumber="/003/" />
-        <WatchOurWork sectionNumber="/004/" />
+        <WatchOurWork sectionNumber="/003/" />
+        <Work sectionNumber="/004/" />
         <Collaborations />
         <ClientMarquee />
       </main>

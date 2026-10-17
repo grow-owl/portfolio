@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 import { z } from "zod";
 import { checkRateLimit } from "../../../lib/ratelimit";
 import { verifyTurnstileToken } from "../../../lib/turnstile";
+import { sendApplicationConfirmationEmail } from "../../../lib/brevo";
 
 // Strict Zod validation schema
 const contactSchema = z.object({
@@ -340,6 +341,27 @@ export async function POST(request) {
         },
         { status: 500 }
       );
+    }
+
+    // 7. If this is an Internship application, send automated confirmation email to applicant via Brevo (noreply)
+    const isInternship =
+      service &&
+      (service.toLowerCase().includes("internship") ||
+        service.toLowerCase().includes("intern"));
+
+    if (isInternship && email) {
+      try {
+        const roleMatch = service.match(/Internship Application\s*—\s*(.+)/i);
+        const roleName = roleMatch ? roleMatch[1].trim() : service;
+
+        await sendApplicationConfirmationEmail({
+          name,
+          email,
+          role: roleName,
+        });
+      } catch (confirmErr) {
+        console.warn("[Brevo Confirmation] Could not send applicant confirmation email:", confirmErr);
+      }
     }
 
     return NextResponse.json({

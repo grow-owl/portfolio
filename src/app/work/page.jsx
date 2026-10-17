@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import WatchOurWork from "../../components/WatchOurWork";
 import Work from "../../components/Work";
 import Testimonials from "../../components/Testimonials";
 import Contact from "../../components/Contact";
@@ -57,9 +58,10 @@ export default function WorkPage() {
       />
       <Navbar />
       <main>
-        <Work sectionNumber="/001/" />
-        <Testimonials sectionNumber="/002/" />
-        <Contact sectionNumber="/003/" />
+        <WatchOurWork sectionNumber="/001/" />
+        <Work sectionNumber="/002/" />
+        <Testimonials sectionNumber="/003/" />
+        <Contact sectionNumber="/004/" />
       </main>
       <Footer />
     </>

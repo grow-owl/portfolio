@@ -68,7 +68,7 @@ const DEFAULT_VIDEOS = [
 ];
 
 export default function WatchOurWork({
-  sectionNumber = "/004/",
+  sectionNumber = "/003/",
   videos = DEFAULT_VIDEOS,
   videoUrl,
   clientName,
@@ -79,6 +79,7 @@ export default function WatchOurWork({
   subtitle = "A curated overview of our design, engineering, and digital solutions.",
   videoDescription,
 }) {
+  const isFirst = sectionNumber === "/001/";
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
   const videoCardRef = useScrollReveal();
@@ -120,7 +121,11 @@ export default function WatchOurWork({
     <section
       id="watch-our-work"
       aria-labelledby="watch-our-work-heading"
-      className="py-14 sm:py-18 lg:py-24 bg-cream border-b border-ink/5 relative overflow-hidden scroll-mt-24"
+      className={`${
+        isFirst
+          ? "pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-18 lg:pb-24"
+          : "py-14 sm:py-18 lg:py-24"
+      } bg-cream border-b border-ink/5 relative overflow-hidden scroll-mt-24`}
     >
       {/* Video SEO Structured Data (JSON-LD) */}
       {videoSchemas.map((schema, sIdx) => (
