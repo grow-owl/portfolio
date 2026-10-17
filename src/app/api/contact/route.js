@@ -5,6 +5,7 @@ import { z } from "zod";
 import { checkRateLimit } from "../../../lib/ratelimit";
 import { verifyTurnstileToken } from "../../../lib/turnstile";
 import { sendApplicationConfirmationEmail } from "../../../lib/brevo";
+import { saveInternshipApplication } from "../../../lib/supabase";
 
 // Strict Zod validation schema
 const contactSchema = z.object({
@@ -129,6 +130,36 @@ export async function POST(request) {
         },
         { status: 403 }
       );
+    }
+
+    // 5.5. Persist Internship Application in Database (Supabase) with Sanity & Threat Screening
+    if (service?.includes("Internship") || resume?.content) {
+      try {
+        const userAgent = request.headers.get("user-agent") || "";
+        let role = "Video Editor Intern";
+        if (service?.toLowerCase().includes("full-stack") || service?.toLowerCase().includes("developer")) {
+          role = "Full-Stack Developer Intern";
+        } else if (service?.toLowerCase().includes("video")) {
+          role = "Video Editor Intern";
+        }
+
+        const portfolioMatch = message?.match(/Portfolio \/ Drive \/ GitHub Link:\s*(.*)/i);
+        const portfolioUrl = portfolioMatch ? portfolioMatch[1].trim() : "";
+
+        await saveInternshipApplication({
+          name,
+          email,
+          phone,
+          role,
+          portfolio: portfolioUrl !== "None provided" ? portfolioUrl : "",
+          message,
+          resume,
+          ip: clientIp,
+          userAgent,
+        });
+      } catch (dbErr) {
+        console.error("Non-fatal: Failed to save application in database:", dbErr);
+      }
     }
 
     // 6. Dual Email Dispatch (Primary: Resend, Fallback: Brevo SMTP)
