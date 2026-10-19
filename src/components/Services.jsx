@@ -9,7 +9,7 @@ const defaultServices = [
     name: "Full Stack Web Development",
     desc: "We engineer robust, custom web applications as a full-stack web development agency. From high-speed static sites to complex React and Node.js applications, custom backend databases, and e-commerce platforms, every line of code is built for peak performance and top search engine rankings.",
     items: [
-      "Full Stack React & Next.js Apps",
+      "Custom Websites & Web Applications",
       "Node.js & MongoDB Backend Engineering",
       "Custom E-Commerce Website Development",
       "Database Design & REST APIs",
@@ -57,16 +57,16 @@ const defaultServices = [
 const landingServices = [
   {
     number: "/001/",
-    name: "Digital Marketing",
-    shortDesc: "ROI-driven PPC ads, Meta & Google campaigns, and automated lead generation funnels.",
-    tags: ["Google & Meta Ads", "Lead Gen Funnels", "Social Media", "CRO"],
+    name: "Social Media Marketing",
+    shortDesc: "High-impact Reels, Shorts, and promotional video ads crafted and published across social media to boost brand reach.",
+    tags: ["Reels & Shorts", "Promotional Ads", "Content Creation", "Social Media Growth"],
     link: "/services/digital-marketing",
   },
   {
     number: "/002/",
     name: "Full Stack Website",
-    shortDesc: "High-speed custom Next.js websites, mobile-first storefronts, and bespoke UI/UX designs.",
-    tags: ["Next.js & React", "Bespoke UI/UX", "E-Commerce", "Core Web Vitals"],
+    shortDesc: "High-speed custom websites, mobile-first storefronts, and bespoke UI/UX designs.",
+    tags: ["Custom Websites", "Bespoke UI/UX", "E-Commerce", "Core Web Vitals"],
     link: "/services/web-development",
   },
   {
