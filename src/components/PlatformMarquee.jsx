@@ -69,54 +69,6 @@ const platforms = [
     ),
   },
   {
-    id: "zomato",
-    name: "Zomato",
-    bg: "#fff5f5",
-    border: "#fecaca",
-    render: () => (
-      <div className="flex items-center gap-3 shrink-0">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm shrink-0 overflow-hidden bg-[#E23744]">
-          <img
-            src="/images/platforms/zomato.png"
-            alt="Zomato"
-            width={40}
-            height={40}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-[13px] font-bold text-[#1e1e1e] leading-none tracking-tight">Zomato</span>
-          <span className="text-[10px] text-[#64748b] leading-none">Get listed on Zomato.</span>
-          <span className="mt-1 inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-[#E23744]/10 text-[#E23744]">Help With Listing</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "swiggy",
-    name: "Swiggy",
-    bg: "#fff8f0",
-    border: "#fed7aa",
-    render: () => (
-      <div className="flex items-center gap-3 shrink-0">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm shrink-0 overflow-hidden bg-[#FC8019]">
-          <img
-            src="/images/platforms/swiggy.png"
-            alt="Swiggy"
-            width={40}
-            height={40}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-[13px] font-bold text-[#1e1e1e] leading-none tracking-tight">Swiggy</span>
-          <span className="text-[10px] text-[#64748b] leading-none">Get listed on Swiggy.</span>
-          <span className="mt-1 inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-[#FC8019]/10 text-[#FC8019]">Help With Listing</span>
-        </div>
-      </div>
-    ),
-  },
-  {
     id: "instagram",
     name: "Instagram",
     bg: "#fdf4ff",
@@ -203,15 +155,6 @@ export default function PlatformMarquee() {
         </div>
       </div>
 
-      <div className="mt-4 flex items-center justify-center">
-        <a
-          href="/pricing"
-          className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-1.5 rounded-full bg-ink/5 hover:bg-accent hover:text-white border border-ink/10 transition-all text-ink/80 group"
-        >
-          <span>Platform Listing &amp; Optimization Plans @ ₹2,000</span>
-          <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-        </a>
-      </div>
     </section>
   );
 }

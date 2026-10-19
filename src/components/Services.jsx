@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
-const services = [
+const defaultServices = [
   {
     number: "/001/",
     name: "Full Stack Web Development",
@@ -54,13 +54,167 @@ const services = [
   },
 ];
 
-export default function Services({ sectionNumber = "/004/" }) {
+const landingServices = [
+  {
+    number: "/001/",
+    name: "Digital Marketing",
+    shortDesc: "ROI-driven PPC ads, Meta & Google campaigns, and automated lead generation funnels.",
+    tags: ["Google & Meta Ads", "Lead Gen Funnels", "Social Media", "CRO"],
+    link: "/services/digital-marketing",
+  },
+  {
+    number: "/002/",
+    name: "Full Stack Website",
+    shortDesc: "High-speed custom Next.js websites, mobile-first storefronts, and bespoke UI/UX designs.",
+    tags: ["Next.js & React", "Bespoke UI/UX", "E-Commerce", "Core Web Vitals"],
+    link: "/services/web-development",
+  },
+  {
+    number: "/003/",
+    name: "SEO Services",
+    shortDesc: "Technical search optimization, Schema JSON-LD data, and Google Maps local ranking.",
+    tags: ["Technical SEO", "Schema Data", "Google Maps", "AI Search Ranking"],
+    link: "/pricing",
+  },
+];
+
+export default function Services({ sectionNumber = "/002/", isLanding = false }) {
   const isFirst = sectionNumber === "/001/";
   const [activeIndex, setActiveIndex] = useState(0);
+  const [openLandingCard, setOpenLandingCard] = useState(-1);
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
 
   const toggle = (i) => setActiveIndex((prev) => (prev === i ? -1 : i));
+  const toggleLanding = (i) => setOpenLandingCard((prev) => (prev === i ? -1 : i));
+
+  const list = isLanding ? landingServices : defaultServices;
+
+  if (isLanding) {
+    return (
+      <section
+        id="services"
+        aria-labelledby="services-heading"
+        className="py-12 sm:py-16 lg:py-20 bg-cream border-b border-ink/8 relative overflow-hidden scroll-mt-24"
+      >
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-10">
+          {/* Header on top */}
+          <div className="text-center max-w-[800px] mx-auto mb-8 sm:mb-10">
+            <div
+              ref={labelRef}
+              className="inline-flex items-center gap-2.5 px-3.5 py-1 bg-ink/5 rounded-full mb-3.5 border border-ink/10"
+            >
+              <span className="font-serif italic text-sm text-accent font-semibold">
+                {sectionNumber}
+              </span>
+              <span className="text-xs font-semibold uppercase tracking-[0.08em] text-ink/80">
+                Services
+              </span>
+            </div>
+
+            <h2
+              id="services-heading"
+              ref={titleRef}
+              className="text-[clamp(28px,4vw,46px)] font-bold leading-[1.18] tracking-[-0.03em] text-ink mb-3 sm:mb-4"
+            >
+              A quick look at what we{" "}
+              <em className="font-serif italic font-medium text-accent">
+                do best
+              </em>
+            </h2>
+
+            <p className="text-sm sm:text-base text-ink/65 max-w-[560px] mx-auto leading-[1.65]">
+              Comprehensive digital solutions engineered for growth, high conversion, and real local impact.
+            </p>
+          </div>
+
+          {/* 3 Services Side-by-side (Compact click-to-expand cards) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5 items-start">
+            {list.map((s, idx) => {
+              const isOpen = openLandingCard === idx;
+              return (
+                <div
+                  key={s.number}
+                  className={`bg-card rounded-2xl border transition-all duration-300 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.07)] ${
+                    isOpen
+                      ? "border-accent/40 shadow-[0_8px_30px_rgba(252,54,55,0.08)] ring-1 ring-accent/20"
+                      : "border-ink/10 hover:border-ink/20"
+                  }`}
+                >
+                  {/* Card Header — Always visible, click to expand */}
+                  <button
+                    type="button"
+                    onClick={() => toggleLanding(idx)}
+                    className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left cursor-pointer group"
+                    aria-expanded={isOpen}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="font-serif italic text-xl sm:text-2xl text-accent font-semibold shrink-0">
+                        {s.number}
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-bold tracking-tight text-ink group-hover:text-accent transition-colors truncate">
+                        {s.name}
+                      </h3>
+                    </div>
+
+                    <div
+                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
+                        isOpen
+                          ? "bg-accent text-white border-accent rotate-45 shadow-sm"
+                          : "bg-ink/5 text-ink/70 border-ink/15 group-hover:border-ink/40 group-hover:text-ink"
+                      }`}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                        <path
+                          d="M8 3V13M3 8H13"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+
+                  {/* Concise Expandable Content */}
+                  <div
+                    className={`transition-all duration-300 overflow-hidden ${
+                      isOpen ? "max-h-[260px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+                    }`}
+                  >
+                    <div className="px-4 sm:px-5 pb-4 pt-1 border-t border-ink/6">
+                      <p className="text-xs sm:text-[13px] text-ink/75 leading-[1.6] mb-3">
+                        {s.shortDesc}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 mb-3.5">
+                        {s.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="inline-flex items-center text-[10.5px] sm:text-[11px] font-medium px-2 py-0.5 rounded-md bg-ink/[0.04] text-ink/80 border border-ink/8"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <a
+                        href={s.link}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-ink transition-colors group/link"
+                      >
+                        <span>Explore {s.name}</span>
+                        <span className="group-hover/link:translate-x-1 transition-transform">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -90,7 +244,7 @@ export default function Services({ sectionNumber = "/004/" }) {
         </h2>
 
         <div className="mt-14 flex flex-col">
-          {services.map((s, i) => {
+          {list.map((s, i) => {
             const isOpen = activeIndex === i;
             return (
               <div key={i} className="border-t border-ink/10 last:border-b">
@@ -120,7 +274,9 @@ export default function Services({ sectionNumber = "/004/" }) {
                         stroke="currentColor"
                         strokeWidth="1.5"
                         strokeLinecap="round"
-                        className={`transition-all duration-300 origin-center ${isOpen ? "scale-y-0 opacity-0" : ""}`}
+                        className={`transition-all duration-300 origin-center ${
+                          isOpen ? "scale-y-0 opacity-0" : ""
+                        }`}
                       />
                     </svg>
                   </div>

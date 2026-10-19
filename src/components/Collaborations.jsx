@@ -25,7 +25,7 @@ export default function Collaborations() {
   return (
     <section
       aria-label="In Collaboration With"
-      className="bg-cream-light border-y border-dashed border-ink/12 py-9 sm:py-12 lg:py-14"
+      className="bg-cream-light border-b border-ink/8 py-9 sm:py-12 lg:py-14"
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-10">
         {/* ── Decorative heading ── */}
