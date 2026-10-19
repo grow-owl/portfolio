@@ -60,7 +60,13 @@ const jsonLd = {
   ],
 };
 
-export default function PricingPage() {
+import { getCmsData } from "../../lib/cms";
+
+export const dynamic = "force-dynamic";
+
+export default async function PricingPage() {
+  const pricing = await getCmsData("pricing");
+
   return (
     <>
       <script
@@ -69,7 +75,7 @@ export default function PricingPage() {
       />
       <Navbar />
       <main>
-        <Pricing sectionNumber="/001/" />
+        <Pricing sectionNumber="/001/" initialPricing={pricing} />
         <FAQ sectionNumber="/002/" />
         <Contact sectionNumber="/003/" />
       </main>

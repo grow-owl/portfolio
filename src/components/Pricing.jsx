@@ -232,18 +232,22 @@ const seoPlans = [
   },
 ];
 
-export default function Pricing({ sectionNumber = "/007/" }) {
+export default function Pricing({ sectionNumber = "/007/", initialPricing = null }) {
   const isFirst = sectionNumber === "/001/";
   const [activeTab, setActiveTab] = useState("website");
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
 
+  const currentWebsitePlans = initialPricing?.websitePlans || websitePlans;
+  const currentPresencePlans = initialPricing?.presencePlans || presencePlans;
+  const currentSeoPlans = initialPricing?.seoPlans || seoPlans;
+
   const activePlans =
     activeTab === "website"
-      ? websitePlans
+      ? currentWebsitePlans
       : activeTab === "presence"
-      ? presencePlans
-      : seoPlans;
+      ? currentPresencePlans
+      : currentSeoPlans;
   const setCardRef = useMultiReveal(activePlans.length);
 
   return (

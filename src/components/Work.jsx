@@ -43,7 +43,8 @@ const projects = [
   },
 ];
 
-export default function Work({ sectionNumber = "/002/" }) {
+export default function Work({ sectionNumber = "/002/", initialProjects = null }) {
+  const displayProjects = initialProjects && initialProjects.length > 0 ? initialProjects : projects;
   const isFirst = sectionNumber === "/001/";
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
@@ -195,7 +196,7 @@ export default function Work({ sectionNumber = "/002/" }) {
             ref={scrollRef}
             className="flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-5 sm:py-6 -mx-4 sm:-mx-5 md:-mx-10 px-6 sm:px-7 md:px-10 scroll-pl-6 sm:scroll-pl-7 md:scroll-pl-10"
           >
-            {projects.map((p, idx) => {
+            {displayProjects.map((p, idx) => {
               const isActive = activeIndex === idx;
               return (
                 <article
@@ -349,7 +350,7 @@ export default function Work({ sectionNumber = "/002/" }) {
 
           {/* Dots */}
           <div className="flex items-center justify-center gap-1.5 py-1">
-            {projects.map((p, idx) => (
+            {displayProjects.map((p, idx) => (
               <button
                 key={p.id}
                 type="button"

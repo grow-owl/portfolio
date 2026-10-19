@@ -5,7 +5,8 @@ import { videoCategories } from "../data/videoCategoriesData";
 import { CategoryIcon } from "./VideoCategoryIcons";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
-export default function VideoSolutions({ sectionNumber = "/002/" }) {
+export default function VideoSolutions({ sectionNumber = "/002/", categories = null }) {
+  const displayCategories = categories && categories.length > 0 ? categories : videoCategories;
   const labelRef = useScrollReveal();
   const titleRef = useScrollReveal();
 
@@ -43,7 +44,7 @@ export default function VideoSolutions({ sectionNumber = "/002/" }) {
 
         {/* Ultra-Simplified & Centered Category Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-[820px] mx-auto">
-          {videoCategories.map((cat) => (
+          {displayCategories.map((cat) => (
             <Link
               key={cat.id}
               href={`/videos/${cat.categorySlug}`}

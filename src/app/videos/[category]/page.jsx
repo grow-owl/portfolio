@@ -6,6 +6,9 @@ import { videoCategories } from "../../../data/videoCategoriesData";
 import { getCategoryDeepDive } from "../../../data/videoDeepDiveData";
 import { CategoryIcon } from "../../../components/VideoCategoryIcons";
 import CategoryVideoList from "../../../components/CategoryVideoList";
+import { getCmsData } from "../../../lib/cms";
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   return videoCategories.map((cat) => ({
@@ -15,7 +18,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { category: categorySlug } = await params;
-  const category = videoCategories.find((c) => c.categorySlug === categorySlug);
+  const categories = await getCmsData("categories");
+  const list = categories && categories.length > 0 ? categories : videoCategories;
+  const category = list.find((c) => c.categorySlug === categorySlug);
 
   if (!category) {
     return {
@@ -42,7 +47,9 @@ export async function generateMetadata({ params }) {
 
 export default async function CategoryVideosPage({ params }) {
   const { category: categorySlug } = await params;
-  const category = videoCategories.find((c) => c.categorySlug === categorySlug);
+  const categories = await getCmsData("categories");
+  const allCategories = categories && categories.length > 0 ? categories : videoCategories;
+  const category = allCategories.find((c) => c.categorySlug === categorySlug);
 
   if (!category) {
     notFound();
@@ -174,7 +181,7 @@ export default async function CategoryVideosPage({ params }) {
               Explore Video Strategies for Other Industries
             </h3>
             <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
-              {videoCategories.map((cat) => (
+              {allCategories.map((cat) => (
                 <Link
                   key={cat.id}
                   href={`/videos/${cat.categorySlug}`}
