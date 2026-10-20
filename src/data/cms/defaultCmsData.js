@@ -35,11 +35,29 @@ export const DEFAULT_REELS = [
   },
   {
     id: "alyona-stay",
-    videoUrl: "https://www.instagram.com/reel/DeJr-D9vbTw/?stkn=a2IzZXlibnN0amo3",
+    videoUrl: "https://www.instagram.com/reel/Dedp6gevyoY/?exln=MTJ5YW5mbWp1N2Zueg==",
+    localVideo: "/videos/alyona-stay.mp4",
+    thumbnail: "/images/reels/alyona-stay-thumb.jpg",
     clientName: "Alyona Stay",
     clientCategory: "Homestay & Retreat",
-    clientLink: "https://www.instagram.com/reel/DeJr-D9vbTw/",
+    clientLink: "https://www.instagram.com/reel/Dedp6gevyoY/",
     description: "Serene mountain homestay visual tour and ambience reel produced for Alyona Stay.",
+  },
+  {
+    id: "pvr-inox-pov",
+    videoUrl: "https://www.instagram.com/reel/DemSJIBhkX1/?srtk=MWp4M2VlbWdqN3Vi",
+    clientName: "PVR INOX Siliguri",
+    clientCategory: "Entertainment & Cinema",
+    clientLink: "https://www.instagram.com/reel/DemSJIBhkX1/",
+    description: "Viral POV audience engagement reel created for PVR INOX at Vega Circle, Siliguri.",
+  },
+  {
+    id: "pvr-inox-tuesday",
+    videoUrl: "https://www.instagram.com/reel/DeWxsdiS9ii/?exln=MXVxeTFwNXVvbWpoZg==",
+    clientName: "PVR INOX Siliguri",
+    clientCategory: "Entertainment & Cinema",
+    clientLink: "https://www.instagram.com/reel/DeWxsdiS9ii/",
+    description: "Special Tuesday cinema offer and theatrical commercial reel produced for INOX Vega Circle, Siliguri.",
   },
 ];
 

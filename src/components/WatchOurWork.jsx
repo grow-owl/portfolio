@@ -60,11 +60,29 @@ const DEFAULT_VIDEOS = [
   },
   {
     id: "alyona-stay",
-    videoUrl: "https://www.instagram.com/reel/DeJr-D9vbTw/?stkn=a2IzZXlibnN0amo3",
+    videoUrl: "https://www.instagram.com/reel/Dedp6gevyoY/?exln=MTJ5YW5mbWp1N2Zueg==",
+    localVideo: "/videos/alyona-stay.mp4",
+    thumbnail: "/images/reels/alyona-stay-thumb.jpg",
     clientName: "Alyona Stay",
     clientCategory: "Homestay & Retreat",
-    clientLink: "https://www.instagram.com/reel/DeJr-D9vbTw/",
+    clientLink: "https://www.instagram.com/reel/Dedp6gevyoY/",
     description: "Serene mountain homestay visual tour and ambience reel produced for Alyona Stay.",
+  },
+  {
+    id: "pvr-inox-pov",
+    videoUrl: "https://www.instagram.com/reel/DemSJIBhkX1/?srtk=MWp4M2VlbWdqN3Vi",
+    clientName: "PVR INOX Siliguri",
+    clientCategory: "Entertainment & Cinema",
+    clientLink: "https://www.instagram.com/reel/DemSJIBhkX1/",
+    description: "Viral POV audience engagement reel created for PVR INOX at Vega Circle, Siliguri.",
+  },
+  {
+    id: "pvr-inox-tuesday",
+    videoUrl: "https://www.instagram.com/reel/DeWxsdiS9ii/?exln=MXVxeTFwNXVvbWpoZg==",
+    clientName: "PVR INOX Siliguri",
+    clientCategory: "Entertainment & Cinema",
+    clientLink: "https://www.instagram.com/reel/DeWxsdiS9ii/",
+    description: "Special Tuesday cinema offer and theatrical commercial reel produced for INOX Vega Circle, Siliguri.",
   },
 ];
 
@@ -90,6 +108,7 @@ export default function WatchOurWork({
   const [activeIndex, setActiveIndex] = useState(0);
   const [playingVideoId, setPlayingVideoId] = useState(null);
   const [resetCounters, setResetCounters] = useState({});
+  const [localPlayingStates, setLocalPlayingStates] = useState({});
 
   // If a single videoUrl was passed directly, adapt it to the array
   const displayVideos = videoUrl
@@ -109,28 +128,31 @@ export default function WatchOurWork({
     const el = scrollRef.current;
     if (!el) return;
     const { scrollLeft, scrollWidth, clientWidth } = el;
-    setCanScrollLeft(scrollLeft > 15);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 15);
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
 
     const cards = el.querySelectorAll(".reel-card");
     if (!cards.length) return;
 
-    if (scrollLeft <= 25) {
+    if (scrollLeft <= 15) {
       setActiveIndex(0);
       return;
     }
 
-    if (scrollLeft >= scrollWidth - clientWidth - 25) {
+    if (scrollLeft >= scrollWidth - clientWidth - 15) {
       setActiveIndex(cards.length - 1);
       return;
     }
 
-    const firstOffset = cards[0]?.offsetLeft || 24;
+    const containerRect = el.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+
     let closestIndex = 0;
     let minDiff = Infinity;
     cards.forEach((child, idx) => {
-      const targetLeft = child.offsetLeft - firstOffset;
-      const diff = Math.abs(targetLeft - scrollLeft);
+      const cardRect = child.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const diff = Math.abs(cardCenter - containerCenter);
       if (diff < minDiff) {
         minDiff = diff;
         closestIndex = idx;
@@ -194,12 +216,39 @@ export default function WatchOurWork({
     };
   }, []);
 
+  // Pause native video if user switches to an iframe
+  useEffect(() => {
+    if (playingVideoId && playingVideoId !== "alyona-stay") {
+      const vid = document.querySelector('video[data-video-id="alyona-stay"]');
+      if (vid && !vid.paused) {
+        vid.pause();
+      }
+      setLocalPlayingStates((prev) => ({ ...prev, "alyona-stay": false }));
+    }
+  }, [playingVideoId]);
+
+  const scrollToIndex = (index) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cards = Array.from(el.querySelectorAll(".reel-card"));
+    if (cards[index]) {
+      const containerRect = el.getBoundingClientRect();
+      const cardRect = cards[index].getBoundingClientRect();
+      const currentScroll = el.scrollLeft;
+      const targetScroll = currentScroll + (cardRect.left - containerRect.left) - (containerRect.width - cardRect.width) / 2;
+
+      el.scrollTo({
+        left: Math.max(0, targetScroll),
+        behavior: "smooth",
+      });
+    }
+  };
+
   const scroll = (direction) => {
     const el = scrollRef.current;
     if (!el) return;
     const cards = Array.from(el.querySelectorAll(".reel-card"));
     if (!cards.length) return;
-    const paddingLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0;
 
     let targetIndex = activeIndex;
     if (direction === "next") {
@@ -207,26 +256,7 @@ export default function WatchOurWork({
     } else {
       targetIndex = Math.max(0, activeIndex - 1);
     }
-
-    const targetLeft = cards[targetIndex].offsetLeft - paddingLeft;
-    el.scrollTo({
-      left: Math.max(0, targetLeft),
-      behavior: "smooth",
-    });
-  };
-
-  const scrollToIndex = (index) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cards = Array.from(el.querySelectorAll(".reel-card"));
-    if (cards[index]) {
-      const paddingLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0;
-      const targetLeft = cards[index].offsetLeft - paddingLeft;
-      el.scrollTo({
-        left: Math.max(0, targetLeft),
-        behavior: "smooth",
-      });
-    }
+    scrollToIndex(targetIndex);
   };
 
   // Structured Video Schema for Google SEO Rich Snippets
@@ -354,19 +384,93 @@ export default function WatchOurWork({
                   </div>
 
                   {/* Fully Responsive Video Viewport with Edge-to-Edge Crop */}
-                  <div className="relative w-full h-[405px] sm:h-[480px] lg:h-[530px] overflow-hidden bg-black flex items-start justify-center">
-                    <iframe
-                      key={`${videoId}-${resetCounters[videoId] || 0}`}
-                      data-video-id={videoId}
-                      src={embedUrl}
-                      title={`${item.clientName} Instagram Showcase - GrowOwl`}
-                      className="absolute w-[138%] -left-[19%] h-[calc(100%+160px)] -top-[48px] sm:-top-[52px] border-0 block bg-black"
-                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      scrolling="no"
-                      loading="lazy"
-                    />
-                    {/* Bottom gradient mask: guarantees that the white 'View more on Instagram' footer is 100% hidden */}
-                    <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none z-10" />
+                  <div className="relative w-full h-[405px] sm:h-[480px] lg:h-[530px] overflow-hidden bg-black flex items-center justify-center">
+                    {item.localVideo || videoId === "alyona-stay" ? (
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const vid = e.currentTarget.querySelector("video");
+                          if (!vid) return;
+                          if (vid.paused) {
+                            if (playingVideoId && playingVideoId !== videoId) {
+                              setResetCounters((prev) => ({
+                                ...prev,
+                                [playingVideoId]: (prev[playingVideoId] || 0) + 1,
+                              }));
+                            }
+                            vid.play();
+                            setPlayingVideoId(videoId);
+                            setLocalPlayingStates((prev) => ({ ...prev, [videoId]: true }));
+                          } else {
+                            vid.pause();
+                            setLocalPlayingStates((prev) => ({ ...prev, [videoId]: false }));
+                          }
+                        }}
+                        className="relative w-full h-full flex items-center justify-center bg-black cursor-pointer select-none group/video"
+                      >
+                        <video
+                          data-video-id={videoId}
+                          src={item.localVideo || "/videos/alyona-stay.mp4"}
+                          poster={item.thumbnail || "/images/reels/alyona-stay-thumb.jpg"}
+                          playsInline
+                          loop
+                          preload="metadata"
+                          className="w-full h-full object-contain bg-black pointer-events-none"
+                          onPlay={() => {
+                            setLocalPlayingStates((prev) => ({ ...prev, [videoId]: true }));
+                            if (playingVideoId && playingVideoId !== videoId) {
+                              setResetCounters((prev) => ({
+                                ...prev,
+                                [playingVideoId]: (prev[playingVideoId] || 0) + 1,
+                              }));
+                            }
+                            setPlayingVideoId(videoId);
+                          }}
+                          onPause={() => {
+                            setLocalPlayingStates((prev) => ({ ...prev, [videoId]: false }));
+                          }}
+                        />
+
+                        {/* Center Play Button Overlay (Instagram Reels style - exact match with other reels) */}
+                        <div
+                          className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-300 ${
+                            localPlayingStates[videoId]
+                              ? "opacity-0 scale-90"
+                              : "opacity-100 scale-100"
+                          }`}
+                        >
+                          <svg
+                            width="54"
+                            height="60"
+                            viewBox="0 0 54 60"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-[46px] h-[52px] sm:w-[54px] sm:h-[60px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.65)] transition-transform duration-200 group-hover/video:scale-105"
+                          >
+                            <path
+                              d="M48.8 26.54c2.93 1.7 2.93 5.92 0 7.62L10.3 56.5c-2.93 1.7-6.6-.42-6.6-3.81V7.31c0-3.39 3.67-5.51 6.6-3.81l38.5 22.34z"
+                              fill="white"
+                              fillOpacity="0.9"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <iframe
+                          key={`${videoId}-${resetCounters[videoId] || 0}`}
+                          data-video-id={videoId}
+                          src={embedUrl}
+                          title={`${item.clientName} Instagram Showcase - GrowOwl`}
+                          className="absolute w-[138%] -left-[19%] h-[calc(100%+160px)] -top-[48px] sm:-top-[52px] border-0 block bg-black"
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          scrolling="no"
+                          loading="lazy"
+                        />
+                        {/* Bottom gradient mask: guarantees that the white 'View more on Instagram' footer is 100% hidden */}
+                        <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none z-10" />
+                      </>
+                    )}
                   </div>
                 </div>
               );

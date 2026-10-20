@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { Plus, Trash2, Edit3, ArrowUp, ArrowDown, ExternalLink, RotateCcw, Save, X, Globe } from "lucide-react";
+import { Plus, Trash2, Edit3, ArrowUp, ArrowDown, ExternalLink, RotateCcw, Save, X, Globe, UploadCloud, Loader2 } from "lucide-react";
 
 export default function AdminProjectsManager({ projects, onSave, onReset, isSaving }) {
   const [list, setList] = useState(projects || []);
@@ -23,6 +23,81 @@ export default function AdminProjectsManager({ projects, onSave, onReset, isSavi
     image: "",
     link: "",
   });
+
+  // Drag and Drop Upload States
+  const fileInputRef = useRef(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const [showManualUrl, setShowManualUrl] = useState(false);
+
+  const handleFileUpload = async (file) => {
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      setUploadError("Please upload an image file (PNG, JPG, WEBP)");
+      return;
+    }
+    if (file.size > 12 * 1024 * 1024) {
+      setUploadError("Image size should be less than 12MB");
+      return;
+    }
+
+    setUploadError("");
+    setIsUploading(true);
+
+    try {
+      const data = new FormData();
+      data.append("file", file);
+
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: data,
+      });
+
+      const json = await res.json();
+      if (res.ok && json.success && json.url) {
+        setFormData((prev) => ({ ...prev, image: json.url }));
+      } else {
+        // Fallback to local Base64 data URL
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setFormData((prev) => ({ ...prev, image: e.target.result }));
+        };
+        reader.readAsDataURL(file);
+      }
+    } catch (err) {
+      console.warn("Upload API failed, falling back to FileReader:", err);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setFormData((prev) => ({ ...prev, image: e.target.result }));
+      };
+      reader.readAsDataURL(file);
+    } finally {
+      setIsUploading(false);
+      setIsDragging(false);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileUpload(e.dataTransfer.files[0]);
+    }
+  };
 
   const handleOpenAdd = () => {
     setEditingIndex(-1);
@@ -278,21 +353,110 @@ export default function AdminProjectsManager({ projects, onSave, onReset, isSavi
                 />
               </div>
 
+              {/* Drag & Drop Image Uploader */}
               <div>
-                <label className="block text-xs font-bold text-ink mb-1">
-                  Screenshot / Image URL or Path <span className="text-accent">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="/images/work-gymai.webp or https://..."
-                  value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-ink/15 text-sm focus:border-accent focus:outline-hidden"
-                />
-                <span className="text-[10.5px] text-ink/50 mt-1 block">
-                  Relative local path from /images/ or external image URL.
-                </span>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="block text-xs font-bold text-ink">
+                    Project Screenshot / Mockup Image <span className="text-accent">*</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowManualUrl(!showManualUrl)}
+                    className="text-[11px] font-semibold text-ink/60 hover:text-accent underline cursor-pointer"
+                  >
+                    {showManualUrl ? "Upload File instead" : "Enter URL manually"}
+                  </button>
+                </div>
+
+                {showManualUrl ? (
+                  <div>
+                    <input
+                      type="text"
+                      required
+                      placeholder="/images/work-gymai.webp or https://..."
+                      value={formData.image}
+                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-ink/15 text-sm focus:border-accent focus:outline-hidden font-mono"
+                    />
+                    <span className="text-[10.5px] text-ink/50 mt-1 block">
+                      Relative path (/images/...) or external image URL.
+                    </span>
+                  </div>
+                ) : (
+                  <div>
+                    {/* Hidden file input */}
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      accept="image/*"
+                      onChange={(e) => {
+                        if (e.target.files?.[0]) handleFileUpload(e.target.files[0]);
+                      }}
+                      className="hidden"
+                    />
+
+                    {/* Drag and Drop Zone */}
+                    <div
+                      onDragOver={handleDragOver}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
+                      onClick={() => fileInputRef.current?.click()}
+                      className={`relative border-2 border-dashed rounded-2xl p-5 text-center transition-all cursor-pointer flex flex-col items-center justify-center min-h-[145px] ${
+                        isDragging
+                          ? "border-accent bg-accent/5 scale-[1.01]"
+                          : formData.image
+                          ? "border-ink/20 bg-ink/[0.02] hover:border-ink/40"
+                          : "border-ink/20 hover:border-accent/60 bg-black/[0.01] hover:bg-black/[0.02]"
+                      }`}
+                    >
+                      {isUploading ? (
+                        <div className="py-4 flex flex-col items-center gap-2">
+                          <Loader2 className="w-7 h-7 text-accent animate-spin" />
+                          <span className="text-xs font-bold text-ink">Uploading &amp; Processing Image...</span>
+                        </div>
+                      ) : formData.image ? (
+                        <div className="w-full flex items-center gap-4">
+                          <div className="relative w-28 h-20 rounded-xl overflow-hidden border border-ink/10 bg-ink/5 shrink-0 shadow-xs">
+                            <Image
+                              src={formData.image}
+                              alt="Uploaded Project Mockup"
+                              fill
+                              sizes="120px"
+                              className="object-cover object-top"
+                            />
+                          </div>
+                          <div className="flex-1 text-left min-w-0">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md inline-block mb-1">
+                              Image Uploaded
+                            </span>
+                            <p className="text-xs font-mono text-ink/80 truncate">{formData.image}</p>
+                            <p className="text-[11px] text-ink/50 mt-1">
+                              Drag &amp; drop another image or click to replace.
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center gap-2 py-2">
+                          <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center text-ink/70">
+                            <UploadCloud className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-ink">
+                              Drop project screenshot here, or <span className="text-accent underline">browse</span>
+                            </p>
+                            <p className="text-[11px] text-ink/50 mt-0.5">
+                              PNG, JPG, WEBP up to 12MB
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {uploadError && (
+                      <p className="text-xs text-red-500 font-semibold mt-1.5">{uploadError}</p>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className="pt-3 flex items-center justify-end gap-2.5">

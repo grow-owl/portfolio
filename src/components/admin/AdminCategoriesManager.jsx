@@ -603,27 +603,18 @@ export default function AdminCategoriesManager({ categories, onSave, onReset, is
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-ink mb-1">Duration</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. 30-45s / 45-60s"
-                    value={videoFormData.duration}
-                    onChange={(e) => setVideoFormData({ ...videoFormData, duration: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-ink/15 text-sm focus:border-accent focus:outline-hidden font-mono"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-ink mb-1">Cover Image URL</label>
-                  <input
-                    type="text"
-                    placeholder="https://images.unsplash.com/..."
-                    value={videoFormData.image}
-                    onChange={(e) => setVideoFormData({ ...videoFormData, image: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-ink/15 text-sm focus:border-accent focus:outline-hidden"
-                  />
-                </div>
+              <div>
+                <label className="block text-xs font-bold text-ink mb-1">Duration</label>
+                <input
+                  type="text"
+                  placeholder="e.g. 30-45s / 45-60s"
+                  value={videoFormData.duration}
+                  onChange={(e) => setVideoFormData({ ...videoFormData, duration: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-ink/15 text-sm focus:border-accent focus:outline-hidden font-mono"
+                />
+                <span className="text-[11px] text-ink/50 mt-1 block">
+                  ✨ Video thumbnail automatically loads directly from the Instagram Reel.
+                </span>
               </div>
 
               <div>

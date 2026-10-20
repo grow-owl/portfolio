@@ -58,28 +58,31 @@ export default function Work({ sectionNumber = "/002/", initialProjects = null }
     const el = scrollRef.current;
     if (!el) return;
     const { scrollLeft, scrollWidth, clientWidth } = el;
-    setCanScrollLeft(scrollLeft > 15);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 15);
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
 
     const cards = el.querySelectorAll("article");
     if (!cards.length) return;
 
-    if (scrollLeft <= 25) {
+    if (scrollLeft <= 15) {
       setActiveIndex(0);
       return;
     }
 
-    if (scrollLeft >= scrollWidth - clientWidth - 25) {
+    if (scrollLeft >= scrollWidth - clientWidth - 15) {
       setActiveIndex(cards.length - 1);
       return;
     }
 
-    const firstOffset = cards[0]?.offsetLeft || 24;
+    const containerRect = el.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+
     let closestIndex = 0;
     let minDiff = Infinity;
     cards.forEach((child, idx) => {
-      const targetLeft = child.offsetLeft - firstOffset;
-      const diff = Math.abs(targetLeft - scrollLeft);
+      const cardRect = child.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const diff = Math.abs(cardCenter - containerCenter);
       if (diff < minDiff) {
         minDiff = diff;
         closestIndex = idx;
@@ -110,14 +113,30 @@ export default function Work({ sectionNumber = "/002/", initialProjects = null }
       el.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, []);
+  }, [displayProjects.length]);
+
+  const scrollToIndex = (index) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cards = Array.from(el.querySelectorAll("article"));
+    if (cards[index]) {
+      const containerRect = el.getBoundingClientRect();
+      const cardRect = cards[index].getBoundingClientRect();
+      const currentScroll = el.scrollLeft;
+      const targetScroll = currentScroll + (cardRect.left - containerRect.left) - (containerRect.width - cardRect.width) / 2;
+
+      el.scrollTo({
+        left: Math.max(0, targetScroll),
+        behavior: "smooth",
+      });
+    }
+  };
 
   const scroll = (direction) => {
     const el = scrollRef.current;
     if (!el) return;
     const cards = Array.from(el.querySelectorAll("article"));
     if (!cards.length) return;
-    const paddingLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0;
 
     let targetIndex = activeIndex;
     if (direction === "next") {
@@ -125,26 +144,7 @@ export default function Work({ sectionNumber = "/002/", initialProjects = null }
     } else {
       targetIndex = Math.max(0, activeIndex - 1);
     }
-
-    const targetLeft = cards[targetIndex].offsetLeft - paddingLeft;
-    el.scrollTo({
-      left: Math.max(0, targetLeft),
-      behavior: "smooth",
-    });
-  };
-
-  const scrollToIndex = (index) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cards = Array.from(el.querySelectorAll("article"));
-    if (cards[index]) {
-      const paddingLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0;
-      const targetLeft = cards[index].offsetLeft - paddingLeft;
-      el.scrollTo({
-        left: Math.max(0, targetLeft),
-        behavior: "smooth",
-      });
-    }
+    scrollToIndex(targetIndex);
   };
 
   return (

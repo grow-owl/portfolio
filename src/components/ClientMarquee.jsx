@@ -189,7 +189,7 @@ const clientBrands = [
   {
     id: "alyona-stay",
     name: "Alyona Stay",
-    link: "https://www.instagram.com/reel/DeJr-D9vbTw/",
+    link: "https://www.instagram.com/reel/Dedp6gevyoY/",
     bg: "#fffbf5",
     border: "#fed7aa",
     render: () => (

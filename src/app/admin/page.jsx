@@ -146,7 +146,10 @@ export default function AdminDashboardPage() {
         throw new Error("Invalid passcode. Please try again.");
       }
 
-      sessionStorage.setItem("growowl_admin_passcode", codeToTest);
+      try {
+        sessionStorage.setItem("growowl_admin_passcode", codeToTest);
+        localStorage.setItem("growowl_admin_passcode", codeToTest);
+      } catch (e) {}
       setPasscode(codeToTest);
       setIsAuthenticated(true);
       showToast("Access granted to GrowOwl Admin Studio", "success");
@@ -161,7 +164,13 @@ export default function AdminDashboardPage() {
 
   // Mount check
   useEffect(() => {
-    const stored = sessionStorage.getItem("growowl_admin_passcode");
+    let stored = "";
+    try {
+      stored =
+        sessionStorage.getItem("growowl_admin_passcode") ||
+        localStorage.getItem("growowl_admin_passcode") ||
+        "";
+    } catch (e) {}
     if (stored) {
       setPasscode(stored);
       setPasscodeInput(stored);
@@ -170,7 +179,10 @@ export default function AdminDashboardPage() {
   }, []);
 
   const handleLogout = () => {
-    sessionStorage.removeItem("growowl_admin_passcode");
+    try {
+      sessionStorage.removeItem("growowl_admin_passcode");
+      localStorage.removeItem("growowl_admin_passcode");
+    } catch (e) {}
     setPasscode("");
     setPasscodeInput("");
     setIsAuthenticated(false);
