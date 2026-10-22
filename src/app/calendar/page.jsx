@@ -57,15 +57,25 @@ const EDITING_STATUS_BADGES = {
 const WEEK_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const WEEKS_LIST = ["Week 1", "Week 2", "Week 3", "Week 4"];
 
-// Helper: Extract day number (1-31) from postDate string (e.g. "06.10.26" or "2026-10-06")
-function extractDayNumber(dateStr) {
+// Helper: Parse full date (day, month index 0-11, full 4-digit year)
+function parseItemDate(dateStr) {
   if (!dateStr) return null;
-  const matchDot = dateStr.match(/^(\d{1,2})[\.\/-]/);
-  if (matchDot) return parseInt(matchDot[1], 10);
-  const matchIso = dateStr.match(/^\d{4}-\d{2}-(\d{2})/);
-  if (matchIso) return parseInt(matchIso[1], 10);
-  const num = parseInt(dateStr, 10);
-  return isNaN(num) ? null : num;
+  const dotMatch = String(dateStr).trim().match(/^(\d{1,2})[\.\/](\d{1,2})[\.\/](\d{2,4})/);
+  if (dotMatch) {
+    const day = parseInt(dotMatch[1], 10);
+    const month = parseInt(dotMatch[2], 10) - 1; // 0-indexed (10 = October = 9)
+    let year = parseInt(dotMatch[3], 10);
+    if (year < 100) year += 2000;
+    return { day, month, year };
+  }
+  const isoMatch = String(dateStr).trim().match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (isoMatch) {
+    const year = parseInt(isoMatch[1], 10);
+    const month = parseInt(isoMatch[2], 10) - 1;
+    const day = parseInt(isoMatch[3], 10);
+    return { day, month, year };
+  }
+  return null;
 }
 
 // Generate calendar cells for a month (Default: October 2026)
@@ -358,18 +368,36 @@ function CalendarContent() {
     return generateMonthGrid(currentYear, currentMonth);
   }, [currentYear, currentMonth]);
 
-  // Group items by day number (1 - 31)
+  // Automatically sync calendar grid view to the client's configured month
+  useEffect(() => {
+    if (activeCalendar?.month) {
+      const parts = activeCalendar.month.split(" ");
+      if (parts.length === 2) {
+        const mNames = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+        const mIdx = mNames.indexOf(parts[0].toLowerCase());
+        const yr = parseInt(parts[1], 10);
+        if (mIdx !== -1 && !isNaN(yr)) {
+          setCurrentMonth(mIdx);
+          setCurrentYear(yr);
+        }
+      }
+    }
+  }, [activeCalendar?.month, activeCalendar?.id]);
+
+  // Group items by day number (1 - 31), strictly matching currentMonth and currentYear
   const itemsByDay = useMemo(() => {
     const map = {};
     filteredItems.forEach((item) => {
-      const day = extractDayNumber(item.postDate);
-      if (day) {
-        if (!map[day]) map[day] = [];
-        map[day].push(item);
+      const parsed = parseItemDate(item.postDate);
+      if (parsed) {
+        if (parsed.month === currentMonth && parsed.year === currentYear) {
+          if (!map[parsed.day]) map[parsed.day] = [];
+          map[parsed.day].push(item);
+        }
       }
     });
     return map;
-  }, [filteredItems]);
+  }, [filteredItems, currentMonth, currentYear]);
 
   const monthName = new Date(currentYear, currentMonth).toLocaleDateString("en-US", {
     month: "long",

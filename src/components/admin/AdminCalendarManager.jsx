@@ -34,14 +34,25 @@ import {
 
 const WEEK_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-function extractDayNumber(dateStr) {
+// Helper: Parse full date (day, month index 0-11, full 4-digit year)
+function parseItemDate(dateStr) {
   if (!dateStr) return null;
-  const matchDot = dateStr.match(/^(\d{1,2})[\.\/-]/);
-  if (matchDot) return parseInt(matchDot[1], 10);
-  const matchIso = dateStr.match(/^\d{4}-\d{2}-(\d{2})/);
-  if (matchIso) return parseInt(matchIso[1], 10);
-  const num = parseInt(dateStr, 10);
-  return isNaN(num) ? null : num;
+  const dotMatch = String(dateStr).trim().match(/^(\d{1,2})[\.\/](\d{1,2})[\.\/](\d{2,4})/);
+  if (dotMatch) {
+    const day = parseInt(dotMatch[1], 10);
+    const month = parseInt(dotMatch[2], 10) - 1; // 0-indexed (10 = October = 9)
+    let year = parseInt(dotMatch[3], 10);
+    if (year < 100) year += 2000;
+    return { day, month, year };
+  }
+  const isoMatch = String(dateStr).trim().match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (isoMatch) {
+    const year = parseInt(isoMatch[1], 10);
+    const month = parseInt(isoMatch[2], 10) - 1;
+    const day = parseInt(isoMatch[3], 10);
+    return { day, month, year };
+  }
+  return null;
 }
 
 function generateMonthGrid(year = 2026, month = 9) {
@@ -176,6 +187,22 @@ export default function AdminCalendarManager({ passcode, showToast }) {
   }, [fetchCalendars]);
 
   const currentCalendar = calendars.find((c) => c.id === activeClient) || calendars[0] || null;
+
+  // Automatically sync calendar grid view to the client's configured month
+  useEffect(() => {
+    if (currentCalendar?.month) {
+      const parts = currentCalendar.month.split(" ");
+      if (parts.length === 2) {
+        const mNames = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+        const mIdx = mNames.indexOf(parts[0].toLowerCase());
+        const yr = parseInt(parts[1], 10);
+        if (mIdx !== -1 && !isNaN(yr)) {
+          setCurrentMonth(mIdx);
+          setCurrentYear(yr);
+        }
+      }
+    }
+  }, [currentCalendar?.month, currentCalendar?.id]);
 
   // Open settings modal
   const openSettings = () => {
@@ -880,7 +907,11 @@ export default function AdminCalendarManager({ passcode, showToast }) {
           <div className="grid grid-cols-7 border-collapse divide-x divide-y divide-ink/8">
             {generateMonthGrid(currentYear, currentMonth).map((cell, idx) => {
               const dayItems = cell.isCurrentMonth
-                ? filteredItems.filter((i) => extractDayNumber(i.postDate) === cell.dayNumber)
+                ? filteredItems.filter((i) => {
+                    const parsed = parseItemDate(i.postDate);
+                    if (!parsed) return false;
+                    return parsed.day === cell.dayNumber && parsed.month === currentMonth && parsed.year === currentYear;
+                  })
                 : [];
               const hasPosts = dayItems.length > 0;
 
