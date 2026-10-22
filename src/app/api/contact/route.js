@@ -6,6 +6,7 @@ import { checkRateLimit } from "../../../lib/ratelimit";
 import { verifyTurnstileToken } from "../../../lib/turnstile";
 import { sendApplicationConfirmationEmail } from "../../../lib/brevo";
 import { saveInternshipApplication } from "../../../lib/supabase";
+import { saveClientLead } from "../../../lib/leads";
 
 // Strict Zod validation schema
 const contactSchema = z.object({
@@ -133,7 +134,8 @@ export async function POST(request) {
     }
 
     // 5.5. Persist Internship Application in Database (Supabase) with Sanity & Threat Screening
-    if (service?.includes("Internship") || resume?.content) {
+    const isInternshipSubmission = service?.includes("Internship") || Boolean(resume?.content);
+    if (isInternshipSubmission) {
       try {
         const userAgent = request.headers.get("user-agent") || "";
         let role = "Video Editor Intern";
@@ -159,6 +161,22 @@ export async function POST(request) {
         });
       } catch (dbErr) {
         console.error("Non-fatal: Failed to save application in database:", dbErr);
+      }
+    } else {
+      // 5.6. Persist Client Enquiry / Business Lead (Saved in Database & Local CMS)
+      try {
+        const userAgent = request.headers.get("user-agent") || "";
+        await saveClientLead({
+          name,
+          email,
+          phone,
+          service,
+          message,
+          ip: clientIp,
+          userAgent,
+        });
+      } catch (leadErr) {
+        console.error("Non-fatal: Failed to save client lead:", leadErr);
       }
     }
 

@@ -9,6 +9,7 @@ import {
   Layers,
   CreditCard,
   Users,
+  Inbox,
   ExternalLink,
   RefreshCw,
   LogOut,
@@ -16,6 +17,7 @@ import {
   PanelLeftOpen,
   Menu,
 } from "lucide-react";
+import AdminLeadsManager from "../../components/admin/AdminLeadsManager";
 import AdminReelsManager from "../../components/admin/AdminReelsManager";
 import AdminProjectsManager from "../../components/admin/AdminProjectsManager";
 import AdminCategoriesManager from "../../components/admin/AdminCategoriesManager";
@@ -23,6 +25,7 @@ import AdminPricingManager from "../../components/admin/AdminPricingManager";
 import AdminApplicationsManager from "../../components/admin/AdminApplicationsManager";
 
 const TABS = [
+  { id: "leads", label: "Client Leads", icon: Inbox },
   { id: "reels", label: "Reels Showcase", icon: Film },
   { id: "projects", label: "Web Projects", icon: FolderGit2 },
   { id: "categories", label: "Categories & Formats", icon: Layers },
@@ -533,6 +536,14 @@ export default function AdminDashboardPage() {
             </div>
           ) : (
             <div>
+              {/* 0. Client Leads Tab */}
+              {activeTab === "leads" && (
+                <AdminLeadsManager
+                  passcode={passcode}
+                  showToast={showToast}
+                />
+              )}
+
               {/* 1. Reels Tab */}
               {activeTab === "reels" && (
                 <AdminReelsManager
