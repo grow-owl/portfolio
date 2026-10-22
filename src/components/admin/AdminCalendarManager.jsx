@@ -18,6 +18,8 @@ import {
   Layers,
   Sparkles,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   RefreshCw,
   Copy,
   Settings,
@@ -29,6 +31,38 @@ import {
   Columns,
   Tag,
 } from "lucide-react";
+
+const WEEK_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+function extractDayNumber(dateStr) {
+  if (!dateStr) return null;
+  const matchDot = dateStr.match(/^(\d{1,2})[\.\/-]/);
+  if (matchDot) return parseInt(matchDot[1], 10);
+  const matchIso = dateStr.match(/^\d{4}-\d{2}-(\d{2})/);
+  if (matchIso) return parseInt(matchIso[1], 10);
+  const num = parseInt(dateStr, 10);
+  return isNaN(num) ? null : num;
+}
+
+function generateMonthGrid(year = 2026, month = 9) {
+  const firstDayOfWeek = new Date(year, month, 1).getDay();
+  const totalDays = new Date(year, month + 1, 0).getDate();
+  const prevMonthTotalDays = new Date(year, month, 0).getDate();
+
+  const cells = [];
+  for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+    const dayNum = prevMonthTotalDays - i;
+    cells.push({ dayNumber: dayNum, isCurrentMonth: false });
+  }
+  for (let d = 1; d <= totalDays; d++) {
+    cells.push({ dayNumber: d, isCurrentMonth: true });
+  }
+  const remaining = (7 - (cells.length % 7)) % 7;
+  for (let next = 1; next <= remaining; next++) {
+    cells.push({ dayNumber: next, isCurrentMonth: false });
+  }
+  return cells;
+}
 
 const TYPE_BADGES = {
   Reel: "bg-rose-50 text-rose-700 border-rose-200",
@@ -61,7 +95,9 @@ export default function AdminCalendarManager({ passcode, showToast }) {
   const [selectedWeek, setSelectedWeek] = useState("all");
   const [selectedType, setSelectedType] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
-  const [viewMode, setViewMode] = useState("table"); // "table" | "board"
+  const [viewMode, setViewMode] = useState("calendar"); // "calendar" | "table" | "board"
+  const [currentYear, setCurrentYear] = useState(2026);
+  const [currentMonth, setCurrentMonth] = useState(9); // 9 = October
 
   // Modals
   const [editingItem, setEditingItem] = useState(null);
@@ -75,6 +111,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
     category: "",
     planName: "",
     planPrice: "",
+    accessKey: "",
     month: "",
     deliverables: "",
     frequency: "",
@@ -88,6 +125,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
     category: "Cafe and Hospitality",
     planName: "Growth Starter Plan",
     planPrice: "₹20,000 / month",
+    accessKey: "",
     month: "November 2026",
     deliverables: "6 Reels / 6 Posts / 10 Stories",
     frequency: "2 Reels, 1 Post per week",
@@ -147,6 +185,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
       category: currentCalendar.category || "",
       planName: currentCalendar.planName || "",
       planPrice: currentCalendar.planPrice || "",
+      accessKey: currentCalendar.accessKey || `${currentCalendar.id}@grow26`,
       month: currentCalendar.month || "",
       deliverables: currentCalendar.deliverables || "",
       frequency: currentCalendar.frequency || "",
@@ -296,9 +335,17 @@ export default function AdminCalendarManager({ passcode, showToast }) {
 
   const handleCopyClientLink = () => {
     if (!currentCalendar) return;
-    const url = `${window.location.origin}/calendar?client=${currentCalendar.id}`;
+    const accessKey = currentCalendar.accessKey || `${currentCalendar.id}@grow26`;
+    const url = `${window.location.origin}/calendar?client=${currentCalendar.id}&key=${encodeURIComponent(accessKey)}`;
     navigator.clipboard.writeText(url);
-    showToast?.("Client view link copied to clipboard! Share it with the client.", "success");
+    showToast?.(`Private link copied! Client ${currentCalendar.clientName} can open this directly without seeing other brands.`, "success");
+  };
+
+  const handleCopyAccessKey = () => {
+    if (!currentCalendar) return;
+    const accessKey = currentCalendar.accessKey || `${currentCalendar.id}@grow26`;
+    navigator.clipboard.writeText(accessKey);
+    showToast?.(`Client Access Key '${accessKey}' copied to clipboard!`, "success");
   };
 
   const handleExportCSV = () => {
@@ -508,7 +555,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
               </button>
             </div>
 
-            {/* Plan Tag & Pricing */}
+            {/* Plan Tag, Pricing & Access Key */}
             <div className="flex flex-wrap items-center gap-2 text-xs">
               <span className="font-bold text-accent bg-accent/10 px-2.5 py-0.5 rounded-md border border-accent/20">
                 Package: {currentCalendar?.planName || "Custom Plan"}
@@ -522,6 +569,18 @@ export default function AdminCalendarManager({ passcode, showToast }) {
               <span className="text-ink/65 font-medium">
                 {currentCalendar?.frequency || "2 Reels, 1 Post per week"}
               </span>
+              <span className="text-ink/30">•</span>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold">
+                <span>Access Key: <strong className="font-mono text-amber-950 font-bold">{currentCalendar?.accessKey || `${currentCalendar?.id}@grow26`}</strong></span>
+                <button
+                  type="button"
+                  onClick={handleCopyAccessKey}
+                  className="p-0.5 hover:text-black cursor-pointer text-amber-700"
+                  title="Copy Client Access Key"
+                >
+                  <Copy className="w-3 h-3" />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -695,27 +754,40 @@ export default function AdminCalendarManager({ passcode, showToast }) {
             <ChevronDown className="w-3 h-3 absolute right-1.5 top-1/2 -translate-y-1/2 text-ink/40 pointer-events-none" />
           </div>
 
-          {/* View Mode Toggle */}
+          {/* View Mode Toggle: Calendar, Schedule (Table), Pipeline (Board) */}
           <div className="bg-slate-100 p-0.5 rounded-xl border border-ink/8 flex items-center shrink-0">
             <button
               type="button"
-              onClick={() => setViewMode("table")}
-              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                viewMode === "table" ? "bg-white text-ink shadow-xs" : "text-ink/40 hover:text-ink"
+              onClick={() => setViewMode("calendar")}
+              className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                viewMode === "calendar" ? "bg-white text-ink shadow-xs" : "text-ink/60 hover:text-ink"
               }`}
-              title="Table View"
+              title="Calendar Grid"
+            >
+              <CalendarIcon className="w-3.5 h-3.5 text-purple-600" />
+              <span className="hidden sm:inline">Calendar</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode("table")}
+              className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                viewMode === "table" ? "bg-white text-ink shadow-xs" : "text-ink/60 hover:text-ink"
+              }`}
+              title="Spreadsheet Table View"
             >
               <List className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Schedule</span>
             </button>
             <button
               type="button"
               onClick={() => setViewMode("board")}
-              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                viewMode === "board" ? "bg-white text-ink shadow-xs" : "text-ink/40 hover:text-ink"
+              className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                viewMode === "board" ? "bg-white text-ink shadow-xs" : "text-ink/60 hover:text-ink"
               }`}
               title="Kanban Board View"
             >
               <Columns className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Pipeline</span>
             </button>
           </div>
 
@@ -748,8 +820,162 @@ export default function AdminCalendarManager({ passcode, showToast }) {
         </div>
       </div>
 
-      {/* Main Content View (Table vs Board) */}
-      {viewMode === "table" ? (
+      {/* Main Content View (Calendar vs Table vs Board) */}
+      {viewMode === "calendar" ? (
+        <div className="bg-white rounded-3xl border border-ink/8 shadow-xs overflow-hidden">
+          {/* Calendar Header with Month Controls */}
+          <div className="p-4 border-b border-ink/8 bg-slate-50/70 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-4 h-4 text-purple-600" />
+              <h3 className="text-xs sm:text-sm font-black text-ink">
+                {new Date(currentYear, currentMonth).toLocaleDateString("en-US", { month: "long", year: "numeric" })} Calendar Grid
+              </h3>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-slate-700 bg-white border border-slate-200 px-3 py-1 rounded-lg shadow-2xs">
+                {new Date(currentYear, currentMonth).toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+              </span>
+              <div className="flex items-center border border-slate-200 rounded-lg overflow-hidden bg-white">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (currentMonth === 0) {
+                      setCurrentMonth(11);
+                      setCurrentYear((y) => y - 1);
+                    } else {
+                      setCurrentMonth((m) => m - 1);
+                    }
+                  }}
+                  className="p-1.5 hover:bg-slate-100 text-slate-600 cursor-pointer"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (currentMonth === 11) {
+                      setCurrentMonth(0);
+                      setCurrentYear((y) => y + 1);
+                    } else {
+                      setCurrentMonth((m) => m + 1);
+                    }
+                  }}
+                  className="p-1.5 hover:bg-slate-100 text-slate-600 cursor-pointer border-l border-slate-200"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* 7 Columns Day Names */}
+          <div className="grid grid-cols-7 border-b border-ink/8 bg-slate-50 text-center text-[10px] font-black text-ink/50 uppercase tracking-wider py-2">
+            {WEEK_DAYS.map((day) => (
+              <div key={day}>{day}</div>
+            ))}
+          </div>
+
+          {/* Grid Cells */}
+          <div className="grid grid-cols-7 border-collapse divide-x divide-y divide-ink/8">
+            {generateMonthGrid(currentYear, currentMonth).map((cell, idx) => {
+              const dayItems = cell.isCurrentMonth
+                ? filteredItems.filter((i) => extractDayNumber(i.postDate) === cell.dayNumber)
+                : [];
+              const hasPosts = dayItems.length > 0;
+
+              return (
+                <div
+                  key={idx}
+                  className={`min-h-[120px] p-2 flex flex-col justify-between transition-colors ${
+                    cell.isCurrentMonth
+                      ? hasPosts
+                        ? "bg-white hover:bg-purple-50/15"
+                        : "bg-white hover:bg-slate-50/60"
+                      : "bg-slate-50/50 text-slate-300"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span
+                      className={`text-xs font-bold leading-none ${
+                        cell.isCurrentMonth
+                          ? hasPosts
+                            ? "text-purple-700 font-black bg-purple-100 px-1.5 py-0.5 rounded"
+                            : "text-ink/70"
+                          : "text-slate-300"
+                      }`}
+                    >
+                      {cell.dayNumber}
+                    </span>
+
+                    {cell.isCurrentMonth && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const formattedDate = `${String(cell.dayNumber).padStart(2, "0")}.${String(currentMonth + 1).padStart(2, "0")}.${String(currentYear).slice(-2)}`;
+                          setEditingItem({
+                            id: `post_${Date.now()}`,
+                            channel: "INSTAGRAM",
+                            day: new Date(currentYear, currentMonth, cell.dayNumber).toLocaleDateString("en-US", { weekday: "long" }),
+                            week: cell.dayNumber <= 7 ? "Week 1" : cell.dayNumber <= 14 ? "Week 2" : cell.dayNumber <= 21 ? "Week 3" : "Week 4",
+                            contentType: "Reel",
+                            postDate: formattedDate,
+                            campaign: "Lead Generation",
+                            topic: "",
+                            format: "Short Form",
+                            status: "Planned",
+                            script: "",
+                            editingStatus: "Not Started",
+                            referenceReel: "",
+                            publishedLink: "",
+                          });
+                          setIsEditModalOpen(true);
+                        }}
+                        className="text-ink/30 hover:text-purple-600 p-0.5 rounded hover:bg-purple-50 cursor-pointer"
+                        title="Add post for this day"
+                      >
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Posts for this Day */}
+                  <div className="space-y-1.5 flex-1 overflow-y-auto max-h-[85px] pr-0.5 scrollbar-thin">
+                    {dayItems.map((item) => (
+                      <div
+                        key={item.id}
+                        onClick={() => {
+                          setEditingItem(item);
+                          setIsEditModalOpen(true);
+                        }}
+                        className="p-1.5 rounded-lg border border-ink/10 bg-white hover:border-purple-300 hover:shadow-2xs transition-all cursor-pointer group space-y-1"
+                      >
+                        <div className="flex items-center justify-between gap-1">
+                          <span className={`inline-flex items-center px-1.5 py-0.2 rounded text-[8.5px] font-bold border ${TYPE_BADGES[item.contentType] || TYPE_BADGES.Reel}`}>
+                            {item.contentType}
+                          </span>
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              item.status === "Published"
+                                ? "bg-emerald-500"
+                                : item.status === "In progress"
+                                ? "bg-amber-500"
+                                : "bg-slate-400"
+                            }`}
+                          />
+                        </div>
+                        <div className="text-[10px] font-bold text-ink leading-tight line-clamp-2 group-hover:text-purple-700">
+                          {item.topic}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : viewMode === "table" ? (
         <div className="bg-white rounded-3xl border border-ink/8 shadow-xs overflow-hidden">
           {isLoading ? (
             <div className="py-24 text-center">
@@ -1352,15 +1578,27 @@ export default function AdminCalendarManager({ passcode, showToast }) {
                 </div>
               </div>
 
-              <div>
-                <label className="block font-semibold text-ink/70 mb-1">Frequency</label>
-                <input
-                  type="text"
-                  placeholder="e.g. 2 Every Week Reel / 1 Post / 3 Stories"
-                  value={settingsForm.frequency}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, frequency: e.target.value })}
-                  className="w-full p-2.5 bg-slate-50 border border-ink/10 rounded-xl text-xs focus:outline-hidden focus:border-accent"
-                />
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-ink/70 mb-1">Release Frequency</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. 2 Every Week Reel / 1 Post / 3 Stories"
+                    value={settingsForm.frequency}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, frequency: e.target.value })}
+                    className="w-full p-2.5 bg-slate-50 border border-ink/10 rounded-xl text-xs focus:outline-hidden focus:border-accent"
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold text-ink/70 mb-1">Client Access Key (Passcode)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. brand@grow26"
+                    value={settingsForm.accessKey}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, accessKey: e.target.value })}
+                    className="w-full p-2.5 bg-slate-50 border border-ink/10 rounded-xl text-xs font-mono font-bold focus:outline-hidden focus:border-accent text-accent"
+                  />
+                </div>
               </div>
 
               <div className="pt-3 border-t border-ink/8 flex items-center justify-end gap-2">
@@ -1455,6 +1693,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
                     className="w-full p-2.5 bg-slate-50 border border-ink/10 rounded-xl text-xs focus:outline-hidden focus:border-accent font-bold text-accent"
                   />
                 </div>
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block font-semibold text-ink/70 mb-1">Monthly Pricing</label>
                   <input
@@ -1465,6 +1704,17 @@ export default function AdminCalendarManager({ passcode, showToast }) {
                     className="w-full p-2.5 bg-slate-50 border border-ink/10 rounded-xl text-xs focus:outline-hidden focus:border-accent"
                   />
                 </div>
+                <div>
+                  <label className="block font-semibold text-ink/70 mb-1">Client Access Key (Optional)</label>
+                  <input
+                    type="text"
+                    placeholder="Auto: clientid@grow26"
+                    value={newClientForm.accessKey}
+                    onChange={(e) => setNewClientForm({ ...newClientForm, accessKey: e.target.value })}
+                    className="w-full p-2.5 bg-slate-50 border border-ink/10 rounded-xl text-xs font-mono focus:outline-hidden focus:border-accent"
+                  />
+                </div>
+              </div>
               </div>
 
               <div>

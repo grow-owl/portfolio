@@ -29,7 +29,38 @@ export function writeCalendars(data) {
 export function getCalendarByClient(clientId) {
   const all = readCalendars();
   if (!clientId || clientId === "all") return all[0] || null;
-  return all.find((c) => c.id === clientId) || all[0] || null;
+  return all.find((c) => c.id === clientId) || null;
+}
+
+/**
+ * Validate client key.
+ * If clientId is supplied, verifies key matches that exact client.
+ * If clientId is not supplied, finds any client whose accessKey matches.
+ */
+export function authenticateClientCalendar(clientId, accessKey) {
+  if (!accessKey) return null;
+  const cleanKey = String(accessKey).trim().toLowerCase();
+  if (!cleanKey) return null;
+
+  const all = readCalendars();
+
+  if (clientId) {
+    const cal = all.find((c) => c.id === clientId);
+    if (!cal) return null;
+    const clientKey = String(cal.accessKey || `${cal.id}@grow26`).trim().toLowerCase();
+    if (clientKey === cleanKey) {
+      return cal;
+    }
+    return null;
+  }
+
+  // Look up by access key alone
+  const matched = all.find((c) => {
+    const k = String(c.accessKey || `${c.id}@grow26`).trim().toLowerCase();
+    return k === cleanKey;
+  });
+
+  return matched || null;
 }
 
 export function saveCalendarItem(clientId, item) {
@@ -40,9 +71,14 @@ export function saveCalendarItem(clientId, item) {
     cal = {
       id: clientId,
       clientName: clientId.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+      category: "General Business",
+      planName: "Growth Starter Plan",
+      planPrice: "",
+      accessKey: `${clientId}@grow26`,
       month: "October 2026",
       deliverables: "8 Reels / 6 Posts / 10-12 Stories",
       frequency: "2 Every Week Reel / 1 Post / 3 Stories",
+      targets: { reels: 8, posts: 6, stories: 12 },
       items: [],
     };
     all.push(cal);
@@ -74,9 +110,14 @@ export function deleteCalendarItem(clientId, itemId) {
   return { success: true, calendar: cal };
 }
 
-export function updateCalendarSettings(clientId, { clientName, category, planName, planPrice, month, deliverables, frequency, targets }) {
+export function updateCalendarSettings(
+  clientId,
+  { clientName, category, planName, planPrice, month, deliverables, frequency, targets, accessKey }
+) {
   const all = readCalendars();
   let cal = all.find((c) => c.id === clientId);
+
+  const cleanAccessKey = accessKey ? String(accessKey).trim() : `${clientId}@grow26`;
 
   if (!cal) {
     cal = {
@@ -85,6 +126,7 @@ export function updateCalendarSettings(clientId, { clientName, category, planNam
       category: category || "Business",
       planName: planName || "Custom Plan",
       planPrice: planPrice || "",
+      accessKey: cleanAccessKey,
       month: month || "October 2026",
       deliverables: deliverables || "8 Reels / 6 Posts / 10 Stories",
       frequency: frequency || "2 Every Week Reel",
@@ -101,6 +143,11 @@ export function updateCalendarSettings(clientId, { clientName, category, planNam
     if (deliverables) cal.deliverables = deliverables;
     if (frequency) cal.frequency = frequency;
     if (targets) cal.targets = targets;
+    if (accessKey !== undefined && accessKey !== null) {
+      cal.accessKey = String(accessKey).trim() || `${clientId}@grow26`;
+    } else if (!cal.accessKey) {
+      cal.accessKey = `${clientId}@grow26`;
+    }
   }
 
   writeCalendars(all);
