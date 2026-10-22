@@ -16,7 +16,9 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   Menu,
+  Calendar as CalendarIcon,
 } from "lucide-react";
+import AdminCalendarManager from "../../components/admin/AdminCalendarManager";
 import AdminLeadsManager from "../../components/admin/AdminLeadsManager";
 import AdminReelsManager from "../../components/admin/AdminReelsManager";
 import AdminProjectsManager from "../../components/admin/AdminProjectsManager";
@@ -26,6 +28,7 @@ import AdminApplicationsManager from "../../components/admin/AdminApplicationsMa
 
 const TABS = [
   { id: "leads", label: "Client Leads", icon: Inbox },
+  { id: "calendar", label: "Content Calendar", icon: CalendarIcon },
   { id: "reels", label: "Reels Showcase", icon: Film },
   { id: "projects", label: "Web Projects", icon: FolderGit2 },
   { id: "categories", label: "Categories & Formats", icon: Layers },
@@ -539,6 +542,14 @@ export default function AdminDashboardPage() {
               {/* 0. Client Leads Tab */}
               {activeTab === "leads" && (
                 <AdminLeadsManager
+                  passcode={passcode}
+                  showToast={showToast}
+                />
+              )}
+
+              {/* 0.5. Content Calendar Tab */}
+              {activeTab === "calendar" && (
+                <AdminCalendarManager
                   passcode={passcode}
                   showToast={showToast}
                 />
