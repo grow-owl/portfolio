@@ -301,16 +301,16 @@ export default function AdminDashboardPage() {
       {/* Left Sidebar (Desktop Fixed + Mobile Drawer) */}
       <aside
         className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-ink/10 flex flex-col justify-between transition-all duration-300 ease-in-out md:translate-x-0 ${
-          isCollapsed ? "md:w-20" : "md:w-64"
-        } ${isMobileMenuOpen ? "w-64 translate-x-0" : "w-64 -translate-x-full md:translate-x-0"}`}
+          isCollapsed ? "md:w-20" : "md:w-52"
+        } ${isMobileMenuOpen ? "w-52 translate-x-0" : "w-52 -translate-x-full md:translate-x-0"}`}
       >
         <div>
           {/* Brand Header with GrowOwl Logo & Collapse Toggle */}
           <div
             className={`border-b border-ink/10 transition-all ${
               isCollapsed
-                ? "py-4 px-2 flex flex-col items-center justify-center gap-2 min-h-[82px]"
-                : "p-4 sm:p-5 flex items-center justify-between min-h-[73px]"
+                ? "py-3 px-2 flex items-center justify-between min-h-[66px]"
+                : "p-3 sm:p-3.5 flex items-center justify-between min-h-[66px]"
             }`}
           >
             {!isCollapsed ? (
@@ -319,12 +319,12 @@ export default function AdminDashboardPage() {
                   <Image
                     src="/images/growowl-logo.webp"
                     alt="GrowOwl Logo"
-                    width={140}
-                    height={48}
-                    className="h-6 sm:h-7 w-auto object-contain"
+                    width={120}
+                    height={40}
+                    className="h-5 sm:h-6 w-auto object-contain"
                     priority
                   />
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-ink/50 group-hover:text-accent transition-colors pl-0.5">
+                  <span className="text-[9.5px] font-bold uppercase tracking-wider text-ink/50 group-hover:text-accent transition-colors pl-0.5">
                     Admin Studio
                   </span>
                 </Link>
@@ -333,9 +333,9 @@ export default function AdminDashboardPage() {
                   <button
                     onClick={() => setIsCollapsed(true)}
                     title="Collapse Sidebar"
-                    className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg text-ink/50 hover:text-ink hover:bg-black/5 transition cursor-pointer"
+                    className="hidden md:flex items-center justify-center w-7 h-7 rounded-lg text-ink/50 hover:text-ink hover:bg-black/5 transition cursor-pointer"
                   >
-                    <PanelLeftClose className="w-4 h-4" />
+                    <PanelLeftClose className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -346,18 +346,18 @@ export default function AdminDashboardPage() {
                 </div>
               </>
             ) : (
-              <>
+              <div className="flex items-center justify-between w-full px-0.5">
                 <Link
                   href="/"
                   title="GrowOwl Admin Studio"
-                  className="p-1 rounded-xl hover:bg-black/5 transition group flex items-center justify-center"
+                  className="p-1 rounded-lg hover:bg-black/5 transition group flex items-center justify-center shrink-0"
                 >
                   <Image
                     src="/apple-touch-icon.png"
                     alt="GrowOwl Mascot"
-                    width={38}
-                    height={38}
-                    className="w-9 h-9 object-contain rounded-xl shadow-xs group-hover:scale-105 transition-transform"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7 object-contain rounded-lg shadow-xs group-hover:scale-105 transition-transform"
                     priority
                   />
                 </Link>
@@ -365,18 +365,18 @@ export default function AdminDashboardPage() {
                 <button
                   onClick={() => setIsCollapsed(false)}
                   title="Expand Sidebar"
-                  className="hidden md:flex items-center justify-center w-7 h-7 rounded-lg text-ink/50 hover:text-ink hover:bg-black/5 transition cursor-pointer"
+                  className="hidden md:flex items-center justify-center w-7 h-7 rounded-lg text-ink/50 hover:text-ink hover:bg-black/5 transition cursor-pointer shrink-0"
                 >
                   <PanelLeftOpen className="w-3.5 h-3.5" />
                 </button>
-              </>
+              </div>
             )}
           </div>
 
           {/* Navigation Links */}
-          <nav className={isCollapsed ? "p-2 space-y-2 mt-2" : "p-3 sm:p-4 space-y-1.5"}>
+          <nav className={isCollapsed ? "p-1.5 space-y-1.5 mt-1" : "p-2 sm:p-2.5 space-y-1"}>
             {!isCollapsed && (
-              <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-ink/40">
+              <div className="px-2.5 py-1 text-[9.5px] font-bold uppercase tracking-wider text-ink/40">
                 Studio Navigation
               </div>
             )}
@@ -390,13 +390,13 @@ export default function AdminDashboardPage() {
                     <button
                       onClick={() => setActiveTab(tab.id)}
                       title={tab.label}
-                      className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
                         isActive
-                          ? "bg-ink text-white shadow-sm"
+                          ? "bg-ink text-white shadow-xs"
                           : "text-ink/65 hover:text-ink hover:bg-black/5 hover:scale-105"
                       }`}
                     >
-                      <Icon className="w-5 h-5 shrink-0" />
+                      <Icon className="w-4.5 h-4.5 shrink-0" />
                     </button>
                     {/* Hover Floating Tooltip */}
                     <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-ink text-white text-xs font-semibold rounded-lg shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-150 z-50">
@@ -413,9 +413,9 @@ export default function AdminDashboardPage() {
                     setActiveTab(tab.id);
                     setIsMobileMenuOpen(false);
                   }}
-                  className={`w-full rounded-xl text-xs font-semibold px-3.5 py-2.5 flex items-center gap-3 transition-all cursor-pointer ${
+                  className={`w-full rounded-xl text-xs font-semibold px-2.5 py-2 flex items-center gap-2.5 transition-all cursor-pointer ${
                     isActive
-                      ? "bg-ink text-white shadow-sm font-bold"
+                      ? "bg-ink text-white shadow-xs font-bold"
                       : "text-ink/65 hover:text-ink hover:bg-black/5"
                   }`}
                 >
@@ -428,15 +428,15 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Sidebar Bottom Actions */}
-        <div className={isCollapsed ? "p-2 border-t border-ink/10 space-y-2" : "p-3 sm:p-4 border-t border-ink/10 space-y-1.5"}>
+        <div className={isCollapsed ? "p-1.5 border-t border-ink/10 space-y-1.5" : "p-2 sm:p-2.5 border-t border-ink/10 space-y-1"}>
           {!isCollapsed ? (
             <>
               <Link
                 href="/"
                 target="_blank"
-                className="w-full px-3 py-2 rounded-xl text-xs font-semibold text-ink/75 hover:text-ink hover:bg-black/5 transition flex items-center justify-between"
+                className="w-full px-2.5 py-1.5 rounded-xl text-xs font-semibold text-ink/75 hover:text-ink hover:bg-black/5 transition flex items-center justify-between"
               >
-                <span className="flex items-center gap-2.5">
+                <span className="flex items-center gap-2">
                   <ExternalLink className="w-3.5 h-3.5 text-ink/50" />
                   Live Website
                 </span>
@@ -446,9 +446,9 @@ export default function AdminDashboardPage() {
               <button
                 onClick={() => loadCmsData(passcode)}
                 disabled={loadingData}
-                className="w-full px-3 py-2 rounded-xl text-xs font-semibold text-ink/75 hover:text-ink hover:bg-black/5 transition flex items-center justify-between cursor-pointer"
+                className="w-full px-2.5 py-1.5 rounded-xl text-xs font-semibold text-ink/75 hover:text-ink hover:bg-black/5 transition flex items-center justify-between cursor-pointer"
               >
-                <span className="flex items-center gap-2.5">
+                <span className="flex items-center gap-2">
                   <RefreshCw className={`w-3.5 h-3.5 text-ink/50 ${loadingData ? "animate-spin" : ""}`} />
                   {loadingData ? "Syncing..." : "Sync Live Data"}
                 </span>
@@ -492,7 +492,7 @@ export default function AdminDashboardPage() {
       {/* Main Content Area */}
       <div
         className={`flex flex-col flex-1 min-w-0 min-h-screen transition-all duration-300 ${
-          isCollapsed ? "md:pl-20" : "md:pl-64"
+          isCollapsed ? "md:pl-20" : "md:pl-52"
         }`}
       >
         {/* Top Control Bar (Desktop & Mobile) */}
@@ -531,7 +531,7 @@ export default function AdminDashboardPage() {
         </header>
 
         {/* Content Body */}
-        <main className="flex-1 p-4 sm:p-8 max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-3 sm:p-5 lg:p-6 max-w-[1600px] w-full mx-auto">
           {loadingData && !cmsData ? (
             <div className="py-24 text-center">
               <div className="w-10 h-10 border-4 border-accent/20 border-t-accent rounded-full animate-spin mx-auto mb-4" />

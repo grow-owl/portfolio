@@ -725,9 +725,9 @@ export default function AdminCalendarManager({ passcode, showToast }) {
       </div>
 
       {/* Week Tabs, Month Selector & Quick Filters Bar */}
-      <div className="bg-white p-3.5 rounded-2xl border border-ink/8 shadow-xs flex flex-col md:flex-row gap-2.5 items-stretch md:items-center justify-between">
+      <div className="bg-white p-3 rounded-2xl border border-ink/8 shadow-xs flex flex-col xl:flex-row gap-2.5 items-stretch xl:items-center justify-between">
         {/* Month Dropdown & Weekly Sprints Filter */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 xl:pb-0 scrollbar-none shrink-0">
           {/* Month Dropdown Selector */}
           <div className="relative shrink-0">
             <select
@@ -742,9 +742,9 @@ export default function AdminCalendarManager({ passcode, showToast }) {
                   setSelectedMonthFilter(m);
                 }
               }}
-              className="appearance-none bg-slate-100 hover:bg-slate-200 border border-ink/10 text-xs font-bold text-ink pl-3 pr-7 py-1.5 rounded-xl focus:outline-hidden cursor-pointer"
+              className="appearance-none bg-slate-100 hover:bg-slate-200 border border-ink/10 text-xs font-bold text-ink pl-2.5 pr-6 py-1.5 rounded-xl focus:outline-hidden cursor-pointer"
             >
-              <option value="all">📅 All Months</option>
+              <option value="all">All Months</option>
               <optgroup label="2026">
                 {MONTH_NAMES.map((name, idx) => (
                   <option key={`2026-${idx}`} value={`2026-${idx}`}>
@@ -769,7 +769,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
           <button
             type="button"
             onClick={() => setSelectedWeek("all")}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+            className={`px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
               selectedWeek === "all" ? "bg-ink text-white shadow-xs" : "bg-slate-100 hover:bg-slate-200 text-ink/70"
             }`}
           >
@@ -780,7 +780,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
               key={wk}
               type="button"
               onClick={() => setSelectedWeek(wk)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+              className={`px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
                 selectedWeek === wk ? "bg-ink text-white shadow-xs" : "bg-slate-100 hover:bg-slate-200 text-ink/70"
               }`}
             >
@@ -790,8 +790,8 @@ export default function AdminCalendarManager({ passcode, showToast }) {
         </div>
 
         {/* Right Controls: Search, Type, Status & Add */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
-          <div className="relative min-w-[160px]">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 xl:pb-0 scrollbar-none">
+          <div className="relative min-w-[130px] sm:min-w-[150px]">
             <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-ink/40 pointer-events-none" />
             <input
               type="text"
@@ -806,7 +806,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="appearance-none bg-slate-50 border border-ink/10 text-xs font-semibold text-ink pl-2.5 pr-6 py-1.5 rounded-xl focus:outline-hidden cursor-pointer"
+              className="appearance-none bg-slate-50 border border-ink/10 text-xs font-semibold text-ink pl-2 pr-5 py-1.5 rounded-xl focus:outline-hidden cursor-pointer"
             >
               <option value="all">All Types</option>
               <option value="reel">Reels</option>
@@ -820,7 +820,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="appearance-none bg-slate-50 border border-ink/10 text-xs font-semibold text-ink pl-2.5 pr-6 py-1.5 rounded-xl focus:outline-hidden cursor-pointer"
+              className="appearance-none bg-slate-50 border border-ink/10 text-xs font-semibold text-ink pl-2 pr-5 py-1.5 rounded-xl focus:outline-hidden cursor-pointer"
             >
               <option value="all">All Status</option>
               <option value="published">Published</option>
