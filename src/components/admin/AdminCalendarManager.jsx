@@ -33,6 +33,10 @@ import {
 } from "lucide-react";
 
 const WEEK_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 // Helper: Parse full date (day, month index 0-11, full 4-digit year)
 function parseItemDate(dateStr) {
@@ -109,6 +113,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
   const [viewMode, setViewMode] = useState("calendar"); // "calendar" | "table" | "board"
   const [currentYear, setCurrentYear] = useState(2026);
   const [currentMonth, setCurrentMonth] = useState(9); // 9 = October
+  const [selectedMonthFilter, setSelectedMonthFilter] = useState("all"); // "all" or month index 0-11
 
   // Modals
   const [editingItem, setEditingItem] = useState(null);
@@ -437,6 +442,12 @@ export default function AdminCalendarManager({ passcode, showToast }) {
     if (selectedWeek !== "all" && item.week !== selectedWeek) return false;
     if (selectedType !== "all" && item.contentType?.toLowerCase() !== selectedType.toLowerCase()) return false;
     if (selectedStatus !== "all" && item.status?.toLowerCase() !== selectedStatus.toLowerCase()) return false;
+    if (selectedMonthFilter !== "all") {
+      const parsed = parseItemDate(item.postDate);
+      if (parsed && (parsed.month !== currentMonth || parsed.year !== currentYear)) {
+        return false;
+      }
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
       return (
@@ -713,10 +724,48 @@ export default function AdminCalendarManager({ passcode, showToast }) {
         </div>
       </div>
 
-      {/* Week Tabs & Quick Filters Bar */}
+      {/* Week Tabs, Month Selector & Quick Filters Bar */}
       <div className="bg-white p-3.5 rounded-2xl border border-ink/8 shadow-xs flex flex-col md:flex-row gap-2.5 items-stretch md:items-center justify-between">
-        {/* Weekly Sprints Filter */}
-        <div className="flex items-center gap-1 overflow-x-auto pb-1 md:pb-0">
+        {/* Month Dropdown & Weekly Sprints Filter */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+          {/* Month Dropdown Selector */}
+          <div className="relative shrink-0">
+            <select
+              value={selectedMonthFilter === "all" ? "all" : `${currentYear}-${currentMonth}`}
+              onChange={(e) => {
+                if (e.target.value === "all") {
+                  setSelectedMonthFilter("all");
+                } else {
+                  const [y, m] = e.target.value.split("-").map(Number);
+                  setCurrentYear(y);
+                  setCurrentMonth(m);
+                  setSelectedMonthFilter(m);
+                }
+              }}
+              className="appearance-none bg-slate-100 hover:bg-slate-200 border border-ink/10 text-xs font-bold text-ink pl-3 pr-7 py-1.5 rounded-xl focus:outline-hidden cursor-pointer"
+            >
+              <option value="all">📅 All Months</option>
+              <optgroup label="2026">
+                {MONTH_NAMES.map((name, idx) => (
+                  <option key={`2026-${idx}`} value={`2026-${idx}`}>
+                    {name} 2026
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="2027">
+                {MONTH_NAMES.map((name, idx) => (
+                  <option key={`2027-${idx}`} value={`2027-${idx}`}>
+                    {name} 2027
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 absolute right-2 top-1/2 -translate-y-1/2 text-ink/40 pointer-events-none" />
+          </div>
+
+          <span className="text-ink/20 shrink-0 hidden sm:inline">|</span>
+
+          {/* Sprints for the selected month */}
           <button
             type="button"
             onClick={() => setSelectedWeek("all")}
@@ -724,7 +773,7 @@ export default function AdminCalendarManager({ passcode, showToast }) {
               selectedWeek === "all" ? "bg-ink text-white shadow-xs" : "bg-slate-100 hover:bg-slate-200 text-ink/70"
             }`}
           >
-            All October
+            All {selectedMonthFilter === "all" ? "Months" : MONTH_NAMES[currentMonth]}
           </button>
           {weeksList.map((wk) => (
             <button
@@ -867,11 +916,16 @@ export default function AdminCalendarManager({ passcode, showToast }) {
                 <button
                   type="button"
                   onClick={() => {
+                    let newM = currentMonth - 1;
+                    let newY = currentYear;
                     if (currentMonth === 0) {
-                      setCurrentMonth(11);
-                      setCurrentYear((y) => y - 1);
-                    } else {
-                      setCurrentMonth((m) => m - 1);
+                      newM = 11;
+                      newY = currentYear - 1;
+                      setCurrentYear(newY);
+                    }
+                    setCurrentMonth(newM);
+                    if (selectedMonthFilter !== "all") {
+                      setSelectedMonthFilter(newM);
                     }
                   }}
                   className="p-1.5 hover:bg-slate-100 text-slate-600 cursor-pointer"
@@ -881,11 +935,16 @@ export default function AdminCalendarManager({ passcode, showToast }) {
                 <button
                   type="button"
                   onClick={() => {
+                    let newM = currentMonth + 1;
+                    let newY = currentYear;
                     if (currentMonth === 11) {
-                      setCurrentMonth(0);
-                      setCurrentYear((y) => y + 1);
-                    } else {
-                      setCurrentMonth((m) => m + 1);
+                      newM = 0;
+                      newY = currentYear + 1;
+                      setCurrentYear(newY);
+                    }
+                    setCurrentMonth(newM);
+                    if (selectedMonthFilter !== "all") {
+                      setSelectedMonthFilter(newM);
                     }
                   }}
                   className="p-1.5 hover:bg-slate-100 text-slate-600 cursor-pointer border-l border-slate-200"

@@ -55,6 +55,10 @@ const EDITING_STATUS_BADGES = {
 };
 
 const WEEK_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 const WEEKS_LIST = ["Week 1", "Week 2", "Week 3", "Week 4"];
 
 // Helper: Parse full date (day, month index 0-11, full 4-digit year)
@@ -141,6 +145,7 @@ function CalendarContent() {
   const [selectedType, setSelectedType] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedCampaign, setSelectedCampaign] = useState("all");
+  const [selectedMonthFilter, setSelectedMonthFilter] = useState("all");
 
   // Post detail preview modal
   const [previewPost, setPreviewPost] = useState(null);
@@ -333,6 +338,12 @@ function CalendarContent() {
       if (selectedType !== "all" && item.contentType?.toLowerCase() !== selectedType.toLowerCase()) return false;
       if (selectedStatus !== "all" && item.status?.toLowerCase() !== selectedStatus.toLowerCase()) return false;
       if (selectedCampaign !== "all" && item.campaign?.toLowerCase() !== selectedCampaign.toLowerCase()) return false;
+      if (selectedMonthFilter !== "all") {
+        const parsed = parseItemDate(item.postDate);
+        if (parsed && (parsed.month !== currentMonth || parsed.year !== currentYear)) {
+          return false;
+        }
+      }
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase().trim();
         return (
@@ -345,7 +356,7 @@ function CalendarContent() {
       }
       return true;
     });
-  }, [items, selectedWeek, selectedType, selectedStatus, selectedCampaign, searchQuery]);
+  }, [items, selectedWeek, selectedType, selectedStatus, selectedCampaign, selectedMonthFilter, currentMonth, currentYear, searchQuery]);
 
   // Quota and delivery calculations
   const totalCount = items.length;
@@ -405,20 +416,30 @@ function CalendarContent() {
   });
 
   const handlePrevMonth = () => {
+    let newM = currentMonth - 1;
+    let newY = currentYear;
     if (currentMonth === 0) {
-      setCurrentMonth(11);
-      setCurrentYear((y) => y - 1);
-    } else {
-      setCurrentMonth((m) => m - 1);
+      newM = 11;
+      newY = currentYear - 1;
+      setCurrentYear(newY);
+    }
+    setCurrentMonth(newM);
+    if (selectedMonthFilter !== "all") {
+      setSelectedMonthFilter(newM);
     }
   };
 
   const handleNextMonth = () => {
+    let newM = currentMonth + 1;
+    let newY = currentYear;
     if (currentMonth === 11) {
-      setCurrentMonth(0);
-      setCurrentYear((y) => y + 1);
-    } else {
-      setCurrentMonth((m) => m + 1);
+      newM = 0;
+      newY = currentYear + 1;
+      setCurrentYear(newY);
+    }
+    setCurrentMonth(newM);
+    if (selectedMonthFilter !== "all") {
+      setSelectedMonthFilter(newM);
     }
   };
 
@@ -778,7 +799,69 @@ function CalendarContent() {
               />
             </div>
 
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+              {/* Month Selector */}
+              <div className="relative shrink-0">
+                <select
+                  value={selectedMonthFilter === "all" ? "all" : `${currentYear}-${currentMonth}`}
+                  onChange={(e) => {
+                    if (e.target.value === "all") {
+                      setSelectedMonthFilter("all");
+                    } else {
+                      const [y, m] = e.target.value.split("-").map(Number);
+                      setCurrentYear(y);
+                      setCurrentMonth(m);
+                      setSelectedMonthFilter(m);
+                    }
+                  }}
+                  className="appearance-none bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-bold text-slate-700 pl-3 pr-7 py-2 rounded-xl focus:outline-hidden cursor-pointer"
+                >
+                  <option value="all">📅 All Months</option>
+                  <optgroup label="2026">
+                    {MONTH_NAMES.map((name, idx) => (
+                      <option key={`2026-${idx}`} value={`2026-${idx}`}>
+                        {name} 2026
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="2027">
+                    {MONTH_NAMES.map((name, idx) => (
+                      <option key={`2027-${idx}`} value={`2027-${idx}`}>
+                        {name} 2027
+                      </option>
+                    ))}
+                  </optgroup>
+                </select>
+                <ChevronDown className="w-3.5 h-3.5 absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+              </div>
+
+              {/* Sprints for the selected month */}
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setSelectedWeek("all")}
+                  className={`px-3 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                    selectedWeek === "all" ? "bg-slate-900 text-white shadow-xs" : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                  }`}
+                >
+                  All {selectedMonthFilter === "all" ? "Months" : MONTH_NAMES[currentMonth]}
+                </button>
+                {WEEKS_LIST.map((wk) => (
+                  <button
+                    key={wk}
+                    type="button"
+                    onClick={() => setSelectedWeek(wk)}
+                    className={`px-3 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                      selectedWeek === wk ? "bg-slate-900 text-white shadow-xs" : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                    }`}
+                  >
+                    {wk}
+                  </button>
+                ))}
+              </div>
+
+              <span className="text-slate-300 shrink-0 hidden sm:inline">|</span>
+
               {/* Type Filter */}
               <div className="relative shrink-0">
                 <select
