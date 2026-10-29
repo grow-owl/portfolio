@@ -162,67 +162,93 @@ export const videoCategories = [
     ],
   },
   {
-    id: "fashion",
-    name: "Clothing & Fashion Boutiques",
-    fullName: "Clothing Brands, Boutiques & Apparel",
-    categorySlug: "fashion",
-    iconName: "shirt",
-    description: "Fabric macro textures, precision stitching, model drape lookbooks, and packaging BTS.",
+    id: "printing-press",
+    name: "Printing Press",
+    fullName: "Printing Press & Custom Print Businesses",
+    categorySlug: "printing-press",
+    iconName: "printer",
+    description: "High-speed offset printing, CMYK ink mixing, premium foil stamping, custom mascots, and viral reel blueprints.",
     videoTypes: [
       {
-        id: "product-showcase",
-        title: "Product Showcase Reel",
-        pdfCategory: "6. Product Showcase Reel",
-        subtitle: "Fabric Texture Close-Up → Stitching Quality → Model Wearing It",
-        image: "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=800&q=80",
+        id: "process-showcase",
+        title: "Process Showcase Reel",
+        subtitle: "Full Print Production: Prepress, Plate Setting, High-Speed Offset & Binding",
+        description: "A step-by-step behind-the-scenes look into modern printing technology. Highlights paper feeding, ink calibration, high-speed press runs, and automated die-cutting or binding.",
+        creativeDirection: "Capture crisp, satisfying close-ups of CMYK ink rollers, sheet feeding, foil stamping, and pristine printed output with rhythmic sound design.",
+        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
         duration: "45-60s",
-        tag: "Showcase",
+        tag: "Process & Craft",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DPGzqIek4kP/?vrfl=MXdiNDl0MHVzNDdlNw==" }
+        ]
       },
       {
-        id: "behind-the-scenes",
-        title: "Behind-The-Scenes Packaging",
-        pdfCategory: "10. Behind-the-Scenes Reel",
-        subtitle: "Hand-Folding, Scented Butter Paper Wrap & Personalized Notes",
-        image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
-        tag: "Trust",
-      },
-      {
-        id: "trend-based",
-        title: "Trend-Based Styling Reel",
-        pdfCategory: "20. Trend-Based Reel",
-        subtitle: "Trending Audio Beat Transitions + 1 Piece Styled 3 Different Ways",
-        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80",
-        duration: "45-60s",
-        tag: "Viral Trend",
-      },
-      {
-        id: "contextual-meme",
-        title: "Context-Style Reel",
-        pdfCategory: "1. Context-Style Reel",
-        subtitle: "Relatable Shopping Dilemma & Wardrobe Relatable Reactions",
-        image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80",
+        id: "mascot-reel",
+        title: "Mascot Reel",
+        subtitle: "Animated & Character-Driven Storytelling to Give Your Brand a Friendly Face",
+        description: "An engaging reel featuring a brand mascot or custom character interacting with print products, guiding customers, or participating in humorous workplace skits.",
+        creativeDirection: "Use dynamic character animations or mascot interactions with paper samples, packaging boxes, or delivery parcels to boost memorability.",
+        image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80",
         duration: "30-45s",
-        tag: "Entertainment",
+        tag: "Mascot & Brand",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DaNQN3zIUjP/?cplk=MWE0anp6dWNoZ29xYQ==" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DbGJy6io2sB/?psln=ZnkydGtmNHkwbDlr" }
+        ]
       },
       {
-        id: "event-launch",
-        title: "New Festive Collection Launch",
-        pdfCategory: "19. Event / Launch Coverage Reel",
-        subtitle: "Festive Collection Unveiling & Limited Edition Launch Hype",
-        image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80",
+        id: "meme-base",
+        title: "Meme Base Reel",
+        subtitle: "Relatable Printing Press Humor, Urgent Deadlines & Designer vs Printer Moments",
+        description: "A lighthearted, relatable reel taking popular trending audio clips and applying everyday printing industry scenarios—like last-minute wedding card edits, RGB vs CMYK arguments, or client changes.",
+        creativeDirection: "Pair relatable printing dilemmas with punchy on-screen text and viral trending audio. Fast-paced and entertaining to maximize organic shares and saves.",
+        image: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=800&q=80",
+        duration: "30-45s",
+        tag: "Viral & Relatable",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DdG6J7tBTz8/?mdxt=dmQyOHlrdXNiOGE5" },
+          { title: "Creative Inspiration 02", url: "https://www.instagram.com/reel/DZKHUZhsys-/?xtok=MXQ2NmJwMmdubGNkYQ==" }
+        ]
+      },
+      {
+        id: "simple-showcase",
+        title: "Simple Showcase Reel",
+        subtitle: "Sensory Close-Ups: Gold Foil, Embossing, Spot UV & Luxurious Paper Textures",
+        description: "A clean, visually appealing showcase of premium printed goods—visiting cards, packaging boxes, wedding stationery, or brochures under optimal lighting.",
+        creativeDirection: "Capture macro shots tilting paper under light to showcase golden foil shimmer, tactile embossing, matte laminations, and crisp edge cuts.",
+        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80",
+        duration: "30-45s",
+        tag: "Product Showcase",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DeURhlQR4IC/?cplk=MTdkcDZvMm9idGtjYg==" }
+        ]
+      },
+      {
+        id: "simple-informative-blog",
+        title: "Simple Informative Blog Style Reel",
+        subtitle: "Quick Educational Guides: Paper GSM, Coating Types & Print Preparation Hacks",
+        description: "An educational, vlog-style reel explaining essential printing concepts for clients—such as 300 GSM vs 350 GSM cards, matte vs gloss lamination, or how to avoid blurry print files.",
+        creativeDirection: "Speak directly to the camera or use clean voiceover narration with physical paper samples in hand. Deliver 1 practical insight in under 45 seconds.",
+        image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80",
         duration: "45-60s",
-        tag: "Launch & Offers",
+        tag: "Tips & Education",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DbSbA9iqQB2/?srtk=MW55b3JjazI3Mmlubw==" }
+        ]
       },
       {
-        id: "founder-story",
-        title: "Founder Journey Reel",
-        pdfCategory: "4. Founder Journey Story Reel",
-        subtitle: "Started From a Small Workshop 10 Years Ago: How We Got Our First Order",
-        image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80",
-        duration: "60-75s",
-        tag: "Founder Story",
-      },
+        id: "hook-reel",
+        title: "Hook Reel",
+        subtitle: "Curiosity-Driven Visual Hooks to Stop the Scroll Within 1.5 Seconds",
+        description: "A fast, curiosity-inducing reel that leads with an irresistible opening hook—such as satisfying paper slicing, vibrant ink pours, or 'Watch this 1,000 sheet stack turn into...'",
+        creativeDirection: "Hit viewers with an arresting sound or movement in the first 2 seconds. Retain attention with rapid visual progression leading to the finished print reveal.",
+        image: "https://images.unsplash.com/photo-1507842229451-79b1be886a22?auto=format&fit=crop&w=800&q=80",
+        duration: "20-35s",
+        tag: "Viral Hook",
+        referenceReels: [
+          { title: "Creative Inspiration 01", url: "https://www.instagram.com/reel/DYRviPGhQlf/?xtok=OWpmMThvbzc1M2Fs" }
+        ]
+      }
     ],
   },
   {

@@ -185,29 +185,61 @@ export default function WatchOurWork({
     };
   }, [displayVideos.length]);
 
+  const activeVideoIdRef = useRef(null);
+  const playedVideosRef = useRef(new Set());
+
+  // Function to activate one video and automatically pause/reset all other playing videos
+  const activateVideo = (videoId) => {
+    if (!videoId) return;
+    if (activeVideoIdRef.current === videoId) return;
+
+    activeVideoIdRef.current = videoId;
+    setPlayingVideoId(videoId);
+
+    // Pause native video if user switches away from it
+    if (videoId !== "alyona-stay") {
+      const vid = document.querySelector('video[data-video-id="alyona-stay"]');
+      if (vid && !vid.paused) {
+        vid.pause();
+      }
+      setLocalPlayingStates((prev) => ({ ...prev, "alyona-stay": false }));
+    }
+
+    // Collect all previously started videos that need to be paused/reset
+    const toReset = [];
+    playedVideosRef.current.forEach((prevId) => {
+      if (prevId !== videoId) {
+        toReset.push(prevId);
+      }
+    });
+
+    if (toReset.length > 0) {
+      setResetCounters((prev) => {
+        const next = { ...prev };
+        toReset.forEach((id) => {
+          next[id] = (next[id] || 0) + 1;
+          playedVideosRef.current.delete(id);
+        });
+        return next;
+      });
+    }
+
+    playedVideosRef.current.add(videoId);
+  };
+
   // Auto-pause: When user plays a different video, reset the previously playing video's iframe so audio & playback stop immediately
   useEffect(() => {
-    let lastActiveVideoId = null;
-
     const handleFocusCheck = () => {
       const activeEl = document.activeElement;
       if (activeEl && activeEl.tagName === "IFRAME") {
         const videoId = activeEl.getAttribute("data-video-id");
-        if (videoId && videoId !== lastActiveVideoId) {
-          const previousId = lastActiveVideoId;
-          lastActiveVideoId = videoId;
-          if (previousId) {
-            setResetCounters((prev) => ({
-              ...prev,
-              [previousId]: (prev[previousId] || 0) + 1,
-            }));
-          }
-          setPlayingVideoId(videoId);
+        if (videoId && videoId !== activeVideoIdRef.current) {
+          activateVideo(videoId);
         }
       }
     };
 
-    const interval = setInterval(handleFocusCheck, 150);
+    const interval = setInterval(handleFocusCheck, 100);
     window.addEventListener("blur", handleFocusCheck);
 
     return () => {
@@ -215,17 +247,6 @@ export default function WatchOurWork({
       window.removeEventListener("blur", handleFocusCheck);
     };
   }, []);
-
-  // Pause native video if user switches to an iframe
-  useEffect(() => {
-    if (playingVideoId && playingVideoId !== "alyona-stay") {
-      const vid = document.querySelector('video[data-video-id="alyona-stay"]');
-      if (vid && !vid.paused) {
-        vid.pause();
-      }
-      setLocalPlayingStates((prev) => ({ ...prev, "alyona-stay": false }));
-    }
-  }, [playingVideoId]);
 
   const scrollToIndex = (index) => {
     const el = scrollRef.current;
@@ -341,15 +362,7 @@ export default function WatchOurWork({
               return (
                 <div
                   key={videoId}
-                  onClick={() => {
-                    if (playingVideoId && playingVideoId !== videoId) {
-                      setResetCounters((prev) => ({
-                        ...prev,
-                        [playingVideoId]: (prev[playingVideoId] || 0) + 1,
-                      }));
-                      setPlayingVideoId(videoId);
-                    }
-                  }}
+                  onClick={() => activateVideo(videoId)}
                   className={`reel-card shrink-0 snap-start w-[70vw] max-w-[250px] sm:max-w-none sm:w-[290px] lg:w-[320px] bg-card rounded-2xl sm:rounded-3xl border overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.12)] transition-shadow duration-300 flex flex-col group cursor-pointer ${
                     isActive
                       ? "border-accent/50 ring-1 ring-accent/30"
@@ -392,14 +405,8 @@ export default function WatchOurWork({
                           const vid = e.currentTarget.querySelector("video");
                           if (!vid) return;
                           if (vid.paused) {
-                            if (playingVideoId && playingVideoId !== videoId) {
-                              setResetCounters((prev) => ({
-                                ...prev,
-                                [playingVideoId]: (prev[playingVideoId] || 0) + 1,
-                              }));
-                            }
+                            activateVideo(videoId);
                             vid.play();
-                            setPlayingVideoId(videoId);
                             setLocalPlayingStates((prev) => ({ ...prev, [videoId]: true }));
                           } else {
                             vid.pause();
@@ -418,13 +425,7 @@ export default function WatchOurWork({
                           className="w-full h-full object-contain bg-black pointer-events-none"
                           onPlay={() => {
                             setLocalPlayingStates((prev) => ({ ...prev, [videoId]: true }));
-                            if (playingVideoId && playingVideoId !== videoId) {
-                              setResetCounters((prev) => ({
-                                ...prev,
-                                [playingVideoId]: (prev[playingVideoId] || 0) + 1,
-                              }));
-                            }
-                            setPlayingVideoId(videoId);
+                            activateVideo(videoId);
                           }}
                           onPause={() => {
                             setLocalPlayingStates((prev) => ({ ...prev, [videoId]: false }));
