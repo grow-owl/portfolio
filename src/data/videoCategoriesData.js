@@ -753,5 +753,115 @@ export const videoCategories = [
         ]
       }
     ]
+  },
+  {
+    "id": "arthouse",
+    "name": "Art House & Experiences",
+    "fullName": "Art House, Creative Studios & Experiences",
+    "categorySlug": "arthouse",
+    "iconName": "palette",
+    "description": "Experiential art studio formats: founder journey & vision, engaging DIY workshop reels, visitor UGC & micro moments, location & storytelling exposure, and relatable meme-style reels.",
+    "videoTypes": [
+      {
+        "id": "founder-journey-vision",
+        "title": "Founder Journey & Vision",
+        "subtitle": "KaSaa Experience: Founder Vision, Opinion, Decision, Challenge, Experience & Mistake",
+        "description": "A story-driven founder reel capturing the authentic journey behind building an art house and experiential space like KaSaa Experiences. Highlights the founder's core vision, bold business decisions, real creative challenges, raw experiences, and valuable mistakes turned into growth.",
+        "creativeDirection": "Film authentic behind-the-scenes moments of the founder inside the studio, setting up workshops, interacting with visitors, or speaking candidly to the camera. Use an honest voiceover or direct talk discussing early doubts, pivotal decisions, creative risks, and lessons learned.",
+        "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80",
+        "duration": "60-75s",
+        "tag": "Founder Story & Vision",
+        "referenceReels": [
+          {
+            "title": "KaSaa Experience – Founder Journey & Vision",
+            "url": "https://www.instagram.com/reel/DcLqJpINfTT/?obrf=MXN5cXN4bTYwcTd3bQ=="
+          }
+        ]
+      },
+      {
+        "id": "engaging-creative-reels",
+        "title": "Engaging Reels",
+        "subtitle": "High-Retention Visual Hooks, Sensory Art Making & Interactive DIY Concepts",
+        "description": "High-energy, visually captivating reels designed to stop the scroll in under 2 seconds. Features satisfying DIY art activities, charm bar setups, pottery spins, textured canvas painting, and sensory art reveals that captivate audiences and drive high saves and shares.",
+        "creativeDirection": "Focus on tactile, sensory visuals: vibrant paint swirls, bead stringing, fluid art pours, or satisfying texture scraping. Pair with upbeat trending audio, rhythmic beat transitions, and curious text hooks like 'Watch this canvas transform in 15 seconds'.",
+        "image": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=800&q=80",
+        "duration": "30-45s",
+        "tag": "High Engagement & Viral",
+        "referenceReels": [
+          {
+            "title": "Creative Inspiration 01",
+            "url": "https://www.instagram.com/reel/DYXCdsSRnlI/?exln=MWwzejI3eDd2ZWhodg=="
+          },
+          {
+            "title": "Creative Inspiration 02",
+            "url": "https://www.instagram.com/reel/DfOhyEKSpPN/?mdxt=MWJuMzg3aThubmJ6eQ=="
+          }
+        ]
+      },
+      {
+        "id": "ugc-micro-content",
+        "title": "UGC & Micro Content",
+        "subtitle": "Real Visitor Moments, Aesthetic POV, DIY Creations & Authentic Social Proof",
+        "description": "First-person POV and user-generated style micro-content showing real visitors, friends, and couples enjoying their time at the studio. Captures genuine laughter, hands getting messy with paint, proud reveals of custom DIY crafts, and authentic experiential reviews.",
+        "creativeDirection": "Shoot casual, handheld smartphone footage from the visitor's perspective (POV). Capture close-ups of hands working on crafts, spontaneous candid smiles, and the finished keepsake being held up to the camera with soft, trending audio.",
+        "image": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+        "duration": "30-45s",
+        "tag": "UGC & Social Proof",
+        "referenceReels": [
+          {
+            "title": "Creative Inspiration 01",
+            "url": "https://www.instagram.com/reel/DaXqGU3syXJ/?obrf=bXd1cjl6b2JlY2hv"
+          },
+          {
+            "title": "Creative Inspiration 02",
+            "url": "https://www.instagram.com/reel/CiJH9lYolvN/?obrf=MXNvd2tiamZpc2trYw=="
+          }
+        ]
+      },
+      {
+        "id": "location-storytelling-learning",
+        "title": "Location & Business Exposure",
+        "subtitle": "Storytelling & Learning: Studio Atmosphere, Creative Workshops & Immersive Ambience",
+        "description": "A rich visual walkthrough combined with educational storytelling that showcases the studio space, ambiance, workshop offerings, and creative learning opportunities. Guides potential visitors on how to find the venue, what workshops they can join, and what skills they will learn.",
+        "creativeDirection": "Take viewers on an aesthetic journey from the studio entrance to the sunlit art stations, display walls, and workshop tables. Intercut shots of instructors demonstrating techniques with voiceover or clean text explaining studio timings, booking, and workshop details.",
+        "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80",
+        "duration": "50-60s",
+        "tag": "Walkthrough & Storytelling",
+        "referenceReels": [
+          {
+            "title": "Creative Inspiration 01",
+            "url": "https://www.instagram.com/reel/Deje87jhYoq/?vrfl=MWtoeGthcHJpOXB1Mg=="
+          }
+        ]
+      },
+      {
+        "id": "meme-style-reels",
+        "title": "Meme-Style Reels",
+        "subtitle": "Relatable Art Studio Humor, Creative Date Nights & Trending Audio Trends",
+        "description": "Humorous, highly relatable reels utilizing trending audios, funny reaction clips, and witty text overlays based on relatable art experiences—like 'saying you're just going to look and leaving with 5 handmade charms', creative date night expectations vs reality, or ruined canvases.",
+        "creativeDirection": "Pair viral comedic audio clips with everyday art studio scenarios. Keep text captions punchy, easily readable in 2 seconds, and relatable to couples, best friends, and DIY hobbyists to trigger maximum shares, comments, and story reshares.",
+        "image": "https://images.unsplash.com/photo-1572945753563-80ac124ffee8?auto=format&fit=crop&w=800&q=80",
+        "duration": "20-35s",
+        "tag": "Viral & Relatable",
+        "referenceReels": [
+          {
+            "title": "Creative Inspiration 01",
+            "url": "https://www.instagram.com/reel/DWtZCxdj6KV/?dlrf=eXJ4YmwzZmt6cTcy"
+          },
+          {
+            "title": "Creative Inspiration 02",
+            "url": "https://www.instagram.com/reel/DcyNDHPzONR/?exln=dzU1MGxhMng3ZTZi"
+          },
+          {
+            "title": "Creative Inspiration 03",
+            "url": "https://www.instagram.com/reel/DezR-01iXqx/?obrf=aDdoNWhwaTNpNzd0"
+          },
+          {
+            "title": "Creative Inspiration 04",
+            "url": "https://www.instagram.com/reel/DWLJlILTj7I/?srtk=MXBxbTVoMzYyMXY4bw=="
+          }
+        ]
+      }
+    ]
   }
 ];

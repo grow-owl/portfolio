@@ -134,6 +134,7 @@ export default function CategoryVideoList({ category }) {
                   embedUrl: getMediaEmbedUrl(reel.url),
                   image: fallbackEx.image || video.image,
                   duration: video.duration || "45-60s",
+                  fit: reel.fit || (reel.url && reel.url.includes("Deje87jhYoq") ? "wide" : "normal"),
                 };
               })
             : (examples || []).map((ex, eIdx) => {
@@ -238,20 +239,25 @@ export default function CategoryVideoList({ category }) {
                         {/* Video Player Viewport - Edge-to-Edge Reel (No side black bars) */}
                         <div className="relative w-full h-[400px] sm:h-[450px] lg:h-[480px] overflow-hidden bg-black flex items-start justify-center">
                           {card.embedUrl ? (
-                            <>
-                              <iframe
-                                key={`${cardId}-${resetCounters[cardId] || 0}`}
-                                data-video-id={cardId}
-                                src={card.embedUrl}
-                                title={`${video.title} - ${card.title}`}
-                                className="absolute block border-0 bg-black w-[136%] -left-[18%] h-[calc(100%+160px)] -top-[44px]"
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                scrolling="no"
-                                loading="lazy"
-                              />
-                              {/* Bottom gradient mask: guarantees that the white 'View more on Instagram' footer is 100% hidden */}
-                              <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none z-10" />
-                            </>
+                            (() => {
+                                const isWide = card.fit === "wide" || (card.url && card.url.includes("Deje87jhYoq"));
+                                return (
+                                  <>
+                                    <iframe
+                                      key={`${cardId}-${resetCounters[cardId] || 0}`}
+                                      data-video-id={cardId}
+                                      src={card.embedUrl}
+                                      title={`${video.title} - ${card.title}`}
+                                      className={`absolute block border-0 bg-black ${isWide ? "w-[208%] -left-[54%] h-[calc(100%+320px)] -top-[52px] sm:-top-[56px]" : "w-[136%] -left-[18%] h-[calc(100%+160px)] -top-[44px]"}`}
+                                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                      scrolling="no"
+                                      loading="lazy"
+                                    />
+                                    {/* Bottom gradient mask: guarantees that the white 'View more on Instagram' footer is 100% hidden */}
+                                    <div className={`absolute inset-x-0 bottom-0 ${isWide ? "h-14" : "h-10"} bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none z-10`} />
+                                  </>
+                                );
+                              })()
                           ) : (
                             <div className="relative w-full h-full">
                               <Image

@@ -458,18 +458,25 @@ export default function WatchOurWork({
                       </div>
                     ) : (
                       <>
-                        <iframe
-                          key={`${videoId}-${resetCounters[videoId] || 0}`}
-                          data-video-id={videoId}
-                          src={embedUrl}
-                          title={`${item.clientName} Instagram Showcase - GrowOwl`}
-                          className="absolute w-[138%] -left-[19%] h-[calc(100%+160px)] -top-[48px] sm:-top-[52px] border-0 block bg-black"
-                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                          scrolling="no"
-                          loading="lazy"
-                        />
-                        {/* Bottom gradient mask: guarantees that the white 'View more on Instagram' footer is 100% hidden */}
-                        <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none z-10" />
+                        {(() => {
+                          const isWide = item.fit === "wide" || (item.videoUrl && item.videoUrl.includes("Deje87jhYoq"));
+                          return (
+                            <>
+                              <iframe
+                                key={`${videoId}-${resetCounters[videoId] || 0}`}
+                                data-video-id={videoId}
+                                src={embedUrl}
+                                title={`${item.clientName} Instagram Showcase - GrowOwl`}
+                                className={`absolute ${isWide ? "w-[208%] -left-[54%] h-[calc(100%+320px)] -top-[52px] sm:-top-[56px]" : "w-[138%] -left-[19%] h-[calc(100%+160px)] -top-[48px] sm:-top-[52px]"} border-0 block bg-black`}
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                scrolling="no"
+                                loading="lazy"
+                              />
+                              {/* Bottom gradient mask: guarantees that the white 'View more on Instagram' footer is 100% hidden */}
+                              <div className={`absolute inset-x-0 bottom-0 ${isWide ? "h-14" : "h-10"} bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none z-10`} />
+                            </>
+                          );
+                        })()}
                       </>
                     )}
                   </div>
