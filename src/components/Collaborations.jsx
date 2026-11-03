@@ -10,15 +10,6 @@ const partners = [
     imgRadius: "rounded-full",
     accent: "#e8481c",
   },
-  {
-    id: "pritix-creative",
-    name: "Pritix Creative",
-    role: "Content & Marketing Agency",
-    image: "/images/logos/pritix-creative.webp",
-    imgBg: "#ede9ff",
-    imgRadius: "rounded-xl",
-    accent: "#7c3aed",
-  },
 ];
 
 export default function Collaborations() {
@@ -38,15 +29,14 @@ export default function Collaborations() {
         </div>
 
         {/* ── Partner cards ── */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5">
-
+        <div className="flex items-center justify-center">
           {/* Card 1 — Pixel Karigars */}
           <a
             href="https://pixelkarigars.in"
             target="_blank"
             rel="noopener noreferrer"
             title="Visit Pixel Karigars — Creative Design Studio"
-            className="group w-full sm:w-[280px] lg:w-[300px] bg-card rounded-2xl sm:rounded-3xl border border-ink/10 px-5 sm:px-6 py-5 sm:py-6 flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300"
+            className="group w-full sm:w-[320px] lg:w-[340px] bg-card rounded-2xl sm:rounded-3xl border border-ink/10 px-5 sm:px-6 py-5 sm:py-6 flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300"
           >
             <div
               className="w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] rounded-full overflow-hidden border border-ink/8 shrink-0 group-hover:scale-105 transition-transform duration-300"
@@ -64,46 +54,6 @@ export default function Collaborations() {
               <p className="text-[11px] sm:text-xs text-ink/50 font-medium mt-0.5 leading-tight">Creative Design Studio</p>
             </div>
           </a>
-
-          {/* ── × Divider — desktop only, sits between the two cards ── */}
-          <div className="hidden sm:flex flex-col items-center gap-1.5 shrink-0 self-center">
-            <div className="w-px h-5 bg-ink/12" />
-            <span className="text-[12px] font-bold text-ink/25">×</span>
-            <div className="w-px h-5 bg-ink/12" />
-          </div>
-
-          {/* Mobile × separator */}
-          <div className="flex sm:hidden items-center gap-3">
-            <div className="w-10 h-px bg-ink/10" />
-            <span className="text-[11px] font-bold text-ink/25 tracking-widest">×</span>
-            <div className="w-10 h-px bg-ink/10" />
-          </div>
-
-          {/* Card 2 — Pritix Creative */}
-          <a
-            href="https://Pritixcreative.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Visit Pritix Creative — Content & Marketing Agency"
-            className="group w-full sm:w-[280px] lg:w-[300px] bg-card rounded-2xl sm:rounded-3xl border border-ink/10 px-5 sm:px-6 py-5 sm:py-6 flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300"
-          >
-            <div
-              className="w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] rounded-2xl overflow-hidden border border-ink/8 shrink-0 flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-300"
-              style={{ backgroundColor: "#ede9ff" }}
-            >
-              <Image src="/images/logos/pritix-creative.webp" alt="Pritix Creative logo" width={64} height={64} className="w-full h-full object-contain" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center justify-between gap-1">
-                <span className="inline-block text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.14em] mb-1 px-1.5 py-0.5 rounded" style={{ color: "#7c3aed", backgroundColor: "#7c3aed14" }}>
-                  Partner Agency
-                </span>
-              </div>
-              <h3 className="text-[15px] sm:text-[16px] font-bold text-ink tracking-[-0.01em] leading-tight">Pritix Creative</h3>
-              <p className="text-[11px] sm:text-xs text-ink/50 font-medium mt-0.5 leading-tight">Content & Marketing Agency</p>
-            </div>
-          </a>
-
         </div>
       </div>
     </section>
